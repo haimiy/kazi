@@ -1,0 +1,87 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sufee Admin - HTML5 Admin Template</title>
+    <meta name="description" content="Sufee Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/themify-icons/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/flag-icon-css/css/flag-icon.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/selectFX/css/cs-skin-elastic.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/jqvmap/dist/jqvmap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+</head>
+
+<body class="bg-dark">
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+            <div class="login-content">
+                <div class="login-logo">
+                    <a href="index.html">
+                        <img class="align-content" src="{{ asset('assets/images/logo.png') }}" alt="">
+                    </a>
+                </div>
+                        
+                <div class="login-form">
+                    <h3 class="text-center">Sign Up</h3>
+                    <hr>
+                        <!-- Validation Errors -->
+                    <x-auth-validation-errors class="mb-4 text-danger" :errors="$errors" />
+                    <form method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="first_name" :value="old('first_name')" placeholder="First Name" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="middle_name" :value="old('middle_name')" placeholder="Second Name" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="last_name" :value="old('last_name')" placeholder="Last Name" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" :value="old('email')" placeholder="Email" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="phone_no" :value="old('phone_no')" placeholder="Phone No." required />
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="address" :value="old('address')" placeholder="Address" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Your Password" name="password" autocomplete="current-password" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation" required />
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Agree the terms and policy
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-primary btn-sm account-btn" type="submit">Click To Register</button>
+                            </div>
+                            <div class="register-link m-t-15 text-center">
+                                <p>Already have account ? <a href="/login"> Sign in</a></p>
+                            </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ asset('assets/vendors/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{ asset('assets/vendors/popper.js/dist/umd/popper.min.js')}}"></script>
+    <script src="{{ asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="{{ asset('assets/js/main.js')}}"></script>
+</body>
+</html>
