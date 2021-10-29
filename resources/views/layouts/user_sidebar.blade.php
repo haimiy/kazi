@@ -48,13 +48,48 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/user/registration" class="nav-link">
+            <a href="/user/general_facility_info" class="nav-link">
               <i class="nav-icon fas fa-user-plus"></i>
               <p>
-                Registration
+                General Facility Info
               </p>
             </a>
-         
+          </li>
+          
+          <li class="nav-item">
+            <a href="/user/location" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Facility location
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/user/services_offered" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Services Offered
+              </p>
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="/user/nearest" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Health Facility nearest
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/user/other" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Other
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

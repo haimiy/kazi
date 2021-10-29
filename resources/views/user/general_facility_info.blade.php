@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.user_app')
 @section('title', '')
 @section('css')
     
@@ -46,9 +46,49 @@
                           <h3 class="card-title">Health facility registration</h3>
                         </div>
                          
-                        <form method="POST" action="/admin/create_health_facility_form">
+                        <form method="POST" action="/user/general_facility_info_form">
                             @csrf
-                            <div class="card-body">                                                               
+                            <div class="card-body">                           
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Type of Health Unit</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control select2" onchange="other(this);" name="type_of_health_unit_id" style="width: 100%;">
+                                                    <option selected="selected">--Select--</option>
+                                                    @foreach ($type_of_health_unit as $type_of_health_unit)
+                                                    <option value="{{$type_of_health_unit->id}}">{{$type_of_health_unit->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <div class="form-group"  id="other" style="display: none;">
+                                                    <label></label>
+                                                    <input type="text" class="form-control" name="type_of_health_unit_specified" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Authority responsible for establishing/ running the facility</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control select2" onchange="authority(this);" name="authority_responsible_id" style="width: 100%;">
+                                                    <option selected="selected">--Select--</option>
+                                                    @foreach ($authority_responsible as $authority_responsible)
+                                                    <option value="{{$authority_responsible->id}}">{{$authority_responsible->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                <div class="form-group"  id="authority" style="display: none;">
+                                                    <label></label>
+                                                    <input type="text" class="form-control" name="authority_responsible_specified" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">What date did you expect to start operation</label>
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    <input type="date" class="form-control" name="starting_operation_date" />
+                                                </div>
+                                            </div>    
+                                        </div>
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Health Facility Name</label>
                                             <div class="col-sm-8">
@@ -57,90 +97,38 @@
                                                 </div>
                                             </div>    
                                         </div>
-
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Registration number </label>
+                                            <label class="col-sm-4 col-form-label">Registration number (if facility previously registered) </label>
                                             <div class="col-sm-8">
                                                 <div class="form-group">
                                                     <input type="text" class="form-control" name="reg_no" />
                                                 </div>
                                             </div>    
                                         </div>
-
                                         <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Name of district</label>
+                                            <label class="col-sm-4 col-form-label">Ownership Type</label>
                                             <div class="col-sm-8">
-                                                <select class="form-control select2" name="district_name" style="width: 100%;">
-                                                    <option selected="selected">--Select--</option>
-                                                    @foreach ($district as $district)
-                                                    <option value="{{$district->name}}">{{$district->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Type of Health Unit</label>
-                                            <div class="col-sm-8">
-                                                <select class="form-control select2" name="type_of_health_unit" style="width: 100%;">
-                                                    <option selected="selected">--Select--</option>
-                                                    @foreach ($type_of_health_unit as $type_of_health_unit)
-                                                    <option value="{{$type_of_health_unit->name}}">{{$type_of_health_unit->name}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Year</label>
-                                            <div class="col-sm-8">
-                                                <div class="form-group">
-                                                    <input type="date" class="form-control" name="starting_operation_date" />
-                                                </div>
+                                                <select class="form-control" onchange="ownership(this);" name="ownership_type" style="width: 100%;">
+                                                    <option value="#">--Select--</option>
+                                                   <option value="Sole Proprietorship">Sole Proprietorship(Individual)</option>
+                                                   <option value="Partnership">Partnership</option>
+                                                   <option value="Company">Company</option>   
+                                               </select>
                                             </div>    
                                         </div>
-
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Owner Name</label>
                                             <div class="col-sm-8">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="full_name" />
+                                                    <input type="text" name='person_incharge' disabled value="{{ Auth::user()->first_name. ' '.Auth::user()->middle_name. ' '.Auth::user()->last_name}}" class="form-control" />
                                                 </div>
                                             </div>    
                                         </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Telephone</label>
-                                            <div class="col-sm-8">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="phone_no" />
-                                                </div>
-                                            </div>    
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Location</label>
-                                            <div class="col-sm-8">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="location" />
-                                                </div>
-                                            </div>    
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-4 col-form-label">Services Delivary</label>
-                                            <div class="col-sm-8">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="service_name" />
-                                                </div>
-                                            </div>    
-                                        </div>
-
                                         <div class="form-group row">
                                             <label class="col-sm-4 col-form-label">Name of Doctor Incharge</label>
                                             <div class="col-sm-8">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" name="doctor_incharge_name" />
+                                                    <input type="text" class="form-control" name="full_name" />
                                                 </div>
                                             </div>    
                                         </div>
@@ -174,6 +162,20 @@
         $('.select2').select2()
 
         });
+        function other(that){
+            if(that.value == "8"){
+                document.getElementById('other').style.display = "block";
+            }else{
+                document.getElementById('other').style.display = "none";
+            }
+        }
+        function authority(that){
+            if(that.value == "5"){
+                document.getElementById('authority').style.display = "block";
+            }else{
+                document.getElementById('authority').style.display = "none";
+            }
+        }
         </script>
         
 @endsection

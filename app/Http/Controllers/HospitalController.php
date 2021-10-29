@@ -6,16 +6,21 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Level;
 use App\Models\District;
+use App\Models\Location;
 use App\Models\Staffing;
 use App\Models\By_district;
 use App\Models\GeneralList;
 use App\Models\HealthCentre;
 use Illuminate\Http\Request;
+use App\Models\TypeOfService;
 use App\Models\DoctorIncharge;
+use App\Models\HealthFacility;
 use App\Models\ServiceDelivary;
+use App\Models\TypeOfHealthUnit;
 use App\imports\GeneralListImport;
 use App\Models\HospitalStatistics;
 use Illuminate\Support\Facades\DB;
+use App\Models\GeneralFacilityInfo;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\HealthCentreCategories;
 use Illuminate\Support\Facades\Session;
@@ -24,33 +29,6 @@ use App\Imports\HospitalStatisticsImport;
 
 class HospitalController extends Controller
 {
-    public function index()
-    {
-        $doctor_incharge = DB::select('select * from users where users.role_id = '. 5);
-        $health_centre_categories = HealthCentreCategories::all();
-        $service_delivary = ServiceDelivary::all();
-        $district = District::all();
-        $owner = DB::select('select * from users where users.role_id = '. 4);
-        $staffing = DB::select('SELECT u.*, s.license_job, s.status_categories, s.staffing_no, s.temporary_permanent FROM users u 
-        LEFT JOIN staffing s ON s.user_id = u.id WHERE u.role_id = '. 3);
-        
-        return view('admin.create', [
-            'health_centre_categories' => $health_centre_categories,
-            'district' => $district,
-            'owner' => $owner,
-            'staffing' => $staffing,
-            'doctor_incharge' => $doctor_incharge,
-            'service_delivary' => $service_delivary,
-        ]);
-       
-    }
-
-    public function generalList(){
-        $hospital = HealthCentre::all();
-        return view('admin.general_list', [
-            'hospitals' => $hospital,
-        ]);
-    }
     public function Doctor_incharge()
     {
         $user = DB::select('SELECT u.*, d.qualification FROM users u 
@@ -173,13 +151,6 @@ class HospitalController extends Controller
     public function destroy($id)
     {
         
-    }
-
-    public function hospitalStatistics(){
-        $hospital_statistics = HospitalStatistics::all();
-        return view('admin.hospital_statistics',[
-            'hospital_statistics'=> $hospital_statistics,
-        ]);
     }
 
     public function hospitalStatisticsImported(Request $request) 

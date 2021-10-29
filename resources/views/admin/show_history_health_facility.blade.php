@@ -37,6 +37,7 @@
 }
 </style>
 @endsection
+
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -49,13 +50,12 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Hospital Statistics</li>
+              <li class="breadcrumb-item active">Hospital List</li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -63,54 +63,75 @@
                     <div class="card">
                       <div class="card-header">
                         <h3 class="card-title">
-                            <form action="/admin/hospital_statistics/import" method="POST" enctype="multipart/form-data" id="importForm">
-                                @csrf
-                                    <input type="file" id="myFile" name='file' style="display: none;">
-                                    <button type="button" id="browse" class="btn btn-primary">
-                                        <i class="fa fa-upload" onclick=""></i>&nbsp; Import</button>
-                            </form>
+                            <a class="btn btn-success"> Import </a>
                         </h3>
                       </div>
-                      <div class="card-header">
+                        <div class="card-header">
                         @if(Session::has('message'))
                             <div class="alert alert-success">
                                 {{ Session::get('message') }}
                             </div>
                         @endif
-                          <h3 class="card-title">Hospital Statistics</h3>
+                        @if(Session::has('delete_message'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('delete_message') }}
+                        </div>
+                        @endif
+                          <h3 class="card-title">List of all Hospital</h3>
                         </div>
                         <!-- /.card-header -->
-                    </div>
-
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <div class="card-body">
+                          <table id="example1" class="table table-bordered table-striped">
                             <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Starting year</th>
-                                    <th>Health facility</th>
-                                    <th>Hospital no.</th>   
-                                </tr>
+                            <tr>
+                              <th>#</th>
+                              <th>Registration No</th>
+                              <th>District Name</th>
+                              <th>Type of Health Unit</th>
+                              <th>Year</th>
+                              <th>Owner</th>
+                              <th>Phone no.</th>
+                              <th>Location</th>
+                              <th>Service Delivary</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                @foreach($hospital_statistics as $hospital_statistics )
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $hospital_statistics->starting_year }}</td>
-                                        <td>{{ $hospital_statistics->health_facility }}</td>
-                                        <td>{{ $hospital_statistics->hospital_no }}</td> 
-                                    </tr>
-                                @endforeach
+                            @foreach ($health_facility as $health_facility)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $health_facility->facility_name }}</td>
+                                <td>{{ $health_facility->reg_no }}</td>
+                                <td>{{ $health_facility->district_name }}</td>
+                                <td>{{ $health_facility->type_of_health_unit }}</td>
+                                <td>{{ $health_facility->starting_operation_date }}</td>
+                                <td>{{ $health_facility->phone_no }}</td>
+                                <td>{{ $health_facility->location }}</td>
+                                <td>{{ $health_facility->service_name }}</td>
+                              </tr>
+                            @endforeach
                             </tbody>
-                        </table>
-                    </div>
-                <!-- /.card-body -->
+                            <tfoot>
+                            <tr>
+                                <th>#</th>
+                                <th>Registration No</th>
+                                <th>District Name</th>
+                                <th>Type of Health Unit</th>
+                                <th>Year</th>
+                                <th>Owner</th>
+                                <th>Phone no.</th>
+                                <th>Location</th>
+                                <th>Service Delivary</th>
+                            </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+                        <!-- /.card-body -->
+                      </div>
+                      <!-- /.card -->
+                </div>
             </div>
-            <!-- /.card -->
-      </div>
-  </div>
-</div>
-</section>
+        </div>
+    </section>
 </div>
 @endsection
 
@@ -151,17 +172,5 @@
         var formId = 'delete-'+id
         document.getElementById(formId).submit()
     }
-  </script>
-  <script>
-      $(document).ready(function(){
-        $('#browse').click(function(){
-        $('#myFile').click();
-        });
-
-        $('#myFile').change(function(e) {
-            $("#importForm").submit();
-        });
-        
-});
   </script>
 @endsection

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\HistoryHealthFacility;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +25,13 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('index', function () {
         return view('admin.index');
     });
+    Route::get('create_health_facility', [HistoryHealthFacility::class, 'HealthFacilityCreate']);
+    Route::post('create_health_facility_form', [HistoryHealthFacility::class, 'HealthFacilityCreateForm']);
+    Route::get('show_health_facility', [HistoryHealthFacility::class, 'showHealthFacility']);
+
+    Route::get('hospital_statistics', [HistoryHealthFacility::class, 'hospitalStatistics']);
+    Route::post('hospital_statistics/import', [HistoryHealthFacility::class, 'hospitalStatisticsImported']);
+
     Route::get('create_users', [UserController::class, 'UsersCreate']);
     Route::post('create_users_form', [UserController::class, 'UsersCreateForm']);
     Route::get('show_users', [UserController::class, 'showUsers']);
@@ -31,6 +39,9 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
     Route::get('type_of_health_unit', [ActivityController::class, 'typeOfHealthUnit']);
     Route::post('type_of_health_unit_form', [ActivityController::class, 'typeOfHealthUnitForm']);
+
+    Route::get('service_offered', [ActivityController::class, 'serviceOffered']);
+    Route::post('service_offered_form', [ActivityController::class, 'serviceOfferedForm']);
 
     Route::get('authority_responsible', [ActivityController::class, 'authorityResponsible']);
     Route::post('authority_responsible_form', [ActivityController::class, 'authorityResponsibleForm']);
@@ -49,8 +60,14 @@ Route::prefix('user')->middleware('user')->group(function(){
     Route::get('index', function () {
         return view('user.index');
     });
-    Route::get('registration', [UserController::class, 'registrationCreate']);
-    Route::post('registration_form', [UserController::class, 'registrationCreateForm']);
+    Route::get('general_facility_info', [UserController::class, 'generalFacilityInfo']);
+    Route::post('general_facility_info_form', [UserController::class, 'generalFacilityInfoForm']);
+    Route::get('services_offered', [UserController::class, 'servicesOffered']);
+    Route::post('services_offered_form', [UserController::class, 'servicesOfferedForm']);
+    Route::get('location', [UserController::class, 'location']);
+    Route::post('location_form', [UserController::class, 'locationForm']);
+    Route::get('nearest', [UserController::class, 'nearest']);
+    Route::get('other', [UserController::class, 'other']);
 });
 
 
@@ -60,10 +77,6 @@ Route::post('owner_create_store', [UserController::class, 'owner_store']);
 Route::post('owner_update/{id}', [UserController::class, 'ownerUpdate']);
 Route::delete('delete/{id}', [UserController::class, 'ownerDelete']);
 Route::get('owner_details/{id}', [UserController::class, 'ownerDetail']);
-
-Route::get('hospital_statistics', [HospitalController::class, 'hospitalStatistics']);
-Route::post('hospital_statistics/import', [HospitalController::class, 'hospitalStatisticsImported']);
-Route::get('hospital_statistics/export', [HospitalController::class, 'hospitalStatisticsExported']);
 
 Route::get('level', [HospitalController::class, 'Level']);
 Route::post('level_create_store', [HospitalController::class, 'level_store']);

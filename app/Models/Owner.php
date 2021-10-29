@@ -10,7 +10,9 @@ class Owner extends Model
     use HasFactory;
     protected $table = "owner";
     protected $fillable = [
-        'user_id',
+        'person_incharge',
+        'signature',
+        'ownership_type',
     ];
     
 }
