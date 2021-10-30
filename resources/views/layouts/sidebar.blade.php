@@ -87,7 +87,7 @@
               </p>
             </a>
           </li>
-          {{-- <li class="nav-item">
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-eye"></i>
               <p>
@@ -115,7 +115,7 @@
                 </a>
               </li>
             </ul>
-          </li> --}}
+          </li>
           <li class="nav-header">ACTIVITIES</li>
           <li class="nav-item">
             <a href="/admin/type_of_health_unit" class="nav-link">

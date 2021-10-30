@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\TypeOfService;
 use App\Models\TypeOfHealthUnit;
 use App\Models\HospitalStatistics;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\HospitalStatisticsImport;
 use Illuminate\Support\Facades\Session;
+use App\Imports\HospitalStatisticsImport;
 use App\Models\HistoryHealthFacility as ModelsHistoryHealthFacility;
 
 class HistoryHealthFacility extends Controller
@@ -50,6 +52,9 @@ class HistoryHealthFacility extends Controller
     public function hospitalStatisticsImported(Request $request) 
     {
         Excel::import(new HospitalStatisticsImport, $request->file('file')->store('temp'));
-        return back();
+        return back()->with('success', 'Data imported successfully');
     }
+
+    
 }
+

@@ -15,10 +15,9 @@ class CreateHospitalStatisticTable extends Migration
     {
         Schema::create('hospital_statistic', function (Blueprint $table) {
             $table->id();
-            $table->date('starting_year')->nullable();
+            $table->string('starting_year')->nullable();
             $table->integer('health_facility')->default(0);
             $table->integer('hospital_no')->default(0);
-
             $table->timestamps();
         });
     }

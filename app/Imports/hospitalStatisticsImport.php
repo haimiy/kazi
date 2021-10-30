@@ -14,9 +14,9 @@ class hospitalStatisticsImport implements ToModel
     */
     public function model(array $row)
     {
-        return new hospitalStatistics([
-            'starting_year' => $row[0],
-            'health_facility' => $row[1],
+        new hospitalStatistics([
+            'starting_year' => $row[1],
+            'health_facility' => $row[2],
             'hospital_no' => $row[3],
         ]);
     }
