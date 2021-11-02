@@ -40,23 +40,25 @@
           {{-- <h5 class="mt-4 mb-2">Tabs in Cards</h5> --}}
 
           <div class="row">
-            <div class="col-7">
+            <div class="col-12">
               <!-- Custom Tabs -->
-              <div class="card">
-                <div class="card-header text-center">
-                  <h3 class="card-title p-3"><i class="fas fa-bullhorn" style="color: red;"></i><strong> GENERAL REQUIREMENTS FOR ESTABLISMENT OF PRIVATE HEALTH FACILITIES.</strong></h3>
+              <div class="card card-primary card-outline">
+                <div class="card-header">
+                  <h3 class="card-title">
+                    <i class="fas fa-bullhorn" style="color: red;"></i><strong> GENERAL REQUIREMENTS FOR ESTABLISMENT OF PRIVATE HEALTH FACILITIES.</strong></h3>
                 </div>
-                <div class="card-header d-flex p-0">
-                  
-                  <ul class="nav nav-pills ml-auto p-2">
-                    <li class="nav-item"><a class="nav-link active" href="#tab_1" data-toggle="tab">Ownership</a></li>
-                    <li class="nav-item"><a class="nav-link"  href="#tab_2" data-toggle="tab">Staffing and 
-                      <br>Operating Environment</a></li>
-                  </ul>
-                </div><!-- /.card-header -->
                 <div class="card-body">
+                  <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home" aria-selected="true">Owner</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Staffing and Operating Environment</a>
+                    </li>
+                  </ul>
+                  
                   <div class="tab-content">
-                    <div class="tab-pane active" id="tab_1">
+                    <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel" aria-labelledby="custom-content-below-home-tab">
                       <ol>
                         <li>The owner has to be a non-Government, an Individual, licensed healthcare provider or organization or registered company. The dispensary, clinics, health center and Hospitals will be supervised by a licensed Super specialist, Specialist or Medical Officer.
                         </li>
@@ -66,7 +68,7 @@
                      
                     </div>
                     <!-- /.tab-pane -->
-                    <div class="tab-pane" id="tab_2">
+                    <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
                       <ol>
                         <li>he Health practitioner who is the supervisor of the facility is only allowed to supervise one facility, which may be a clinic, polyclinics, specialized clinics, dispensaries or health centers. 
                         </li>
