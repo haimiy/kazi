@@ -54,6 +54,30 @@ class HistoryHealthFacility extends Controller
         Excel::import(new HospitalStatisticsImport, $request->file('file')->store('temp'));
         return back()->with('success', 'Data imported successfully');
     }
+    public function byDistrict(){
+        $health_facility = ModelsHistoryHealthFacility::all();
+        return view('admin.by_district', [
+            'health_facility' => $health_facility
+        ]);
+    }
+
+    public function byLevel(){
+        $health_facility = ModelsHistoryHealthFacility::all();
+        return view('admin.level', [
+            'health_facility' => $health_facility
+        ]);
+    }
+    public function deleteHospital($id){
+        $hospital_id =ModelsHistoryHealthFacility::find($id);
+        $hospital_id->delete();
+        Session::flash('delete_message', 'Deleted Successfull!');
+        return redirect()->back();
+    }
+    public function deleteHealthUnit($id){
+        TypeOfHealthUnit::find($id)->delete();
+        Session::flash('delete_message', 'Deleted Successfull!');
+        return redirect()->back();
+    }
 
     
 }

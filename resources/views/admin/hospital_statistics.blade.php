@@ -29,6 +29,12 @@
     background-color: transparent;
     border: 0;
 }
+.text-center {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: 0;
+}
 .dropdown-item:first-child {
     border-top-left-radius: calc(0.25rem - 1px
 );
@@ -62,25 +68,18 @@
                 <div class="col-12">
                     <div class="card">
                       <div class="card-header">
-                        <h3 class="card-title">
-                            <form action="/admin/hospital_statistics/import" method="POST" enctype="multipart/form-data" id="importForm">
-                                @csrf
-                                    <input type="file" id="myFile" name='file' style="display: none;">
-                                    <button type="button" id="browse" class="btn btn-primary">
-                                        <i class="fa fa-upload" onclick=""></i>&nbsp; Import</button>
-                            </form>
-                        </h3>
+                          {{-- <h3 class="card-title">
+                              <form action="/admin/hospital_statistics/import" method="POST" enctype="multipart/form-data" id="importForm">
+                                  @csrf
+                                      <input type="file" id="myFile" name='file' style="display: none;">
+                                      <button type="button" id="browse" class="btn btn-primary">
+                                          <i class="fa fa-upload" onclick=""></i>&nbsp; Import</button>
+                              </form>
+                          </h3>
+                          </div> --}}
+                        
+                          <h3 class="text-center">HOSPITAL BINAFSI ZILIZO ANZISHWA KWA MUJIBU WA <br> NAMBA 4 YA MWAKA 1994</h3> 
                       </div>
-                      <div class="card-header">
-                        @if(Session::has('message'))
-                            <div class="alert alert-success">
-                                {{ Session::get('message') }}
-                            </div>
-                        @endif
-                          <h3 class="card-title">Hospital Statistics</h3>
-                        </div>
-                        <!-- /.card-header -->
-                    </div>
 
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">

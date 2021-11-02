@@ -46,23 +46,59 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/admin/create_users" class="nav-link">
-              <i class="nav-icon fas fa-user-plus"></i>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-eye"></i>
               <p>
-                Add Users
+                Manage Users
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/admin/create_users" class="nav-link">
+                  <i class="nav-icon fas fa-user-plus"></i>
+                  <p>
+                    Add Users
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/admin/show_users" class="nav-link">
+                  <i class="nav-icon fas fa-eye"></i>
+                  <p>
+                    Show Users
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </li>
+         
+          <li class="nav-header">Show Private Hospital</li>
+          <li class="nav-item">
+            <a href="/admin/show_health_facility" class="nav-link">
+              <i class="nav-icon fas fa-eye"></i>
+              <p>
+                By General List
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="/admin/show_users" class="nav-link">
+            <a href="/admin/by_level" class="nav-link">
               <i class="nav-icon fas fa-eye"></i>
               <p>
-                Show Users
+                By Level
               </p>
             </a>
           </li>
-         
-          {{-- <li class="nav-header">HEALTH FACILITY</li> --}}
+          <li class="nav-item">
+            <a href="/admin/by_district" class="nav-link">
+              <i class="nav-icon fas fa-eye"></i>
+              <p>
+                By district
+              </p>
+            </a>
+          </li>
+          <li class="nav-header">Add Hospital</li>
           <li class="nav-item">
             <a href="/admin/create_health_facility" class="nav-link">
               <i class="nav-icon fas fa-plus"></i>
@@ -71,14 +107,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="/admin/show_health_facility" class="nav-link">
-              <i class="nav-icon fas fa-eye"></i>
-              <p>
-                Show Hospital
-              </p>
-            </a>
-          </li>
+         
           <li class="nav-item">
             <a href="/admin/hospital_statistics" class="nav-link">
               <i class="nav-icon fas fa-eye"></i>
@@ -87,36 +116,8 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-eye"></i>
-              <p>
-                Show Hospital
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="pages/search/simple.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>By General List</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/search/enhanced.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>By Level</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/search/enhanced.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>By District</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-header">ACTIVITIES</li>
+
+          <li class="nav-header">Activities</li>
           <li class="nav-item">
             <a href="/admin/type_of_health_unit" class="nav-link">
               <i class="nav-icon fas fa-ellipsis-h"></i>

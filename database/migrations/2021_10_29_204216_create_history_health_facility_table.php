@@ -24,8 +24,8 @@ class CreateHistoryHealthFacilityTable extends Migration
             $table->string('phone_no');
             $table->string('location');
             $table->string('service_name');
-            $table->string('doctor_incharge_name');
-            $table->string('qualification');
+            $table->string('doctor_incharge_name')->nullable();
+            $table->string('qualification')->nullable();
             $table->timestamps();
         });
     }

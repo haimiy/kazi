@@ -20,11 +20,14 @@ class CreateRegistrationTable extends Migration
             $table->unsignedBigInteger('authority_responsible_id');
             $table->string('authority_responsible_specified')->nullable();
             $table->date('starting_operation_date');
-            $table->unsignedBigInteger('health_facility_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('nearest_hospital_name')->nullable();;
-            $table->string('nearest_hospitall_owner')->nullable();;
-            $table->string('nearest_hospitall_distance')->nullable();;
-            $table->string('nearest_hospitall_type_of_health_unit_id')->nullable();;
+            $table->string('nearest_hospital_owner')->nullable();;
+            $table->string('nearest_hospital_distance')->nullable();;
+            $table->string('nearest_hospital_type_of_health_unit')->nullable();
+            $table->unsignedBigInteger('service_type_id')->nullable();
+            $table->boolean('have_additional_requirement')->nullable()->default(false);
+            $table->text('additional_requirement')->nullable();
             $table->string('status')->nullable();;
             $table->string('application_ref_no')->nullable();
             $table->timestamps();

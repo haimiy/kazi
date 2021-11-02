@@ -50,7 +50,7 @@
                           <h3 class="card-title">Authority Responsible</h3>
                         </div>
                          
-                        <form method="POST" action="/authority_responsible_form">
+                        <form method="POST" action="/admin/authority_responsible_form">
                         @csrf
                             <div class="card-body">
                                 <div class="row">

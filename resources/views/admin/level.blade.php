@@ -1,225 +1,174 @@
 @extends('layouts.app')
+@section('title', '')
 @section('css')
-<link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}">
+<!-- DataTables -->
+<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}"> 
 <style>
-    .table thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
-    border: 1px solid #f1f2f7;
-    /* background-color: #212121; */
-    border: 1px solid #dddddd;
-    border-color: #6c757d;
-    /* border-color: transparent; */
-    background-color: #009efb;
-    border-radius: 0px;
-}th {
-    text-align: inherit;
-    /* color: #777 !important; */
-    color: #fff;
-    font-size: 14px;
-    font-weight: 700px;
-    font-family: 'Open Sans';
+    a:hover, a:active, a:focus {
+    text-decoration: none;
+    color: #009ce7;
+    outline: none;
 }
-.table-bordered td, .table-bordered th {
-    border: 1px solid #dddddd;;
+.action-icon {
+    color: #777;
+    font-size: 18px;
+    padding: 0 10px;
+    display: inline-block;
+}
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+.text-center {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: 0;
+}
+.dropdown-item:first-child {
+    border-top-left-radius: calc(0.25rem - 1px
+);
+    border-top-right-radius: calc(0.25rem - 1px
+);
 }
 </style>
 @endsection
+
 @section('content')
-
-<div class="breadcrumbs">
-    <div class="col-sm-12">
-        <div class="page-header float-right">
-            <div class="page-title">
-                <ol class="breadcrumb text-right">
-                    <li><a href="/index/admin">Dashboard</a></li>
-                    <li class="active"><a href="hospital">level</a></li>
-                </ol>
-            </div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Hospital List</li>
+            </ol>
+          </div>
         </div>
-    </div>
-</div>
-
-<div class="content mt-3">
-    <div class="animated fadeIn">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header text-center">
-                        <strong class="card-title">Hospital by Level</strong>
-                        <div class="text-center">
-                            LIST OF PRIVATE HOSPITAL IN 2020/21, ACCORDING TO THE LEVEL OF SERVICES DELIVERY
+      </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                        
+                            <h3 class="text-center">LIST OF PRIVATE HOSPITAL IN 2020/21,<br> ACCORDING TO THE LEVEL OF SERVICES DELIVERY</h3> 
                         </div>
-                    </div>
-
-                    <div class="card-body">
-                        <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                          <table id="example1" class="table table-bordered table-striped">
                             <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>categories_of_service</th>
-                                    <th>Owner</th>
-                                    <th>Registration no.</th>
-                                    <th>Year</th>
-                                    <th>Staffing</th>
-                                    <th>License No</th>
-                                    <th>Doctor incharge</th>
-                                    <th>Inspection date</th>
-                                    <th>Lincense R.date</th>
-                                    <th>Service delivary</th>
-                                    <th>Location</th>
-                                    <th>Phone No.</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                    
-                                </tr>
+                            <tr>
+                              <th>#</th>
+                              <th>facility Name</th>
+                              <th>Type of Health Unit</th>
+                              <th>Owner</th>
+                              <th>Phone no.</th>
+                              <th>Location</th>
+                              <th>Service Delivary</th>
+                            </tr>
                             </thead>
                             <tbody>
-                                @foreach($hospitals as $hospital )
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $hospital->name }}</td>
-                                        <td>{{ $hospital->categories_of_service }}</td>
-                                        <td>{{ $hospital->owner_id }}</td>
-                                        <td>{{ $hospital->reg_no }}</td>
-                                        <td>{{ $hospital->year }}</td>
-                                        <td>{{ $hospital->staffing_id }}</td>
-                                        <td>{{ $hospital->licence_no }}</td>
-                                        <td>{{ $hospital->doctor_incharge_id }}</td>
-                                        <td>{{ $hospital->inspection_date }}</td>
-                                        <td>{{ $hospital->license_reg_date }}</td>
-                                        <td>{{ $hospital->service_delivery }}</td>
-                                        <td>{{ $hospital->location }}</td>
-                                        <td>{{ $hospital->phone_no }}</td>
-                                        <td>{{ $hospital->status }}</td>
-                                        <td>
-                                            <a href="#" data-toggle="modal" data-target="#largeModal"><i class="fa fa-pencil text-primary"></i></a>
-                                            <a href="#"><i class="fa fa-trash text-danger"></i></a>
-                                        </td>   
-                                    </tr>
-                                @endforeach
+                            @foreach ($health_facility as $health_facility)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $health_facility->facility_name }}</td>
+                                <td>{{ $health_facility->type_of_health_unit }}</td>
+                                <td>{{ $health_facility->full_name }}</td>
+                                <td>{{ $health_facility->phone_no }}</td>
+                                <td>{{ $health_facility->location }}</td>
+                                <td>{{ $health_facility->service_name }}</td>
+                              </tr>
+                            @endforeach
                             </tbody>
-                        </table>
-                    </div>
+                            <tfoot>
+                            <tr>
+                                <th>#</th>
+                                <th>facility Name</th>
+                                <th>Type of Health Unit</th>
+                                <th>Owner</th>
+                                <th>Phone no.</th>
+                                <th>Location</th>
+                                <th>Service Delivary</th>
+                            </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+                        <!-- /.card-body -->
+                      </div>
+                      <!-- /.card -->
                 </div>
             </div>
-
-
         </div>
-    </div><!-- .animated -->
-</div><!-- .content -->
-<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="largeModalLabel">Edit level</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="/owner_update/{{ $user->id }}" method="POST">
-                    <div class="row">
-                        @csrf
-                        <div class="col-xs-6 col-sm-6">
-                            <div class="card">
-                                <div class="card-body card-block">
-                                    <div class="form-group">
-                                            <label class=" form-control-label">First Name</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
-                                                <input type="text" name="first_name" value="{{ $user->first_name}}" class="form-control">
-                                            </div>
-                                            <small class="form-text text-muted">ex. safiya</small>
-                                    </div>
-                                    <div class="form-group">
-                                            <label class=" form-control-label">Second Name</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-phone"></i></div>
-                                                <input type="text" name="middle_name" value="{{ $user->middle_name}}" class="form-control">
-                                            </div>
-                                                <small class="form-text text-muted">ex.Suleiman</small>
-                                    </div>
-                                    <div class="form-group">
-                                            <label class=" form-control-label">Last Name</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-                                                <input type="text" name="last_name" value="{{ $user->last_name}}" class="form-control">
-                                            </div>
-                                            <small class="form-text text-muted">ex.Iddi</small>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-6 col-sm-6">
-                            <div class="card">
-                                <div class="card-body card-block">
-                                    <div class="form-group">
-                                        <label class=" form-control-label">Email</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon"><i class="fa fa-usd"></i></div>
-                                            <input type="email" name="email" value="{{ $user->email}}" class="form-control">
-                                        </div>
-                                        <small class="form-text text-muted">ex.Safia@gmail.com</small>
-                                    </div>
-                                    <div class="form-group">
-                                            <label class=" form-control-label">Telephone number</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-male"></i></div>
-                                                <input type="text" name="phone_no" value="{{ $user->phone_no}}" class="form-control">
-                                            </div>
-                                            <small class="form-text text-muted">ex.0693858355</small>
-                                    </div>
-                                    <div class="form-group">
-                                            <label class=" form-control-label">Address</label>
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><i class="fa fa-asterisk"></i></div>
-                                                <input type="text" name="address" value="{{ $user->address}}" class="form-control">
-                                            </div>
-                                            <small class="form-text text-muted">ex. namirah ramadhan p.o.box 2345</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-            
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Update</button>
-                    </div>
-                </form>
-            <!-- </div> -->
-           
-        </div>
-    </div>
+    </section>
 </div>
 @endsection
+
 @section('js')
-
-<script src="{{ asset('assets/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{ asset('assets/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{ asset('assets/vendors/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{ asset('assets/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js')}}"></script>
-
-<script src="{{ asset('assets/vendors/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
-<script src="{{ asset('assets/vendors/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
-<script src="{{ asset('assets/vendors/datatables.net-buttons/js/buttons.colVis.min.js')}}"></script>
-<script src="{{ asset('assets/js/init-scripts/data-table/datatables-init.js')}}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<!-- Page specific script -->
 <script>
+    $(function () {
+      $("#example1").DataTable({
+        "responsive": true, "lengthChange": false, "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
+  <script>
+       function deleteUser(id){
+        var formId = 'delete-'+id
+        document.getElementById(formId).submit()
+    }
+  </script>
+   <script>
+    $(document).ready(function(){
+      $('#browse').click(function(){
+      $('#myFile').click();
+      });
 
-// $(document).ready(function(){
-//     $('#browse').click(function(){
-//         $('#myFile').click();
-//     });
-//     $('myfile').change(function(e){
-//         $('#importForm').submit();
-//     });
-// });
-// </script>
-
-
-
+      $('#myFile').change(function(e) {
+          $("#importForm").submit();
+      });
+      
+});
+</script>
 @endsection

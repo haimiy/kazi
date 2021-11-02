@@ -12,6 +12,6 @@ class HealthFacility extends Model
     protected $fillable = [
         'facility_name',
         'reg_no',
-        'location_id',
+        'user_id',
     ];
 }

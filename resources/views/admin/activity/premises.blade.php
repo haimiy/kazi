@@ -50,7 +50,7 @@
                           <h3 class="card-title">Premises</h3>
                         </div>
                          
-                        <form method="POST" action="/premises_form">
+                        <form method="POST" action="/admin/premises_form">
                         @csrf
                             <div class="card-body">
                                 <div class="row">

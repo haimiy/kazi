@@ -5,6 +5,14 @@
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}"> 
+<style>
+  .action-icon {
+    color: #777;
+    font-size: 18px;
+    padding: 0 10px;
+    display: inline-block;
+}
+</style>
 @endsection
 
 @section('content')
@@ -50,7 +58,7 @@
                           <h3 class="card-title">Type of Health Unit</h3>
                         </div>
                          
-                        <form method="POST" action="/type_of_health_unit_form">
+                        <form method="POST" action="/admin/type_of_health_unit_form">
                         @csrf
                             <div class="card-body">
                                 <div class="row">
@@ -91,6 +99,7 @@
                             <tr>
                               <th>#</th>
                               <th>Type of Health Unit</th>
+                              <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>                           
@@ -98,6 +107,19 @@
                            <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{ $type_of_health_unit->name }}</td>
+                                <td class="text-center">
+                                  <div class="dropdown dropdown-action">
+                                      <a href="#" class="action-icon" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                      <div class="dropdown-menu dropdown-menu-right">
+                                          <a class="dropdown-item" href="#"><i class="fa fa-pencil-alt m-r-5"></i> Edit</a>
+                                          <form id="delete-{{$type_of_health_unit->id}}" method="POST" style="display: inline" class="dropdown-item" action="/admin/delete_health_unit/{{ $type_of_health_unit->id }}">
+                                              @method('DELETE')
+                                              @csrf
+                                              <i onclick="deleteHospital( {{$type_of_health_unit->id}} )" class="fa fa-trash m-r-5">Delete</i>
+                                          </form>
+                                      </div>
+                                  </div>
+                              </td>
                             </tr>
                            @endforeach                            
                             </tbody>
@@ -105,6 +127,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Type of Health Unit</th>
+                                <th>Action</th>
                             </tr>
                             </tfoot>
                           </table>
@@ -153,5 +176,11 @@
       });
     });
   </script>
+<script>
+    function deleteHospital(id){
+     var formId = 'delete-'+id
+     document.getElementById(formId).submit()
+ }
+</script>
     
 @endsection

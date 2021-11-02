@@ -50,7 +50,7 @@
                           <h3 class="card-title">Staffing</h3>
                         </div>
                          
-                        <form method="POST" action="/staffing_form">
+                        <form method="POST" action="/admin/staffing_form">
                         @csrf
                             <div class="card-body">
                                 <div class="row">

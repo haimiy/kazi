@@ -47,7 +47,7 @@
                           <h3 class="card-title">User Registration Form</h3>
                         </div>
                          
-                        <form method="POST" action="/create_users_form">
+                        <form method="POST" action="/admin/create_users_form">
                         @csrf
                             <div class="card-body">
                                 <div class="row">

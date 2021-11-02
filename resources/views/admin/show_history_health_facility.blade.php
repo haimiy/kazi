@@ -17,6 +17,12 @@
     padding: 0 10px;
     display: inline-block;
 }
+.text-center {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin: 0;
+}
 .dropdown-item {
     display: block;
     width: 100%;
@@ -63,11 +69,15 @@
                     <div class="card">
                       <div class="card-header">
                         <h3 class="card-title">
-                            <a class="btn btn-success"> Import </a>
-                        </h3>
-                      </div>
-                        <div class="card-header">
-                        @if(Session::has('message'))
+                            <h3 class="card-title">
+                              <form action="/admin/hospital_statistics/import" method="POST" enctype="multipart/form-data" id="importForm">
+                                  @csrf
+                                      <input type="file" id="myFile" name='file' style="display: none;">
+                                      <button type="button" id="browse" class="btn btn-primary">
+                                          <i class="fa fa-upload" onclick=""></i>&nbsp; Import</button>
+                              </form>
+                              <h3 class="text-center">LIST OF PRIVATE HOSPITAL IN 2020/21,<br> IN GENERAL</h3>
+                                @if(Session::has('message'))
                             <div class="alert alert-success">
                                 {{ Session::get('message') }}
                             </div>
@@ -77,14 +87,16 @@
                             {{ Session::get('delete_message') }}
                         </div>
                         @endif
-                          <h3 class="card-title">List of all Hospital</h3>
-                        </div>
+                            </h3>
+                      </div> 
+                        </h3>
                         <!-- /.card-header -->
                         <div class="card-body">
                           <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
                               <th>#</th>
+                              <th>facility Name</th>
                               <th>Registration No</th>
                               <th>District Name</th>
                               <th>Type of Health Unit</th>
@@ -93,6 +105,7 @@
                               <th>Phone no.</th>
                               <th>Location</th>
                               <th>Service Delivary</th>
+                              <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -104,15 +117,30 @@
                                 <td>{{ $health_facility->district_name }}</td>
                                 <td>{{ $health_facility->type_of_health_unit }}</td>
                                 <td>{{ $health_facility->starting_operation_date }}</td>
+                                <td>{{ $health_facility->full_name }}</td>
                                 <td>{{ $health_facility->phone_no }}</td>
                                 <td>{{ $health_facility->location }}</td>
                                 <td>{{ $health_facility->service_name }}</td>
+                                <td class="text-center">
+                                  <div class="dropdown dropdown-action">
+                                      <a href="#" class="action-icon" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                      <div class="dropdown-menu dropdown-menu-right">
+                                          <a class="dropdown-item" href="#"><i class="fa fa-pencil-alt m-r-5"></i> Edit</a>
+                                          <form id="delete-{{$health_facility->id}}" method="POST" style="display: inline" class="dropdown-item" action="/admin/delete_hospital/{{ $health_facility->id }}">
+                                              @method('DELETE')
+                                              @csrf
+                                              <i onclick="deleteHospital( {{$health_facility->id}} )" class="fa fa-trash m-r-5">Delete</i>
+                                          </form>
+                                      </div>
+                                  </div>
+                              </td>
                               </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>#</th>
+                                <th>Facility Name</th>
                                 <th>Registration No</th>
                                 <th>District Name</th>
                                 <th>Type of Health Unit</th>
@@ -121,6 +149,7 @@
                                 <th>Phone no.</th>
                                 <th>Location</th>
                                 <th>Service Delivary</th>
+                                <th>Action</th>
                             </tr>
                             </tfoot>
                           </table>
@@ -168,9 +197,21 @@
     });
   </script>
   <script>
-       function deleteUser(id){
+       function deleteHospital(id){
         var formId = 'delete-'+id
         document.getElementById(formId).submit()
     }
   </script>
+   <script>
+    $(document).ready(function(){
+      $('#browse').click(function(){
+      $('#myFile').click();
+      });
+
+      $('#myFile').change(function(e) {
+          $("#importForm").submit();
+      });
+      
+});
+</script>
 @endsection

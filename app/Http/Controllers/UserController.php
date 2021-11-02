@@ -328,88 +328,66 @@ class UserController extends Controller
         //
     }
 
-    public function generalFacilityInfo(){
+    public function applicantRegistration(){
         $type_of_health_unit = TypeOfHealthUnit::all();
         $authority_responsible = AuthorityResponsible::all();
-        return view('user.general_facility_info', [
-            'type_of_health_unit' => $type_of_health_unit,
-            'authority_responsible' => $authority_responsible,
-        ]);
-    }
-
-    public function generalFacilityInfoForm(Request $request){
-            $doctor_incharge = new DoctorIncharge();
-            $doctor_incharge->full_name = $request->full_name;
-            $doctor_incharge->qualification = $request->qualification;
-            $doctor_incharge->user_id = auth()->user()->id ;
-            $doctor_incharge->save();
-
-            $health_facility = new HealthFacility();
-            $health_facility->facility_name = $request->facility_name;
-            $health_facility->reg_no = $request->reg_no;
-            $health_facility->save();
-
-            $general_facility = new  GeneralFacilityInfo();
-            $general_facility->type_of_health_unit_id = $request->type_of_health_unit_id;
-            $general_facility->type_of_health_unit_specified = $request->type_of_health_unit_specified;
-            $general_facility->authority_responsible_id = $request->authority_responsible_id;
-            $general_facility->authority_responsible_specified = $request->authority_responsible_specified;
-            $general_facility->starting_operation_date = $request->starting_operation_date;
-            $general_facility->user_id = auth()->user()->id ;
-            $general_facility->save();
-
-            $owner = new Owner();
-            $owner->ownership_type = $request->ownership_type;
-            $owner->person_incharge = auth()->user()->id;
-            $owner->save();
-
-            Session::flash('success_message', 'Data Inserted Successfull!');
-            return redirect()->back();
-    }
-
-    public function servicesOffered(){
-        $service = TypeOfService::all();
-        $type_of_health_unit = TypeOfHealthUnit::all();
-        return view('user.service_offered',[
-            'service' => $service,
-            'type_of_health_unit' => $type_of_health_unit,
-        ]);
-    }
-
-    public function servicesOfferedForm(Request $request){
-            
-    }
-    public function location(){
         $district = District::all();
-        return view('user.location',[
-            'district'=>$district,
-        ]);
-    }
-
-    public function locationForm(Request $request){
-        $location = Location::create($request->all());
-        $location->user_id = auth()->user()->id;
-        $location->save();
-        Session::flash('success_message', 'Data Inserted Successfull!');
-        return redirect()->back();
-    }
-    public function nearest(){
-        $type_of_health_unit = TypeOfHealthUnit::all();
-        return view('user.nearest',[
-            'type_of_health_unit' => $type_of_health_unit,
-        ]);
-    }
-    public function other(){
-        $type_of_health_unit = TypeOfHealthUnit::all();
+        $service = TypeOfService::all();
         $staff = Occupation::all();
         $premise = PremisesType::all();
         $by_ward = TypeOfWard::all();
-        return view('user.other',[
+        return view('user.registration', [
             'type_of_health_unit' => $type_of_health_unit,
-            'staff' => $staff,
-            'premise' => $premise,
-            'by_ward' => $by_ward,
+            'authority_responsible' => $authority_responsible,
+            'district' => $district,
+            'service' => $service,
         ]);
+    }
+
+    public function applicantRegistrationForm(Request $request){
+        $application_form = new  Registration();
+        $application_form->type_of_health_unit_id = $request->type_of_health_unit_id;
+        $application_form->type_of_health_unit_specified = $request->type_of_health_unit_specified;
+        $application_form->authority_responsible_id = $request->authority_responsible_id;
+        $application_form->authority_responsible_specified = $request->authority_responsible_specified;
+        $application_form->starting_operation_date = $request->starting_operation_date;
+
+        $application_form->nearest_hospital_name = $request->nearest_hospital_name;
+        $application_form->nearest_hospital_owner = $request->nearest_hospital_owner;
+        $application_form->nearest_hospital_distance = $request->nearest_hospital_distance;
+        $application_form->nearest_hospital_type_of_health_unit = $request->nearest_hospital_type_of_health_unit;
+
+        $application_form->service_type_id = $request->service_type_id;
+        $application_form->have_additional_requirement = $request->have_additional_requirement;
+        $application_form->additional_requirement = $request->additional_requirement;
+
+        $application_form->user_id = auth()->user()->id ;
+
+        $application_form->save();
+        
+        $doctor_incharge = new DoctorIncharge();
+        $doctor_incharge->full_name = $request->full_name;
+        $doctor_incharge->qualification = $request->qualification;
+        $doctor_incharge->user_id = auth()->user()->id ;
+        $doctor_incharge->save();
+
+        $health_facility = new HealthFacility();
+        $health_facility->facility_name = $request->facility_name;
+        $health_facility->reg_no = $request->reg_no;
+        $health_facility->user_id = auth()->user()->id ;
+        $health_facility->save();
+
+        $owner = new Owner();
+        $owner->ownership_type = $request->ownership_type;
+        $owner->person_incharge = auth()->user()->id;
+        $owner->save();
+
+        $location = Location::create($request->all());
+        $location->user_id = auth()->user()->id;
+        $location->save();
+
+        Session::flash('success_message', 'Data Inserted Successfull!');
+        return redirect()->back();
     }
 
 }

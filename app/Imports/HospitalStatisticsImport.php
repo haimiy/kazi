@@ -2,11 +2,10 @@
 
 namespace App\Imports;
 
-use App\Models\HospitalStatistics;
+use App\Models\HistoryHealthFacility;
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class HospitalStatisticsImport implements ToModel,WithHeadingRow
+class hospitalStatisticsImport implements ToModel
 {
     /**
     * @param array $row
@@ -15,11 +14,17 @@ class HospitalStatisticsImport implements ToModel,WithHeadingRow
     */
     public function model(array $row)
     {
-//        dd($row);
-       return new HospitalStatistics([
-            'starting_year' => $row['starting_year'],
-            'health_facility' => $row['health_facility'],
-            'hospital_no' => $row['hospital_no'],
-        ]);
+        // $array = new HistoryHealthFacility([
+        //     'facility_name' => $row[0],
+        //     'reg_no' => $row[1],
+        //     'district_name' => $row[2],
+        //     'type_of_health_unit' => $row[3],
+        //     'starting_operation_date' => $row[4],
+        //     'full_name' => $row[5],
+        //     'phone_no' => $row[6],
+        //     'location' => $row[7],
+        //     'service_name' => $row[8],
+        // ]);
+        dd($row);
     }
 }

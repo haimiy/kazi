@@ -2,22 +2,20 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    
-      <a href="/admin/index" class="brand-link">
-        <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle center-block elevation-3" style="opacity: .8">
+    <div class="text-center">
+      <a href="/user/index" class="brand-link">
+        <img src="{{ asset('assets/dist/img/logox.jpg') }}" alt="Logo" class="img-circle center-block elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">PHAB</span>
       </a>
-    
-
+    </div>
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 text-center">
-        {{-- <div class="image">
-          <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-        </div> --}}
+        
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->first_name. ' '.Auth::user()->middle_name. ' '.Auth::user()->last_name}}</a>
+          {{-- <a href="#" class="d-block">{{ Auth::user()->phone_no }}</a> --}}
         </div>
       </div>
 
@@ -48,24 +46,24 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/user/general_facility_info" class="nav-link">
-              <i class="nav-icon fas fa-user-plus"></i>
+            <a href="/user/app_registration" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
               <p>
-                General Facility Info
+                Application form
               </p>
             </a>
           </li>
           
           <li class="nav-item">
-            <a href="/user/location" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-address-card"></i>
               <p>
-                Facility location
+                licenses
               </p>
             </a>
           </li>
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="/user/services_offered" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
@@ -89,7 +87,7 @@
                 Other
               </p>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

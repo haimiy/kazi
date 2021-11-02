@@ -105,15 +105,17 @@
                                     <span class="badge bg-primary">{{ $user->role_name }}</span> 
                                     @elseif($user->role_name == "Registrar")
                                     <span class="badge bg-success">{{ $user->role_name }}</span> 
+                                    @elseif($user->role_name == "SuperAdmin")
+                                    <span class="badge bg-secondary">{{ $user->role_name }}</span> 
                                     @endif
                                     
-                                </td>
+                              </td>
                                 <td class="text-center">
                                     <div class="dropdown dropdown-action">
                                         <a href="#" class="action-icon" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="#"><i class="fa fa-pencil-alt m-r-5"></i> Edit</a>
-                                            <form id="delete-{{$user->id}}" method="POST" style="display: inline" class="dropdown-item" action="/delete/{{ $user->id }}">
+                                            <form id="delete-{{$user->id}}" method="POST" style="display: inline" class="dropdown-item" action="/admin/delete_user/{{ $user->id }}">
                                                 @method('DELETE')
                                                 @csrf
                                                 <i onclick="deleteUser( {{$user->id}} )" class="fa fa-trash m-r-5">Delete</i>

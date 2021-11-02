@@ -17,6 +17,9 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
+     <div class="image">
+          <img src="{{ asset('assets/dist/img/logo.png') }}">
+        </div>
     <a href="{{ asset('assets/index2.html') }}"><b>P</b>HAB</a>
   </div>
   <!-- /.login-logo -->
@@ -32,11 +35,11 @@
         <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="input-group mb-3">
-            <input type="email" class="form-control" required="required" name="email" :value="old('email')" 
-            placeholder="Email" />
+            <input type="text" class="form-control" required="required" name="phone_no" :value="old('phone_no')" 
+            placeholder="Enter a phone number" />
             <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-phone"></span>
             </div>
           </div>
         </div>

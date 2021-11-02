@@ -50,7 +50,7 @@
                           <h3 class="card-title">No of beds by type of ward</h3>
                         </div>
                          
-                        <form method="POST" action="/no_of_beds_by_type_of_ward_form">
+                        <form method="POST" action="/admin/no_of_beds_by_type_of_ward_form">
                         @csrf
                             <div class="card-body">
                                 <div class="row">

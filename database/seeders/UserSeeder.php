@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 "email" => "khairat@gmail.com",
                 "role_id" => 4,
                 "password" => Hash::make("1234"),
-                "phone_no" => "0772674900",
+                "phone_no" => "0772674901",
                 "address" => "Fuoni",
             ],
             [
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
                 "email" => "swafaa.sule@gmail.com",
                 "role_id" => 3,
                 "password" => Hash::make("12345678"),
-                "phone_no" => "07724900",
+                "phone_no" => "0772674902",
                 "address" => "Fuoni", 
             ],
             [
@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
                 "email" => "khai@gmail.com",
                 "role_id" => 5,
                 "password" => Hash::make("1234"),
-                "phone_no" => "07726700",
+                "phone_no" => "0772674900",
                 "address" => "Fuoni",
             ]
 

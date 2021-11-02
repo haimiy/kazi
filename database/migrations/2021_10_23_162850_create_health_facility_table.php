@@ -17,6 +17,7 @@ class CreateHealthFacilityTable extends Migration
             $table->id();
             $table->string('facility_name');
             $table->string('reg_no')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
     }
