@@ -12,7 +12,11 @@ use Illuminate\Support\Facades\File;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Session;
 use App\Imports\HospitalStatisticsImport;
+use App\Models\AuthorityResponsible;
 use App\Models\HistoryHealthFacility as ModelsHistoryHealthFacility;
+use App\Models\Occupation;
+use App\Models\PremisesType;
+use App\Models\TypeOfWard;
 
 class HistoryHealthFacility extends Controller
 {
@@ -72,13 +76,54 @@ class HistoryHealthFacility extends Controller
         $hospital_id->delete();
         Session::flash('delete_message', 'Deleted Successfull!');
         return redirect()->back();
-    }
+
+    } 
     public function deleteHealthUnit($id){
         TypeOfHealthUnit::find($id)->delete();
         Session::flash('delete_message', 'Deleted Successfull!');
         return redirect()->back();
     }
 
+    public function healthUnitDetail(Request $request, $id)
+    {  
+        $type_of_health_unit = TypeOfHealthUnit::where('id', $id)->update([
+        'name' => $request->name,
+        ]);
+        Session::flash('message', 'Data Updated Successfull!');
+        return redirect()->back();
+    }
+
+    public function deleteAuthorityResponsibility($id){
+        AuthorityResponsible::find($id)->delete();
+        Session::flash('delete_message', 'Deleted Successfull!');
+        return redirect()->back();
+    }
     
+    public function deleteServiceOffered($id){
+        TypeOfService::find($id)->delete();
+        Session::flash('delete_message', 'Deleted Successfull!');
+        return redirect()->back();
+    }
+   
+    public function deletePremises($id){
+        PremisesType::find($id)->delete();
+        Session::flash('delete_message', 'Deleted Successfull!');
+        return redirect()->back();
+    }
+
+    public function deleteNoOfBeds($id){
+        TypeOfWard::find($id)->delete();
+        Session::flash('delete_message', 'Deleted Successfull!');
+        return redirect()->back();
+    }
+   
+    public function deleteStaffing($id){
+        Occupation::find($id)->delete();
+        Session::flash('delete_message', 'Deleted Successfull!');
+        return redirect()->back();
+    }
+   
+
+      
 }
 

@@ -40,11 +40,11 @@
           {{-- <h5 class="mt-4 mb-2">Tabs in Cards</h5> --}}
 
           <div class="row">
-            <div class="col-12">
+            <div class="col-8">
               <!-- Custom Tabs -->
               <div class="card card-primary card-outline">
                 <div class="card-header">
-                  <h3 class="card-title">
+                  <h3 class="text-center" style="font-size: 1.1rem;">
                     <i class="fas fa-bullhorn" style="color: red;"></i><strong> GENERAL REQUIREMENTS FOR ESTABLISMENT OF PRIVATE HEALTH FACILITIES.</strong></h3>
                 </div>
                 <div class="card-body">
@@ -54,6 +54,9 @@
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill" href="#custom-content-below-profile" role="tab" aria-controls="custom-content-below-profile" aria-selected="false">Staffing and Operating Environment</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="custom-content-below-nb-tab" data-toggle="pill" href="#custom-content-below-nb" role="tab" aria-controls="custom-content-below-nb" aria-selected="false">N.B</a>
                     </li>
                   </ul>
                   
@@ -70,7 +73,7 @@
                     <!-- /.tab-pane -->
                     <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel" aria-labelledby="custom-content-below-profile-tab">
                       <ol>
-                        <li>he Health practitioner who is the supervisor of the facility is only allowed to supervise one facility, which may be a clinic, polyclinics, specialized clinics, dispensaries or health centers. 
+                        <li>The Health practitioner who is the supervisor of the facility is only allowed to supervise one facility, which may be a clinic, polyclinics, specialized clinics, dispensaries or health centers. 
                         </li>
                         <li>Authorized health-care practitioner with current practicing license according to the relevant regulatory authorities should always be available at the health facility whenever it is open. 
                         </li>
@@ -129,6 +132,9 @@
                         </li>
                       </ol>
  
+                    </div>
+                    <div class="tab-pane fade" id="custom-content-below-nb" role="tabpanel" aria-labelledby="custom-content-below-nb-tab">
+                      <p><strong>N.B:  Any inspection of additional services,  or  any pre-approval Inspection  the cost of the Inspection will be covered by Owner him/her self which is 150,000/=  according to this Guideline.</strong></p> 
                     </div>
                     <!-- /.tab-pane -->
                   </div>

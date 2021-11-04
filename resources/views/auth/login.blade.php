@@ -20,7 +20,7 @@
      <div class="image">
           <img src="{{ asset('assets/dist/img/logo.png') }}">
         </div>
-    <a href="{{ asset('assets/index2.html') }}"><b>P</b>HAB</a>
+    <a href="#"><b>P</b>HAB</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -53,7 +53,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-8">
+          <div class="col-6">
             <div class="icheck-primary">
               <input type="checkbox" id="remember"  name="remember">
               <label for="remember">
@@ -62,30 +62,20 @@
             </div>
           </div>
           <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          <div class="col-6 text-center">
+            <a href="{{ route('password.request') }}">Forgot password?</a>
           </div>
           <!-- /.col -->
         </div>
-        <p class="mb-1">
-            <a href="{{ route('password.request') }}">I forgot my password</a>
+        <br>
+        <p class="mb-1"> 
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
         </p>
       </form>
 
-      {{-- <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="#" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-        </a>
-      </div>
-      <!-- /.social-auth-links --> --}}
-
-     
-      <p class="mb-0">
-        <a href="/register" class="text-center">Register a new membership</a>
+    <div class="text-center"> 
+      <p class="mb-0 ">
+        Not Registered?<a href="/selection">Owner Registration</a>
       </p>
     </div>
     <!-- /.login-card-body -->

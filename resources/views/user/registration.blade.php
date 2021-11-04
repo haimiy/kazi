@@ -75,7 +75,7 @@
                                                     </select>
                                                     <div class="form-group"  id="other" style="display: none;">
                                                         <label></label>
-                                                        <input type="text" class="form-control" name="type_of_health_unit_specified" />
+                                                        <input type="text" class="form-control" name="type_of_health_unit_specified" placeholder="Please specify type of health unit" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -91,7 +91,7 @@
                                                     </select>
                                                     <div class="form-group"  id="authority" style="display: none;">
                                                         <label></label>
-                                                        <input type="text" class="form-control" name="authority_responsible_specified" />
+                                                        <input type="text" class="form-control" name="authority_responsible_specified" placeholder="Please specify authority responsible" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -120,17 +120,7 @@
                                                     </div>
                                                 </div>    
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-4 col-form-label">Ownership Type</label>
-                                                <div class="col-sm-8">
-                                                    <select class="form-control" onchange="ownership(this);" name="ownership_type" style="width: 100%;">
-                                                        <option value="#">--Select--</option>
-                                                       <option value="Sole Proprietorship">Sole Proprietorship(Individual)</option>
-                                                       <option value="Partnership">Partnership</option>
-                                                       <option value="Company">Company</option>   
-                                                   </select>
-                                                </div>    
-                                            </div>
+                                            
                                             <div class="form-group row">
                                                 <label class="col-sm-4 col-form-label">Owner Name</label>
                                                 <div class="col-sm-8">
@@ -287,16 +277,26 @@
                                             <h3 class="card-title"> Services Offered</h3>
                                         </div>
                                         <div class="card-body">
-                                            <div class="form-group row">
-                                                <label class="col-sm-4 col-form-label">Type of Services</label>
-                                                <div class="col-sm-8">
-                                                    <select class="select2" multiple="multiple" name="service_type_id[]" data-placeholder="Services type" style="width: 100%;">                                           
-                                                        @foreach ($service as $service)
-                                                        <option value="{{$service->id}}">{{$service->name_of_services}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
+                                            <table class="table table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Type of Services</th>
+                                                        <th>Yes</th>
+                                                        <th>No</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($service as $service)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{$service->name_of_services}}</td>
+                                                        <td><input type="checkbox" value=""></td>
+                                                        <td><input type="checkbox" value=""></td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>   
                                         </div>
                                         
                                         <div class="card-footer float-left">
@@ -344,6 +344,13 @@
                 document.getElementById('authority').style.display = "none";
             }
         }
+        // function service_delivary(that){
+        //     if(that.value == "5" || that.value == "6" || that.value == "7"){
+        //         document.getElementById('service_delivary').style.display = "block";
+        //     }else{
+        //         document.getElementById('service_delivary').style.display = "none";
+        //     }
+        // }
          // BS-Stepper Init
         document.addEventListener('DOMContentLoaded', function () {
             window.stepper = new Stepper(document.querySelector('.bs-stepper'))

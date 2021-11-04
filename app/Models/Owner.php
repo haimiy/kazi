@@ -12,7 +12,6 @@ class Owner extends Model
     protected $fillable = [
         'person_incharge',
         'signature',
-        'ownership_type',
     ];
     
 }

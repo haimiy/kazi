@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
+use App\Models\Owner;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
@@ -54,6 +55,10 @@ class RegisteredUserController extends Controller
             'role_id' => 5,
             'password' => Hash::make($request->password),
         ]);
+
+        $owner = new Owner();
+        $owner->person_incharge = $user->id;
+        $owner->save();
 
         // event(new Registered($user));
 

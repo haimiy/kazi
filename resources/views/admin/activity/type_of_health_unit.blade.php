@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('title', 'Type of Health Unit')
 @section('css')
+<link rel="stylesheet" href="{{ asset('assets/plugins/toastr/toastr.min.css') }}">
+<!-- Theme style -->
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
@@ -111,11 +113,11 @@
                                   <div class="dropdown dropdown-action">
                                       <a href="#" class="action-icon" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                       <div class="dropdown-menu dropdown-menu-right">
-                                          <a class="dropdown-item" href="#"><i class="fa fa-pencil-alt m-r-5"></i> Edit</a>
+                                          {{-- <a class="dropdown-item" href="#" data-target="#modal-lg" data-toggle="modal"><i class="fa fa-pencil-alt m-r-5"></i> Edit</a> --}}
                                           <form id="delete-{{$type_of_health_unit->id}}" method="POST" style="display: inline" class="dropdown-item" action="/admin/delete_health_unit/{{ $type_of_health_unit->id }}">
                                               @method('DELETE')
                                               @csrf
-                                              <i onclick="deleteHospital( {{$type_of_health_unit->id}} )" class="fa fa-trash m-r-5">Delete</i>
+                                              <a class="dropdown-item" href="#"><i onclick="deleteHospital( {{$type_of_health_unit->id}} )" class="fa fa-trash m-r-5"></i>Delete</a>
                                           </form>
                                       </div>
                                   </div>
@@ -141,7 +143,41 @@
         </div>
     </section>
 </div>
- 
+<div class="modal fade" id="modal-lg">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Type of Health UNit</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="/admin/health_unit_update/{{$type_of_health_unit->id}}">
+          @csrf
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-sm-12">
+                        <!-- text input -->
+                          <div class="form-group">
+                              <label>Type of Health Unit</label>
+                              <input type="text" class="form-control" value="{{ $type_of_health_unit->name}}" name="name" :value="old('name')" />
+                          </div>
+                      </div>
+                  </div>
+              </div>
+      </div>
+          <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+      </form>   
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 @endsection
 
 @section('js')
@@ -159,6 +195,8 @@
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
 <!-- Page specific script -->
+<!-- Toastr -->
+<script src="{{ asset('assets/plugins/toastr/toastr.min.js')}}"></script>
 <script>
     $(function () {
       $("#example1").DataTable({

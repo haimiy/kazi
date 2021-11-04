@@ -14,6 +14,7 @@ use App\Models\GeneralFacilityInfo;
 use App\Models\HealthFacility;
 use App\Models\Location;
 use App\Models\Occupation;
+use App\Models\Organisation;
 use App\Models\PremisesType;
 use App\Models\Registration;
 use App\Models\TypeOfHealthUnit;
@@ -351,18 +352,18 @@ class UserController extends Controller
         $application_form->authority_responsible_id = $request->authority_responsible_id;
         $application_form->authority_responsible_specified = $request->authority_responsible_specified;
         $application_form->starting_operation_date = $request->starting_operation_date;
-
+    
         $application_form->nearest_hospital_name = $request->nearest_hospital_name;
         $application_form->nearest_hospital_owner = $request->nearest_hospital_owner;
         $application_form->nearest_hospital_distance = $request->nearest_hospital_distance;
         $application_form->nearest_hospital_type_of_health_unit = $request->nearest_hospital_type_of_health_unit;
-
+    
         $application_form->service_type_id = $request->service_type_id;
         $application_form->have_additional_requirement = $request->have_additional_requirement;
         $application_form->additional_requirement = $request->additional_requirement;
-
+    
         $application_form->user_id = auth()->user()->id ;
-
+    
         $application_form->save();
         
         $doctor_incharge = new DoctorIncharge();
@@ -378,7 +379,6 @@ class UserController extends Controller
         $health_facility->save();
 
         $owner = new Owner();
-        $owner->ownership_type = $request->ownership_type;
         $owner->person_incharge = auth()->user()->id;
         $owner->save();
 
@@ -389,5 +389,35 @@ class UserController extends Controller
         Session::flash('success_message', 'Data Inserted Successfull!');
         return redirect()->back();
     }
+
+        public function Selection(){
+            return view('selection');
+        }
+        public function Organisation(){
+            $type =  ['Partnership', 'Corporation', 'Limited liability Company'];
+            return view('auth.organisation', compact('type'));
+        }
+        public function OrganisationForm(Request $request){
+            $user = User::create([
+                'first_name' => $request->first_name,
+                'middle_name' => $request->middle_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'phone_no' => $request->phone_no,
+                'address' => $request->address,
+                'role_id' => 5,
+                'password' => Hash::make($request->password),
+            ]);
+
+            $organisation = Organisation::create($request->all());
+            $organisation->owner_id = $user->id;
+            $organisation->save();
+    
+            $owner = new Owner();
+            $owner->person_incharge = $user->id;
+            $owner->save();
+            Session::flash('success_message', 'Data Inserted Successfull!');
+            return redirect('/');
+        }
 
 }

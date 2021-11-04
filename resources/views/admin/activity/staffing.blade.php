@@ -91,6 +91,7 @@
                             <tr>
                               <th>#</th>
                               <th>Staffing</th>
+                              <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>                           
@@ -98,6 +99,20 @@
                            <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{ $staffing->name }}</td>
+                                <td class="text-center">
+                                  <div class="dropdown dropdown-action">
+                                      <a href="#" class="action-icon" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                      <div class="dropdown-menu dropdown-menu-right">
+                                          <a class="dropdown-item" href="#"><i class="fa fa-pencil-alt m-r-5"></i> Edit</a>
+                                          <form id="delete-{{$staffing->id}}" method="POST" style="display: inline" class="dropdown-item" action="/admin/delete_staffing/{{ $staffing->id }}">
+                                              @method('DELETE')
+                                              @csrf
+                                              <i onclick="deleteHospital( {{$staffing->id}} )" class="fa fa-trash m-r-5">Delete</i>
+                                          </form>
+                                          <a href="/owner_details/{{ $user->id }}"><i class="fa fa-eye text-secondary"></i></a>
+                                      </div>
+                                  </div>
+                                </td>
                             </tr>
                            @endforeach                            
                             </tbody>
@@ -105,6 +120,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Staffing</th>
+                                <th>Action</th>
                             </tr>
                             </tfoot>
                           </table>
@@ -153,5 +169,11 @@
       });
     });
   </script>
+  <script>
+    function deleteHospital(id){
+     var formId = 'delete-'+id
+     document.getElementById(formId).submit()
+ }
+</script>
     
 @endsection
