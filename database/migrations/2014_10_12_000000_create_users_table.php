@@ -28,6 +28,40 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::create('owner', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('person_incharge')->nullable();
+            $table->string('signature')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('doctor_incharge', function (Blueprint $table) {
+            $table->id();
+            $table->string('full_name');
+            $table->string('qualification');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->timestamps();
+        });
+        
+        Schema::create('registrar', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('title');
+            $table->unsignedBigInteger('location');
+            $table->string('signature');
+            $table->timestamps();
+        });
+
+        Schema::create('inspectors', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('title');
+            $table->string('inspector_type');
+            $table->unsignedBigInteger('location');
+            $table->string('signature');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -38,5 +72,9 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('owner');
+        Schema::dropIfExists('doctor_incharge');
+        Schema::dropIfExists('registrar');
+        Schema::dropIfExists('inspectors');
     }
 }

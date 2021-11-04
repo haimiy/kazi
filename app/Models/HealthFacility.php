@@ -14,4 +14,8 @@ class HealthFacility extends Model
         'reg_no',
         'user_id',
     ];
+
+    public function user(){
+        return $this->belongsTo(HealthFacility::class, 'user_id');
+    }
 }

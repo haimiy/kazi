@@ -5,6 +5,7 @@ use App\Http\Controllers\HospitalController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\HistoryHealthFacility;
+use App\Http\Controllers\LicenseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -93,6 +94,11 @@ Route::prefix('user')->middleware('user')->group(function(){
     Route::post('location_form', [UserController::class, 'locationForm']);
     Route::get('nearest', [UserController::class, 'nearest']);
     Route::get('other', [UserController::class, 'other']);
+
+    Route::get('licenses', [LicenseController::class, 'License']);
+    Route::get('license_create', [LicenseController::class, 'createLicense']);
+    Route::post('license_create_form', [LicenseController::class, 'createLicenseForm']);
+
 });
 
 Route::get('/dashboard', function () {
