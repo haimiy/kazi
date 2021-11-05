@@ -16,70 +16,114 @@ class TypeOfServiceSeeder extends Seeder
     {
         DB::table('type_of_services')->insert([
             [
-                "name_of_services" => "General outpatient services"
+                "name_of_services" => "General outpatient services",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Maternal and Child health service"
+                "name_of_services" => "Maternal and Child health service",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Laboratory"
+                "name_of_services" => "Laboratory",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Dental"
+                "name_of_services" => "Dental",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Observation services"
+                "name_of_services" => "Observation services",
+                "have_additional_requirement" => true,
+                "additional_requirement" => "no of beds"
             ],
             [
-                "name_of_services" => "Inpatient services"
+                "name_of_services" => "Inpatient services",
+                "have_additional_requirement" => true,
+                "additional_requirement" => "no of beds"
             ],
             [
-                "name_of_services" => "Maternity services"
+                "name_of_services" => "Maternity services",
+                "have_additional_requirement" => true,
+                "additional_requirement" => "no of beds"
             ],
             [
-                "name_of_services" => "Minor surgeries"
+                "name_of_services" => "Minor surgeries",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Major surgeries"
+                "name_of_services" => "Major surgeries",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "X-ray"
+                "name_of_services" => "X-ray",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Ultrasound"
+                "name_of_services" => "Ultrasound",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Home visiting"
+                "name_of_services" => "Home visiting",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Specialist Clinics"
+                "name_of_services" => "Specialist Clinics",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Medical"
+                "name_of_services" => "Medical",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Pediatrics"
+                "name_of_services" => "Pediatrics",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Surgical-General"
+                "name_of_services" => "Surgical-General",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Orthopedics"
+                "name_of_services" => "Orthopedics",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Obstetrics/Gynecology"
+                "name_of_services" => "Obstetrics/Gynecology",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Ophthalmology"
+                "name_of_services" => "Ophthalmology",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Ear, Nose and Throat "
+                "name_of_services" => "Ear, Nose and Throat ",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Poly Clinics"
+                "name_of_services" => "Poly Clinics",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
             [
-                "name_of_services" => "Other (Specify)."
+                "name_of_services" => "Other (Specify).",
+                "have_additional_requirement" => false,
+                "additional_requirement" => ""
             ],
         ]);
     }

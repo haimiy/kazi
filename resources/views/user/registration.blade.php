@@ -291,8 +291,27 @@
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{$service->name_of_services}}</td>
-                                                        <td><input type="radio" value="YES" id="service-offered-{{ $service->id }}" name="service-offered-{{ $service->id }}"></td>
-                                                        <td><input type="radio" value="NO" id="service-offered-{{ $service->id }}" name="service-offered-{{ $service->id }}" checked></td>
+                                                        <td>
+                                                            @if ($service->have_additional_requirement)
+                                                                <input type="radio" value="YES" id="service-offered-{{ $service->id }}" name="service-offered-{{ $service->id }}" onclick="showAdditionalRequirement({{$service->id}})">
+                                                                <input type="hidden" id="service-offered-have-add-requirement-{{ $service->id }}" value="{{ $service->have_additional_requirement}}">
+                                                                <br/>
+                                                                <div id="service-offered-add-requirement-div-{{ $service->id }}" style="display: none">
+                                                                    <label for="service-offered-add-requirement-{{ $service->id }}"> {{$service->additional_requirement}}</label>
+                                                                    <input class="form-control" type="text" id="service-offered-add-requirement-{{ $service->id }}">
+                                                                </div>
+                                                            @else
+                                                                <input type="radio" value="YES" id="service-offered-{{ $service->id }}" name="service-offered-{{ $service->id }}">
+                                                                <input type="hidden" id="service-offered-have-add-requirement-{{ $service->id }}" value="{{ $service->have_additional_requirement}}">
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @if ($service->have_additional_requirement)
+                                                                <input type="radio" value="NO" id="service-offered-{{ $service->id }}" name="service-offered-{{ $service->id }}" onclick="showAdditionalRequirement({{$service->id}})" checked>
+                                                            @else
+                                                                <input type="radio" value="NO" id="service-offered-{{ $service->id }}" name="service-offered-{{ $service->id }}" checked>
+                                                            @endif
+                                                        </td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -355,6 +374,16 @@
         document.addEventListener('DOMContentLoaded', function () {
             window.stepper = new Stepper(document.querySelector('.bs-stepper'))
         });
+
+        function showAdditionalRequirement(id) {
+            let yesInput = $('input[name="service-offered-'+id+'"]:checked');
+            let additionalDiv = $('#service-offered-add-requirement-div-'+id);
+            
+            if (yesInput.val() === "YES")
+                additionalDiv.show();
+            else
+                additionalDiv.hide()
+        }
         </script>
 
         

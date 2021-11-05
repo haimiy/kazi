@@ -14,6 +14,7 @@ class TypeOfService extends Model
         'description',
         'have_additional_requirement',
         'additional_requirement',
+        'no_of_beds',
         
     ];
 }
