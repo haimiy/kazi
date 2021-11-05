@@ -333,7 +333,7 @@ class OwnerController extends Controller
 
     public function showApplicantRegistrationForm(){
         $ownerModel = Owner::where('person_incharge',auth()->user()->id)->get();
-        if ($ownerModel->)
+//        if ($ownerModel->)
 //        $owner =
         $type_of_health_units = TypeOfHealthUnit::all();
         $authorities = AuthorityResponsible::all();
