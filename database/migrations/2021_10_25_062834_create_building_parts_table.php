@@ -17,7 +17,6 @@ class CreateBuildingPartsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->unsignedBigInteger('building_part_state_id');
             $table->timestamps();
         });
     }

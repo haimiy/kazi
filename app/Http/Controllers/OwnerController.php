@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\AuthorityResponsible;
+use App\Models\BuildingPart;
 use App\Models\District;
 use App\Models\Role;
+use App\Models\TypeOfWaterSupply;
 use App\Models\User;
 use App\Models\Owner;
 use App\Models\Staffing;
@@ -24,7 +26,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class OwnerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -103,7 +105,7 @@ class UserController extends Controller
 
     public function staffingIndex()
     {
-        $user = DB::select('SELECT u.*, s.license_job, s.status_categories, s.staffing_no, s.temporary_permanent FROM users u 
+        $user = DB::select('SELECT u.*, s.license_job, s.status_categories, s.staffing_no, s.temporary_permanent FROM users u
         LEFT JOIN staffing s ON s.user_id = u.id WHERE u.role_id = '. 3);
         return view('admin.staffing', [
             'user' => $user,
@@ -113,9 +115,9 @@ class UserController extends Controller
     public function Staffing_create()
     {
         return view('admin.staffing_create');
-    } 
+    }
     public function Staffing_store(Request $request)
-    {   
+    {
         $validate = $this->validate($request, [
             'first_name' => 'required',
             'middle_name' => 'required',
@@ -128,11 +130,11 @@ class UserController extends Controller
             'staffing_no' => 'required',
             'temporary_permanent' => 'required',
         ]);
-        
+
         $user = User::create($request->all());
-        $request['user_id'] = $user->id;  
-        
-        Staffing::create($request->all());   
+        $request['user_id'] = $user->id;
+
+        Staffing::create($request->all());
         Session::flash('message', 'Data inserted Successfull!');
         return redirect()->back();
     }
@@ -158,7 +160,7 @@ class UserController extends Controller
             'phone_no' => $request->phone_no,
             'address' => $request->address,
         ]);
-            
+
             Staffing::where('id', $id)->update([
             'user_id' => $request->id,
             'license_job' => $request->license_job,
@@ -172,7 +174,7 @@ class UserController extends Controller
 
     public function Doctor_incharge()
     {
-        $user = DB::select('SELECT u.*, d.qualification FROM users u 
+        $user = DB::select('SELECT u.*, d.qualification FROM users u
         LEFT JOIN doctor_incharge d ON d.user_id = u.id WHERE u.role_id = '. 5);
         return view('admin.doctor_incharge', [
             'user' => $user
@@ -183,7 +185,7 @@ class UserController extends Controller
         return view('admin.doctor_incharge_create');
     }
     public function doctorInchargeStore(Request $request)
-    { 
+    {
         $validate = $this->validate($request, [
             'first_name' => 'required',
             'middle_name' => 'required',
@@ -192,12 +194,12 @@ class UserController extends Controller
             'phone_no' => 'required',
             'address' => 'required',
             'qualification' => 'required',
-            
+
         ]);
-        
+
         $user = User::create($request->all());
-        $request['user_id'] = $user->id;  
-        DoctorIncharge::create($request->all());   
+        $request['user_id'] = $user->id;
+        DoctorIncharge::create($request->all());
         Session::flash('message', 'Data inserted Successfull!');
         return redirect()->back();
     }
@@ -210,7 +212,7 @@ class UserController extends Controller
             'phone_no' => 'required',
             'address' => 'required',
             'qualification' => 'required',
-            
+
         ]);
             User::where('id', $id)->update([
             'first_name' => $request->first_name,
@@ -220,14 +222,14 @@ class UserController extends Controller
             'phone_no' => $request->phone_no,
             'address' => $request->address,
         ]);
-            
+
             DoctorIncharge::where('id', $id)->update([
             'qualification' => $request->qualification,
         ]);
             Session::flash('message', 'Data Updated Successfull!');
             return redirect()->back();
     }
-    
+
     public function create()
     {
         //
@@ -249,7 +251,7 @@ class UserController extends Controller
             'phone_no' => 'required',
             'address' => 'required',
             'role_id' => 'required',
-            
+
         ]);
         $user = User::create([
             'first_name' => $request->first_name,
@@ -265,7 +267,7 @@ class UserController extends Controller
         return redirect()->back();
     }
     public function showUsers(){
-        $users = DB::select('SELECT users.*,roles.role_name FROM users  INNER JOIN roles 
+        $users = DB::select('SELECT users.*,roles.role_name FROM users  INNER JOIN roles
         ON  users.role_id = roles.id ORDER by users.first_name ');
         return view('admin.users_show', [
             'users' => $users,
@@ -329,43 +331,80 @@ class UserController extends Controller
         //
     }
 
-    public function applicantRegistration(){
+    public function showApplicantRegistrationForm(){
+        $ownerModel = Owner::where('person_incharge',auth()->user()->id)->get();
+        if ($ownerModel->)
+//        $owner =
         $type_of_health_units = TypeOfHealthUnit::all();
-        $authority_responsibles = AuthorityResponsible::all();
+        $authorities = AuthorityResponsible::all();
         $districts = District::all();
         $services = TypeOfService::all();
-        $staffs = Occupation::all();
-        $premises = PremisesType::all();
-        $by_wards = TypeOfWard::all();
+        $occupations = Occupation::all();
+        $premiseTypes = PremisesType::all();
+        $typeOfWards = TypeOfWard::all();
+        $buildingParts = BuildingPart::with('state')->get();
+        $waterSupplies = TypeOfWaterSupply::all();
+        $typeOfToilets = ['None', 'Flush', 'Pit latrine'];
+        $stateOfToilets = ['clean', 'Dirty', 'Not in use'];
+        $stateOfToilets = ['clean', 'Dirty', 'Not in use'];
+        $sewerageSystems = ['Non', 'Not functioning', 'Leaking over flowing'];
+        $wasteDisposals = [
+            [
+                "name"=>"Surroundings",
+                "list"=>['Clean', 'Dirty'],
+            ],
+            [
+                "name"=>"Waste basket/dust bin",
+                "list"=>['None', 'Present'],
+            ],
+            [
+                "name"=>"Dumping site",
+                "list"=>['None', 'Dirty', 'Cared for and clean'],
+            ],
+            [
+                "name"=>"Incinerator",
+                "list"=>['None', 'Not functioning', 'Functioning'],
+            ],
+        ];
+
         return view('user.registration', [
             'type_of_health_units' => $type_of_health_units,
-            'authority_responsibles' => $authority_responsibles,
+            'authorities' => $authorities,
             'districts' => $districts,
             'services' => $services,
+            'occupations'=>$occupations,
+            'premiseTypes'=>$premiseTypes,
+            'typeOfWards'=>$typeOfWards,
+            'buildingParts'=>$buildingParts,
+            'waterSupplies'=>$waterSupplies,
+            'stateOfToilets'=>$stateOfToilets,
+            'sewerageSystems'=>$sewerageSystems,
+            'wasteDisposals'=>$wasteDisposals,
         ]);
     }
 
-    public function applicantRegistrationForm(Request $request){
+    public function storeApplicantRegistrationForm(Request $request): \Illuminate\Http\RedirectResponse
+    {
         $application_form = new  Registration();
         $application_form->type_of_health_unit_id = $request->type_of_health_unit_id;
         $application_form->type_of_health_unit_specified = $request->type_of_health_unit_specified;
         $application_form->authority_responsible_id = $request->authority_responsible_id;
         $application_form->authority_responsible_specified = $request->authority_responsible_specified;
         $application_form->starting_operation_date = $request->starting_operation_date;
-    
+
         $application_form->nearest_hospital_name = $request->nearest_hospital_name;
         $application_form->nearest_hospital_owner = $request->nearest_hospital_owner;
         $application_form->nearest_hospital_distance = $request->nearest_hospital_distance;
         $application_form->nearest_hospital_type_of_health_unit = $request->nearest_hospital_type_of_health_unit;
-    
+
         $application_form->service_type_id = $request->service_type_id;
         $application_form->have_additional_requirement = $request->have_additional_requirement;
         $application_form->additional_requirement = $request->additional_requirement;
-    
+
         $application_form->user_id = auth()->user()->id ;
-    
+
         $application_form->save();
-        
+
         $doctor_incharge = new DoctorIncharge();
         $doctor_incharge->full_name = $request->full_name;
         $doctor_incharge->qualification = $request->qualification;
@@ -398,6 +437,7 @@ class UserController extends Controller
             return view('auth.organisation', compact('type'));
         }
         public function OrganisationForm(Request $request){
+
             $user = User::create([
                 'first_name' => $request->first_name,
                 'middle_name' => $request->middle_name,
@@ -412,7 +452,7 @@ class UserController extends Controller
             $organisation = Organisation::create($request->all());
             $organisation->owner_id = $user->id;
             $organisation->save();
-    
+
             $owner = new Owner();
             $owner->person_incharge = $user->id;
             $owner->save();

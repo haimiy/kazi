@@ -105,9 +105,14 @@ class OccupationSeeder extends Seeder
             [
                 "name" => "Radiog. Assistants"
             ],
-            [
-                "name" => "Other specialists (specify)"
-            ],
         ]);
+        $occopation1 =  [
+            "name" => "Other specialists (specify)",
+            "is_specified"=>true
+        ];
+
+        DB::table('occupation')->insert($occopation1);
+
+
     }
 }

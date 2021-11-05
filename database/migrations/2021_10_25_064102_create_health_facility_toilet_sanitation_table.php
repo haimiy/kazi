@@ -20,7 +20,7 @@ class CreateHealthFacilityToiletSanitationTable extends Migration
             $table->enum('toilet_for_group', ['Patient', 'Staff', 'Both']);
             $table->enum('toilet_for_gender', ['Male', 'Female', 'Both']);
             $table->enum('state_of_toilets', ['clean', 'Dirty', 'Not in use']);
-            $table->enum('sewage_system', ['Non', 'Not functionioning', 'Leaking over flowing']);
+            $table->enum('sewage_system', ['Non', 'Not functioning', 'Leaking over flowing']);
             $table->timestamps();
         });
     }

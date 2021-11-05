@@ -19,7 +19,7 @@ class CreateTypeOfServicesTable extends Migration
             $table->text('description')->nullable();
             $table->boolean('have_additional_requirement')->default(false);
             $table->string('additional_requirement')->nullable();
-            $table->integer('no_of_beds')->default(0);
+            $table->boolean('is_specified')->default(false);
             $table->timestamps();
         });
     }

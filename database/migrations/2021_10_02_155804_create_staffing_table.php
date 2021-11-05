@@ -19,6 +19,8 @@ class CreateStaffingTable extends Migration
             $table->unsignedInteger('no_of_full_time')->default(0);
             $table->unsignedInteger('no_of_part_time')->default(0);
             $table->unsignedBigInteger('health_facility_id');
+            $table->boolean('is_specified')->default(false);
+            $table->string('specified_occupation')->nullable();
             $table->timestamps();
         });
     }

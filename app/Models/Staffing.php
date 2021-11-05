@@ -14,5 +14,7 @@ class Staffing extends Model
         'no_of_full_time',
         'no_of_part_time',
         'health_facility_id',
+        'is_specified',
+        'specified_occupation'
     ];
 }

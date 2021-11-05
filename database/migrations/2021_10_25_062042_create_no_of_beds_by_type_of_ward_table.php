@@ -18,7 +18,7 @@ class CreateNoOfBedsByTypeOfWardTable extends Migration
             $table->unsignedBigInteger('type_of_ward_id');
             $table->unsignedInteger('no_of_beds');
             $table->boolean('is_specified')->default(false);
-            $table->string('specified_premises_type')->nullable();
+            $table->string('specified_ward_type')->nullable();
             $table->unsignedBigInteger('health_facility_id');
             $table->timestamps();
         });

@@ -16,6 +16,7 @@ class CreateBuildingPartsStateTable extends Migration
         Schema::create('building_parts_state', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->unsignedBigInteger('building_part_id');
             $table->timestamps();
         });
     }

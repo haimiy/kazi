@@ -37,9 +37,12 @@ class TypeOfWardSeeder extends Seeder
             [
                 "name" => "Intensive care"
             ],
-            [
-                "name" => "Other (Specify)."
-            ]
         ]);
+
+        $typeOfWard =  [
+            "name" => "Other (Specify).",
+            "is_specified"=>true
+        ];
+        DB::table('type_of_ward')->insert($typeOfWard);
     }
 }

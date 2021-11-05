@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             TypeOfWardSeeder::class,
             HospitalStatisticSeeder::class,
             HealthFacilityHistSeeder::class,
+            BuildingSeeder::class,
+            TypeOfWaterSupplySeeder::class,
         ]);
     }
 }

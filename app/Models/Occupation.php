@@ -12,7 +12,6 @@ class Occupation extends Model
     protected $fillable = [
         'name',
         'description',
-        'is_occupation_specified',
-        'specified_staff_occupation',   
+        'is_specified',
     ];
 }

@@ -17,6 +17,8 @@ class CreateHealthFacilityWaterSupplyTable extends Migration
             $table->id();
             $table->unsignedBigInteger('type_of_water_supply_id');
             $table->unsignedBigInteger('health_facility_id');
+            $table->enum('is_water_adequate',['Yes','No']);
+            $table->enum('is_water_available_for_drink',['None','Not boiled','Yes']);
             $table->timestamps();
         });
     }

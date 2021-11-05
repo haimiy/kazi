@@ -17,8 +17,7 @@ class CreateOccupationTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('description')->nullable();
-            $table->boolean('is_occupation_specified')->default(false);
-            $table->boolean('specified_staff_occupation')->nullable();
+            $table->boolean('is_specified')->default(false);
             $table->timestamps();
         });
     }

@@ -12,5 +12,6 @@ class TypeOfWard extends Model
     protected $fillable = [
         'name',
         'description',
+        'is_specified'
     ];
 }

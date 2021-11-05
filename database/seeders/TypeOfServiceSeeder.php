@@ -120,11 +120,12 @@ class TypeOfServiceSeeder extends Seeder
                 "have_additional_requirement" => false,
                 "additional_requirement" => ""
             ],
-            [
-                "name_of_services" => "Other (Specify).",
-                "have_additional_requirement" => false,
-                "additional_requirement" => ""
-            ],
         ]);
+
+        $typeOfService = [
+            "name_of_services" => "Other (Specify).",
+            "is_specified"=>true
+        ];
+        DB::table('type_of_services')->insert($typeOfService);
     }
 }

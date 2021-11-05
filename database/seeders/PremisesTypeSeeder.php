@@ -87,9 +87,6 @@ class PremisesTypeSeeder extends Seeder
             [
                 "name" => "Records"
             ],
-            [
-                "name" => "Other (Specify)."
-            ]
         ]);
     }
 }
