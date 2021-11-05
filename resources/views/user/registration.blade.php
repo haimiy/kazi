@@ -69,7 +69,7 @@
                                                 <div class="col-sm-8">
                                                     <select class="form-control select2" onchange="other(this);" name="type_of_health_unit_id" style="width: 100%;">
                                                         <option selected="selected">--Select--</option>
-                                                        @foreach ($type_of_health_unit as $type_of_health_unit)
+                                                        @foreach ($type_of_health_units as $type_of_health_unit)
                                                         <option value="{{$type_of_health_unit->id}}">{{$type_of_health_unit->name}}</option>
                                                         @endforeach
                                                     </select>
@@ -85,7 +85,7 @@
                                                 <div class="col-sm-8">
                                                     <select class="form-control select2" onchange="authority(this);" name="authority_responsible_id" style="width: 100%;">
                                                         <option selected="selected">--Select--</option>
-                                                        @foreach ($authority_responsible as $authority_responsible)
+                                                        @foreach ($authority_responsibles as $authority_responsible)
                                                         <option value="{{$authority_responsible->id}}">{{$authority_responsible->name}}</option>
                                                         @endforeach
                                                     </select>
@@ -200,7 +200,7 @@
                                                 <div class="col-sm-8">
                                                     <select class="form-control" name="district_id" style="width: 100%;">
                                                     <option value="#">--Select--</option>
-                                                    @foreach ($district as $district)                                 
+                                                    @foreach ($districts as $district)                                 
                                                        <option value="{{ $district->id }}">{{ $district->name }}</option>                                     
                                                     @endforeach
                                                 </select>
@@ -287,7 +287,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($service as $service)
+                                                    @foreach ($services as $service)
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{$service->name_of_services}}</td>

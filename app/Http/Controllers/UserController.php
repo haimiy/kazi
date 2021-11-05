@@ -330,18 +330,18 @@ class UserController extends Controller
     }
 
     public function applicantRegistration(){
-        $type_of_health_unit = TypeOfHealthUnit::all();
-        $authority_responsible = AuthorityResponsible::all();
-        $district = District::all();
-        $service = TypeOfService::all();
-        $staff = Occupation::all();
-        $premise = PremisesType::all();
-        $by_ward = TypeOfWard::all();
+        $type_of_health_units = TypeOfHealthUnit::all();
+        $authority_responsibles = AuthorityResponsible::all();
+        $districts = District::all();
+        $services = TypeOfService::all();
+        $staffs = Occupation::all();
+        $premises = PremisesType::all();
+        $by_wards = TypeOfWard::all();
         return view('user.registration', [
-            'type_of_health_unit' => $type_of_health_unit,
-            'authority_responsible' => $authority_responsible,
-            'district' => $district,
-            'service' => $service,
+            'type_of_health_units' => $type_of_health_units,
+            'authority_responsibles' => $authority_responsibles,
+            'districts' => $districts,
+            'services' => $services,
         ]);
     }
 
