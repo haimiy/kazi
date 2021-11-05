@@ -291,8 +291,8 @@
                                                     <tr>
                                                         <td>{{ $loop->iteration }}</td>
                                                         <td>{{$service->name_of_services}}</td>
-                                                        <td><input type="checkbox" value=""></td>
-                                                        <td><input type="checkbox" value=""></td>
+                                                        <td><input type="radio" value="YES" id="service-offered-{{ $service->id }}" name="service-offered-{{ $service->id }}"></td>
+                                                        <td><input type="radio" value="NO" id="service-offered-{{ $service->id }}" name="service-offered-{{ $service->id }}" checked></td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>

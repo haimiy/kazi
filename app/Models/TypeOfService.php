@@ -14,5 +14,6 @@ class TypeOfService extends Model
         'description',
         'have_additional_requirement',
         'additional_requirement',
+        
     ];
 }

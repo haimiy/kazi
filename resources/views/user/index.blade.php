@@ -45,7 +45,7 @@
               <div class="card card-primary card-outline">
                 <div class="card-header">
                   <h3 class="card-title">
-                    <i class="fas fa-bullhorn" style="color: red;"></i>GENERAL REQUIREMENTS FOR ESTABLISMENT OF PRIVATE HEALTH FACILITIES.</h3>
+                    <i class="fas fa-bullhorn" style="color: red;"></i> GENERAL REQUIREMENTS FOR ESTABLISMENT OF PRIVATE HEALTH FACILITIES.</h3>
                 </div>
                 <div class="card-body">
                   <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">

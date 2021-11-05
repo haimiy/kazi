@@ -19,6 +19,9 @@ class CreateHealthFacilityServicesOfferedTable extends Migration
             $table->unsignedBigInteger('type_of_services_id');
             $table->boolean('is_specified')->default(false);
             $table->string('specified_services')->nullable();
+            $table->boolean('have_additional_requirement_question')->default(false);
+            $table->string('additional_requirement_question')->nullable();
+            $table->string('additional_requirement_answer')->nullable();
             $table->timestamps();
         });
     }

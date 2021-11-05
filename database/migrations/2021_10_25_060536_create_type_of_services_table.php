@@ -17,6 +17,8 @@ class CreateTypeOfServicesTable extends Migration
             $table->id();
             $table->string('name_of_services');
             $table->text('description')->nullable();
+            $table->string('additional_requirement')->nullable();
+            $table->boolean('have_additional_requirement')->default(false);
             $table->timestamps();
         });
     }
