@@ -109,7 +109,6 @@
                                               @csrf
                                               <i onclick="deleteHospital( {{$premises->id}} )" class="fa fa-trash m-r-5">Delete</i>
                                           </form>
-                                          <a href="/owner_details/{{ $user->id }}"><i class="fa fa-eye text-secondary"></i></a>
                                       </div>
                                   </div>
                                 </td>

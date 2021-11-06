@@ -58,6 +58,9 @@ class RegisteredUserController extends Controller
 
         $owner = new Owner();
         $owner->person_incharge = $user->id;
+        $owner->designation = $request->designation;
+        $owner->ownership_type = "Solo";
+
         $owner->save();
 
         // event(new Registered($user));

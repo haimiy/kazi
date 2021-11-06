@@ -33,6 +33,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->unsignedBigInteger('person_incharge')->nullable();
             $table->string('signature')->nullable();
+            $table->string('designation');
+            $table->string('ownership_type');
             $table->timestamps();
         });
 

@@ -23,6 +23,14 @@ class CreateStaffingTable extends Migration
             $table->string('specified_occupation')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('occupation', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->boolean('is_specified')->default(false);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -33,5 +41,6 @@ class CreateStaffingTable extends Migration
     public function down()
     {
         Schema::dropIfExists('staffing');
+        Schema::dropIfExists('occupation');
     }
 }

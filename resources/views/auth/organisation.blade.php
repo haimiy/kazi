@@ -133,6 +133,14 @@
           </div>
         </div>
         <div class="input-group mb-3">
+          <input type="text" class="form-control" name="designation" :value="old('designation')" placeholder="designation" required />
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-list-card"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
             <input type="password" class="form-control" placeholder="Your Password" name="password" autocomplete="current-password" required />
             <div class="input-group-append">
             <div class="input-group-text">

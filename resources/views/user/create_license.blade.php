@@ -80,7 +80,9 @@
                                     <label class="col-sm-4 col-form-label">Owner Name.</label>
                                     <div class="col-sm-8">
                                         <div class="form-group">
-                                            <input type="text" disabled value="{{ Auth::user()->first_name. ' '.Auth::user()->middle_name. ' '.Auth::user()->last_name}}" class="form-control" name="owner_id" />
+                                            <input type="text" class="form-control" name="license_no" />
+
+                                            {{-- <input type="text" disabled value="{{ Auth::user()->first_name. ' '.Auth::user()->middle_name. ' '.Auth::user()->last_name}}" class="form-control" name="owner_id" /> --}}
                                         </div>
                                     </div>    
                                 </div>
@@ -88,7 +90,9 @@
                                     <label class="col-sm-4 col-form-label">Health Facility Name</label>
                                     <div class="col-sm-8">
                                         <div class="form-group">
-                                            <input type="text" disabled value="{{ $health_facility[0]->facility_name}}" class="form-control" name="health_facility_id" />
+                                            <input type="text" class="form-control" name="license_no" />
+
+                                            {{-- <input type="text" disabled value="{{ $health_facility[0]->facility_name}}" class="form-control" name="health_facility_id" /> --}}
                                         </div>
                                     </div>    
                                 </div>

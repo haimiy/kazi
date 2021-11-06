@@ -27,6 +27,12 @@ class CreateLocationTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('district', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -37,5 +43,6 @@ class CreateLocationTable extends Migration
     public function down()
     {
         Schema::dropIfExists('location');
+        Schema::dropIfExists('district');
     }
 }

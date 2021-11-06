@@ -250,6 +250,7 @@ class OwnerController extends Controller
             'email' => 'required',
             'phone_no' => 'required',
             'address' => 'required',
+            'designation' => 'required',
             'role_id' => 'required',
 
         ]);
@@ -260,6 +261,8 @@ class OwnerController extends Controller
             'email' => $request->email,
             'phone_no' => $request->phone_no,
             'address' => $request->address,
+            'designation' => $request->designation,
+            'ownership_type' => "company",
             'role_id' => $request->role_id,
             'password' => Hash::make('1234'),
         ]);
@@ -455,6 +458,8 @@ class OwnerController extends Controller
 
             $owner = new Owner();
             $owner->person_incharge = $user->id;
+            $owner->designation = $request->designation;
+            $owner->ownership_type = "Company";
             $owner->save();
             Session::flash('success_message', 'Data Inserted Successfull!');
             return redirect('/');

@@ -59,11 +59,9 @@
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="pill" href="#step7" role="tab" id="tab-btn-7" >Number of Beds</a>
                                     </li>
+                                   
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="pill" href="#step8" role="tab" id="tab-btn-8" >Essential equipment and supplies</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" data-toggle="pill" href="#step9" role="tab" id="tab-btn-9" >Other</a>
+                                        <a class="nav-link" data-toggle="pill" href="#step8" role="tab" id="tab-btn-8" >Other</a>
                                     </li>
                                 </ul>
                         </div>
@@ -444,17 +442,8 @@
                                             <button type="button"  onclick="changeTab(6)" class="btn btn-primary">Previous</button>
                                             <button type="button" class="btn btn-primary float-right" onclick="changeTab(8)">Next</button>
                                         </div>
-                                    </div>
+                                    </div> 
                                     <div class="tab-pane fade" role="tabpanel" aria-labelledby="services-offered-tab" id="step8">
-                                        <div class="card-body">
-                                        </div>
-
-                                        <div class="card-footer">
-                                            <button type="button"  onclick="changeTab(7)" class="btn btn-primary">Previous</button>
-                                            <button type="button" class="btn btn-primary float-right" onclick="changeTab(9)">Next</button>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade" role="tabpanel" aria-labelledby="services-offered-tab" id="step9">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-6">
@@ -594,7 +583,7 @@
                                         </div>
 
                                         <div class="card-footer">
-                                            <button type="button"  onclick="changeTab(8)" class="btn btn-primary">Previous</button>
+                                            <button type="button"  onclick="changeTab(7)" class="btn btn-primary">Previous</button>
                                             <button type="button" class="btn btn-primary float-right" onclick="submitForm()">Submit</button>
                                         </div>
                                     </div>

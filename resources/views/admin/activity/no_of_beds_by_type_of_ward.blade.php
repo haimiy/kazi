@@ -108,8 +108,7 @@
                                               @method('DELETE')
                                               @csrf
                                               <i onclick="deleteHospital( {{$no_of_beds_by_type_of_ward->id}} )" class="fa fa-trash m-r-5">Delete</i>
-                                          </form>
-                                          <a href="/owner_details/{{ $user->id }}"><i class="fa fa-eye text-secondary"></i></a>
+                                          </form>      
                                       </div>
                                   </div>
                                 </td>
