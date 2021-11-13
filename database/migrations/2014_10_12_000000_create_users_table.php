@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
         Schema::create('owner', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('person_incharge')->nullable();
+            $table->unsignedBigInteger('health_facility_id')->nullable();
             $table->string('signature')->nullable();
             $table->string('designation');
             $table->string('ownership_type');

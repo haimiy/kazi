@@ -383,51 +383,50 @@ class OwnerController extends Controller
             'stateOfToilets'=>$stateOfToilets,
             'sewerageSystems'=>$sewerageSystems,
             'wasteDisposals'=>$wasteDisposals,
+            'ownerModel' => $ownerModel,
         ]);
     }
 
     public function storeApplicantRegistrationForm(Request $request): \Illuminate\Http\RedirectResponse
     {
-        $application_form = new  Registration();
-        $application_form->type_of_health_unit_id = $request->type_of_health_unit_id;
-        $application_form->type_of_health_unit_specified = $request->type_of_health_unit_specified;
-        $application_form->authority_responsible_id = $request->authority_responsible_id;
-        $application_form->authority_responsible_specified = $request->authority_responsible_specified;
-        $application_form->starting_operation_date = $request->starting_operation_date;
-
-        $application_form->nearest_hospital_name = $request->nearest_hospital_name;
-        $application_form->nearest_hospital_owner = $request->nearest_hospital_owner;
-        $application_form->nearest_hospital_distance = $request->nearest_hospital_distance;
-        $application_form->nearest_hospital_type_of_health_unit = $request->nearest_hospital_type_of_health_unit;
-
-        $application_form->service_type_id = $request->service_type_id;
-        $application_form->have_additional_requirement = $request->have_additional_requirement;
-        $application_form->additional_requirement = $request->additional_requirement;
-
-        $application_form->user_id = auth()->user()->id ;
-
-        $application_form->save();
-
         $doctor_incharge = new DoctorIncharge();
         $doctor_incharge->full_name = $request->full_name;
         $doctor_incharge->qualification = $request->qualification;
         $doctor_incharge->user_id = auth()->user()->id ;
         $doctor_incharge->save();
 
-        $health_facility = new HealthFacility();
-        $health_facility->facility_name = $request->facility_name;
-        $health_facility->reg_no = $request->reg_no;
-        $health_facility->user_id = auth()->user()->id ;
-        $health_facility->save();
-
-        $owner = new Owner();
-        $owner->person_incharge = auth()->user()->id;
-        $owner->save();
-
         $location = Location::create($request->all());
         $location->user_id = auth()->user()->id;
         $location->save();
 
+        $health_facility = new HealthFacility();
+        $health_facility->facility_name = $request->facility_name;
+        $health_facility->reg_no = $request->reg_no;
+        $health_facility->user_id = auth()->user()->id;
+        $health_facility->doctor_incharge_id = $doctor_incharge->id;
+        $health_facility->location_id = $location->id;
+        $health_facility->save();
+
+        $registration = new  Registration();
+        $registration->type_of_health_unit_id = $request->type_of_health_unit_id;
+        $registration->type_of_health_unit_specified = $request->type_of_health_unit_specified;
+        $registration->authority_responsible_id = $request->authority_responsible_id;
+        $registration->authority_responsible_specified = $request->authority_responsible_specified;
+        $registration->starting_operation_date = $request->starting_operation_date;
+        $registration->nearest_hospital_name = $request->nearest_hospital_name;
+        $registration->nearest_hospital_owner = $request->nearest_hospital_owner;
+        $registration->nearest_hospital_distance = $request->nearest_hospital_distance;
+        $registration->nearest_hospital_type_of_health_unit = $request->nearest_hospital_type_of_health_unit;
+        $registration->service_type_id = $request->service_type_id;
+        $registration->have_additional_requirement = $request->have_additional_requirement;
+        $registration->additional_requirement = $request->additional_requirement;
+        $registration->user_id = auth()->user()->id ;
+        $registration->health_facility_id = $health_facility->id ;
+        $registration->save();
+
+        $owner = new Owner();
+        $owner->person_incharge = auth()->user()->id;
+        $owner->save();
         Session::flash('success_message', 'Data Inserted Successfull!');
         return redirect()->back();
     }

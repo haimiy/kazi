@@ -18,6 +18,15 @@ class CreateHealthFacilityTable extends Migration
             $table->string('facility_name');
             $table->string('reg_no')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('doctor_incharge_id')->nullable();
+            $table->unsignedBigInteger('location_id')->nullable();
+            $table->timestamps();
+        });
+
+        Schema::create('owner_health_facility', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('owner_id');
+            $table->unsignedBigInteger('health_facility_id');
             $table->timestamps();
         });
     }
@@ -30,5 +39,6 @@ class CreateHealthFacilityTable extends Migration
     public function down()
     {
         Schema::dropIfExists('health_facility');
+        Schema::dropIfExists('owner_health_facility');
     }
 }

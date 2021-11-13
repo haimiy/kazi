@@ -68,7 +68,7 @@
                 <div class="col-12">
                     <div class="card">
                       <div class="card-header">
-                          {{-- <h3 class="card-title">
+                          <h3 class="card-title">
                               <form action="/admin/hospital_statistics/import" method="POST" enctype="multipart/form-data" id="importForm">
                                   @csrf
                                       <input type="file" id="myFile" name='file' style="display: none;">
@@ -76,7 +76,7 @@
                                           <i class="fa fa-upload" onclick=""></i>&nbsp; Import</button>
                               </form>
                           </h3>
-                          </div> --}}
+                          </div>
                         
                           <h3 class="text-center">HOSPITAL BINAFSI ZILIZO ANZISHWA KWA MUJIBU WA <br> NAMBA 4 YA MWAKA 1994</h3> 
                       </div>

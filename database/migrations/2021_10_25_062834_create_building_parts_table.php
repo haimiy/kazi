@@ -19,6 +19,22 @@ class CreateBuildingPartsTable extends Migration
             $table->string('description')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('building_parts_state', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->unsignedBigInteger('building_part_id');
+            $table->timestamps();
+        });
+
+        Schema::create('building_status', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('building_parts_id');
+            $table->unsignedBigInteger('health_facility_id');
+            $table->text('comments');
+            $table->enum('state', ['good', 'average', 'bad']);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -29,5 +45,7 @@ class CreateBuildingPartsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('building_parts');
+        Schema::dropIfExists('building_parts_state');
+        Schema::dropIfExists('building_status');
     }
 }

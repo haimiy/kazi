@@ -12,5 +12,6 @@ class DoctorIncharge extends Model
     protected $fillable = [
         'full_name',
         'qualification',
+        'user_id'
     ];
 }

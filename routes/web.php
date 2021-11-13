@@ -86,7 +86,7 @@ Route::prefix('user')->middleware('user')->group(function(){
         return view('user.index');
     });
     Route::get('app_registration', [OwnerController::class, 'showApplicantRegistrationForm']);
-    Route::post('app_registration_form', [OwnerController::class, 'storeApplicantRegistrationForm']);
+    Route::post('store_applicant_registration_form', [OwnerController::class, 'storeApplicantRegistrationForm']);
 
     Route::get('services_offered', [OwnerController::class, 'servicesOffered']);
     Route::post('services_offered_form', [OwnerController::class, 'servicesOfferedForm']);

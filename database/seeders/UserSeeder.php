@@ -17,16 +17,6 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                "first_name" => "khairat",
-                "middle_name" => "Makame",
-                "last_name" => "Issa",
-                "email" => "khairat@gmail.com",
-                "role_id" => 4,
-                "password" => Hash::make("1234"),
-                "phone_no" => "0772674901",
-                "address" => "Fuoni",
-            ],
-            [
                 "first_name" => "safia",
                 "middle_name" => "sleiman",
                 "last_name" => "iddi",
@@ -47,6 +37,13 @@ class UserSeeder extends Seeder
                 "address" => "Fuoni",
             ]
 
+        ]);
+
+        DB::table('owner')->insert([
+            "person_incharge" => 2,
+            "health_facility_id" => 1,
+            "designation" => 'Director wa Hospital',
+            "ownership_type" => 'Solo',
         ]);
     }
 }

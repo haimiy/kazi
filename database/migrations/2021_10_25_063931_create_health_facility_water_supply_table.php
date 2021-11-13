@@ -21,6 +21,13 @@ class CreateHealthFacilityWaterSupplyTable extends Migration
             $table->enum('is_water_available_for_drink',['None','Not boiled','Yes']);
             $table->timestamps();
         });
+
+        Schema::create('type_of_water_supply', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -31,5 +38,6 @@ class CreateHealthFacilityWaterSupplyTable extends Migration
     public function down()
     {
         Schema::dropIfExists('health_facility_water_supply');
+        Schema::dropIfExists('type_of_water_supply');
     }
 }

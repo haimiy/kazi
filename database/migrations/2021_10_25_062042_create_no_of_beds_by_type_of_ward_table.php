@@ -22,6 +22,14 @@ class CreateNoOfBedsByTypeOfWardTable extends Migration
             $table->unsignedBigInteger('health_facility_id');
             $table->timestamps();
         });
+
+        Schema::create('type_of_ward', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->boolean('is_specified')->default(false);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -32,5 +40,6 @@ class CreateNoOfBedsByTypeOfWardTable extends Migration
     public function down()
     {
         Schema::dropIfExists('no_of_beds_by_type_of_ward');
+        Schema::dropIfExists('type_of_ward');
     }
 }

@@ -22,6 +22,13 @@ class CreatePremisesTable extends Migration
             $table->string('specified_premises_type')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('premises_type', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -32,5 +39,6 @@ class CreatePremisesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('premises');
+        Schema::dropIfExists('premises_type');
     }
 }

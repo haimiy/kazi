@@ -11,7 +11,10 @@ use Illuminate\Support\Facades\Auth;
 class LicenseController extends Controller
 {
     public function License(){
-        return view('user.license');
+        $licenses = License::all();
+        return view('user.license' , [
+            'licenses' => $licenses,
+        ]);
     }
     public function createLicense(){
         $health_facility = DB::table('health_facility')->where('user_id', Auth::id())->get();

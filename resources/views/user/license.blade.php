@@ -91,28 +91,15 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                             
-                                {{-- <td class="text-center">
-                                    <div class="dropdown dropdown-action">
-                                        <a href="#" class="action-icon" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#"><i class="fa fa-pencil-alt m-r-5"></i> Edit</a>
-                                            <form id="delete-{{$user->id}}" method="POST" style="display: inline" class="dropdown-item" action="/admin/delete_user/{{ $user->id }}">
-                                                @method('DELETE')
-                                                @csrf
-                                                <i onclick="deleteUser( {{$user->id}} )" class="fa fa-trash m-r-5">Delete</i>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </td> --}}
-                              </tr>
+                             @foreach ($licenses as $license)
+                             <tr>
+                               <td>{{ $license->license_no}}</td>
+                               <td>{{ $license->license_type}}</td>
+                               <td>{{ $license->owner_id}}</td>
+                               <td>{{ $license->health_facility_id}}</td>
+                               <td>{{ $license->starting_date}}</td>
+                            </tr>
+                             @endforeach
                             </tbody>
                             <tfoot>
                             <tr>

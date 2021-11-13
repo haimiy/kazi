@@ -13,6 +13,8 @@ class HealthFacility extends Model
         'facility_name',
         'reg_no',
         'user_id',
+        'doctor_incharge_id',
+        'location_id',
     ];
 
     public function user(){

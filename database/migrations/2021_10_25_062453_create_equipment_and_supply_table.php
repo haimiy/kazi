@@ -19,6 +19,14 @@ class CreateEquipmentAndSupplyTable extends Migration
             $table->string('description')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('health_facility_equipment_and_supply', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('equipment_id');
+            $table->unsignedInteger('no_of_equipment_and_supply');
+            $table->unsignedBigInteger('health_facility_id');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -29,5 +37,6 @@ class CreateEquipmentAndSupplyTable extends Migration
     public function down()
     {
         Schema::dropIfExists('equipment_and_supply');
+        Schema::dropIfExists('health_facility_equipment_and_supply');
     }
 }

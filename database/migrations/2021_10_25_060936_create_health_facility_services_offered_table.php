@@ -24,6 +24,16 @@ class CreateHealthFacilityServicesOfferedTable extends Migration
             $table->string('additional_requirement_answer')->nullable();
             $table->timestamps();
         });
+
+        Schema::create('type_of_services', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_of_services');
+            $table->text('description')->nullable();
+            $table->boolean('have_additional_requirement')->default(false);
+            $table->string('additional_requirement')->nullable();
+            $table->boolean('is_specified')->default(false);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -34,5 +44,6 @@ class CreateHealthFacilityServicesOfferedTable extends Migration
     public function down()
     {
         Schema::dropIfExists('health_facility_services_offered');
+        Schema::dropIfExists('type_of_services');
     }
 }
