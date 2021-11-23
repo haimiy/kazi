@@ -15,5 +15,10 @@ class Owner extends Model
         'designation',
         'ownership_type',
     ];
-    
+
+    public function organisation(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Organisation::class);
+    }
+
 }

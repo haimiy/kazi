@@ -59,7 +59,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="pill" href="#step7" role="tab" id="tab-btn-7" >Number of Beds</a>
                                     </li>
-                                   
+
                                     <li class="nav-item">
                                         <a class="nav-link" data-toggle="pill" href="#step8" role="tab" id="tab-btn-8" >Other</a>
                                     </li>
@@ -133,16 +133,29 @@
                                                     <label class="col-sm-4 col-form-label">Owner Name</label>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
+                                                            @if(auth()->user()->owner->ownership_type == 'Solo')
                                                             <input type="text" name='person_incharge' disabled value="{{ Auth::user()->first_name. ' '.Auth::user()->middle_name. ' '.Auth::user()->last_name}}" class="form-control" />
+                                                            @else
+                                                                <input type="text" name='person_incharge' disabled value="{{ Auth::user()->owner->organisation->org_name}}" class="form-control" />
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                @if(auth()->user()->owner->ownership_type == 'Company')
+                                                    <div class="form-group row">
+                                                        <label class="col-sm-4 col-form-label">Person In Charge</label>
+                                                        <div class="col-sm-8">
+                                                            <div class="form-group">
+                                                                <input type="text" name='person_incharge' disabled value="{{ Auth::user()->first_name. ' '.Auth::user()->middle_name. ' '.Auth::user()->last_name}}" class="form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
                                                 <div class="form-group row">
                                                     <label class="col-sm-4 col-form-label">Designation</label>
                                                     <div class="col-sm-8">
                                                         <div class="form-group">
-                                                            <input type="text" name='person_incharge' disabled value="{{ $ownerModel[0]->designation}}" class="form-control" />
+                                                            <input type="text" name='person_incharge' disabled value="{{ auth()->user()->owner->designation??''}}" class="form-control" />
                                                         </div>
                                                     </div>
                                                 </div>
@@ -454,7 +467,7 @@
                                                 <button type="button"  onclick="changeTab(6)" class="btn btn-primary">Previous</button>
                                                 <button type="button" class="btn btn-primary float-right" onclick="changeTab(8)">Next</button>
                                             </div>
-                                        </div> 
+                                        </div>
                                         <div class="tab-pane fade" role="tabpanel" aria-labelledby="services-offered-tab" id="step8">
                                             <div class="card-body">
                                                 <div class="row">
@@ -600,7 +613,7 @@
                                             </div>
                                         </div>
                                     </div>
-                            </form>        
+                            </form>
                         </div>
                       <!-- /.card-body -->
                     </div>

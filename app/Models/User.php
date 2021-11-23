@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function health_facility(){
         return $this->hasMany(User::class);
     }
+
+    public function owner(){
+        return $this->hasOne(Owner::class,'person_incharge');
+    }
 }

@@ -10,6 +10,7 @@ use App\Models\TypeOfWaterSupply;
 use App\Models\User;
 use App\Models\Owner;
 use App\Models\Staffing;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use App\Models\DoctorIncharge;
 use App\Models\GeneralFacilityInfo;
@@ -451,15 +452,17 @@ class OwnerController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            $organisation = Organisation::create($request->all());
-            $organisation->owner_id = $user->id;
-            $organisation->save();
-
             $owner = new Owner();
             $owner->person_incharge = $user->id;
             $owner->designation = $request->designation;
             $owner->ownership_type = "Company";
             $owner->save();
+
+            $organisation = Organisation::create($request->all());
+            $organisation->owner_id = $owner->id;
+            $organisation->save();
+
+
             Session::flash('success_message', 'Data Inserted Successfull!');
             return redirect('/');
         }
