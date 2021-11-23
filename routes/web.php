@@ -6,6 +6,10 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\HistoryHealthFacility;
 use App\Http\Controllers\LicenseController;
+use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\InspectorController;
+use App\Http\Controllers\RegistrarController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,9 +27,8 @@ Route::get('/', function () {
 
 
 Route::prefix('admin')->middleware('admin')->group(function () {
-    Route::get('index', function () {
-        return view('admin.index');
-    });
+    Route::get('index', [AdminController::class, 'index']);
+
     Route::get('create_health_facility', [HistoryHealthFacility::class, 'HealthFacilityCreate']);
     Route::post('create_health_facility_form', [HistoryHealthFacility::class, 'HealthFacilityCreateForm']);
     Route::get('show_health_facility', [HistoryHealthFacility::class, 'showHealthFacility']);
@@ -39,10 +42,10 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('hospital_statistics', [HistoryHealthFacility::class, 'hospitalStatistics']);
     Route::post('hospital_statistics/import', [HistoryHealthFacility::class, 'hospitalStatisticsImported']);
 
-    Route::get('create_users', [OwnerController::class, 'UsersCreate']);
-    Route::post('create_users_form', [OwnerController::class, 'UsersCreateForm']);
-    Route::get('show_users', [OwnerController::class, 'showUsers']);
-    Route::delete('delete_user/{id}', [OwnerController::class, 'deleteUser']);
+    Route::get('create_users', [AdminController::class, 'usersCreate']);
+    Route::post('create_users_form', [AdminController::class, 'usersCreateForm']);
+    Route::get('show_users', [AdminController::class, 'showUsers']);
+    Route::delete('delete_user/{id}', [AdminController::class, 'deleteUser']);
 
     Route::get('type_of_health_unit', [ActivityController::class, 'typeOfHealthUnit']);
     Route::post('type_of_health_unit_form', [ActivityController::class, 'typeOfHealthUnitForm']);
@@ -82,31 +85,36 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
 });
 Route::prefix('user')->middleware('user')->group(function(){
-    Route::get('index', function () {
-        return view('user.index');
-    });
-    Route::get('app_registration', [OwnerController::class, 'showApplicantRegistrationForm']);
-    Route::post('store_applicant_registration_form', [OwnerController::class, 'storeApplicantRegistrationForm']);
+    Route::get('index', [OwnerController::class, 'index']);
+    
+    Route::get('app_registration', [ApplicationController::class, 'showApplicantRegistrationForm']);
+    Route::post('store_applicant_registration_form', [ApplicationController::class, 'storeApplicantRegistrationForm']);
 
-    Route::get('services_offered', [OwnerController::class, 'servicesOffered']);
-    Route::post('services_offered_form', [OwnerController::class, 'servicesOfferedForm']);
-    Route::get('location', [OwnerController::class, 'location']);
-    Route::post('location_form', [OwnerController::class, 'locationForm']);
-    Route::get('nearest', [OwnerController::class, 'nearest']);
-    Route::get('other', [OwnerController::class, 'other']);
-
-    Route::get('licenses', [LicenseController::class, 'License']);
+    Route::get('licenses', [LicenseController::class, 'license']);
     Route::get('license_create', [LicenseController::class, 'createLicense']);
     Route::post('license_create_form', [LicenseController::class, 'createLicenseForm']);
 
 });
+Route::prefix('inspector')->middleware('inspector')->group(function(){
+    Route::get('index', [InspectorController::class, 'index']);
+    Route::get('comments', [InspectorController::class, 'comments']);
+    Route::post('store_comments', [InspectorController::class, 'storeComments']);
+    
+});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::prefix('registrar')->middleware('registrar')->group(function(){
+    Route::get('index', [RegistrarController::class, 'index']);
+    Route::get('decision', [RegistrarController::class, 'decision']);
+    Route::post('store_decisions', [RegistrarController::class, 'storeDecision']);
+    
+});
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 Route::get('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy']);
-Route::get('selection', [OwnerController::class, 'Selection']);
-Route::get('organisation', [OwnerController::class, 'Organisation']);
-Route::post('organisation_form', [OwnerController::class, 'OrganisationForm']);
+Route::get('selection', [OwnerController::class, 'selection']);
+Route::get('organisation', [OwnerController::class, 'organisation']);
+Route::post('organisation_form', [OwnerController::class, 'organisationForm']);
 
 require __DIR__.'/auth.php';

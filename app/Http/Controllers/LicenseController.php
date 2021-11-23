@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LicenseController extends Controller
 {
-    public function License(){
+    public function license(){
         $licenses = License::all();
         return view('user.license' , [
             'licenses' => $licenses,

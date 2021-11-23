@@ -17,12 +17,11 @@
         <link rel="stylesheet" href="{{ asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
         <!-- JQVMap -->
         <link rel="stylesheet" href="{{ asset('assets/plugins/jqvmap/jqvmap.min.css') }}">
-        {{-- <!-- Theme style -->
-        <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}"> --}}
-         <!-- Select2 -->
-         <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
-         <link rel="stylesheet" href="{{ asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-         <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+        <!-- Theme style -->
+        <!-- Select2 -->
+        <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
         <!-- overlayScrollbars -->
         <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
         <!-- Daterange picker -->
@@ -130,7 +129,7 @@
                     <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
                     </div>
                 </li>
-                
+            
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                     <i class="fas fa-expand-arrows-alt"></i>
@@ -140,7 +139,7 @@
             </nav>
             <!-- /.navbar -->
 
-            @include('layouts.sidebar')
+            @include('layouts.registrar_sidebar')
 
             @yield('content')
             

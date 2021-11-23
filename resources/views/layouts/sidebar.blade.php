@@ -1,12 +1,13 @@
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="/admin/index" class="brand-link">
-      <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">PHAB</span>
-    </a>
-
+    
+     <div class="text-center">
+      <a href="/user/index" class="brand-link">
+        <img src="{{ asset('assets/dist/img/logox.jpg') }}" alt="Logo" class="img-circle center-block elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">PHAB</span>
+      </a>
+    </div>
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->

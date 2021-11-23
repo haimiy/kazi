@@ -20,10 +20,16 @@ class UserMiddleware
         if(!Auth::check()){
             return redirect()->route('login');
         }
-        if (auth()->user()->role_id == 5) {
+        if (auth()->user()->role_id == 5 ) {
             return $next($request);
         }
-        else if (auth()->user()->role_id == 2 || auth()->user()->role_id == 3 || auth()->user()->role_id == 4 || auth()->user()->role_id == 1 ) {
+        else if(auth()->user()->role_id == 3){
+            return redirect('registrar/index');
+        }
+        else if(auth()->user()->role_id == 4){
+            return redirect('inspector/index');
+        }
+        else if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2 ){
             return redirect('admin/index');
         }
         else{
