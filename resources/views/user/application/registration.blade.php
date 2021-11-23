@@ -37,7 +37,7 @@
                     @endif
                     <div class="card card-primary card-tabs">
                         <div class="card-header p-0 pt-1">
-                                <ul class="nav nav-tabs" id="application-form" role="tablist">
+                                <ul class="nav nav-tabs" id="application-form-tab" role="tablist">
                                     <li class="nav-item">
                                       <a class="nav-link active" data-toggle="pill" href="#step1" role="tab" id="tab-btn-1" >General Facility Info</a>
                                     </li>
@@ -66,19 +66,18 @@
                                 </ul>
                         </div>
                         <div class="card-body">
-                            <form action="/user/store_applicant_registration_form" method="POST">
+                            <form id="application-form" action="/user/store_applicant_registration_form" method="POST" >
                                 @csrf
-                                <input type="hidden" id="token" value="{{ csrf_token() }}">
-                                    <div class="tab-content">
-                                @include('user.application.partial.general_info')
-                                @include('user.application.partial.location')
-                                @include('user.application.partial.nearest_hospital')
-                                @include('user.application.partial.services_offered')
-                                @include('user.application.partial.staffing')
-                                @include('user.application.partial.premises')
-                                @include('user.application.partial.no_of_beds')
-                                @include('user.application.partial.other')     
-                                    </div>
+                                <div class="tab-content">
+                                    @include('user.application.partial.general_info')
+                                    @include('user.application.partial.location')
+                                    @include('user.application.partial.nearest_hospital')
+                                    @include('user.application.partial.services_offered')
+                                    @include('user.application.partial.staffing')
+                                    @include('user.application.partial.premises')
+                                    @include('user.application.partial.no_of_beds')
+                                    @include('user.application.partial.other')
+                                </div>
                             </form>
                         </div>
                       <!-- /.card-body -->
@@ -94,7 +93,6 @@
 
 @section('js')
     <!-- BS-Stepper -->
-    <script src="{{ asset('assets/plugins/bs-stepper/js/bs-stepper.min.js') }}"></script>
     <script>
          $(function () {
     //Initialize Select2 Elements
@@ -124,10 +122,10 @@
                 document.getElementById('authority').style.display = "none";
             }
         }
-         // BS-Stepper Init
-        document.addEventListener('DOMContentLoaded', function () {
-            window.stepper = new Stepper(document.querySelector('.bs-stepper'))
-        });
+        //  // BS-Stepper Init
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+        // });
 
         function showAdditionalRequirement(id) {
             let yesInput = $('input[name="service-offered-'+id+'"]:checked');
@@ -149,6 +147,26 @@
             else
                 specifyDiv.hide()
         }
+
+         $("#application-form").submit(function (e) {
+             e.preventDefault();
+
+             $.ajax({
+                 url:$(this).attr('action'),
+                 method:$(this).attr('method'),
+                 data:new FormData(this),
+                 processData:false,
+                 dataType:'json',
+                 contentType:false,
+                 success: function (response) {
+                     console.log(response)
+                 },
+                 error:function () {
+
+                 }
+             });
+         });
+
         </script>
 
 
