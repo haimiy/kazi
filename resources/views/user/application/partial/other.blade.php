@@ -138,7 +138,7 @@
     </div>
 
     <div class="card-footer">
-        <button type="button"   class="btn btn-primary">Previous</button>
+        <button type="button"  onclick="changeTab(7)" class="btn btn-primary">Previous</button>
         <button type="submit" class="btn btn-primary float-right">Submit</button>
     </div>
 </div>

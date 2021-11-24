@@ -105,7 +105,6 @@
                               <th>Phone no.</th>
                               <th>Location</th>
                               <th>Service Delivary</th>
-                              <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -121,19 +120,7 @@
                                 <td>{{ $health_facility->phone_no }}</td>
                                 <td>{{ $health_facility->location }}</td>
                                 <td>{{ $health_facility->service_name }}</td>
-                                <td class="text-center">
-                                  <div class="dropdown dropdown-action">
-                                      <a href="#" class="action-icon" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
-                                      <div class="dropdown-menu dropdown-menu-right">
-                                          <a class="dropdown-item" href="#"><i class="fa fa-pencil-alt m-r-5"></i> Edit</a>
-                                          <form id="delete-{{$health_facility->id}}" method="POST" style="display: inline" class="dropdown-item" action="/admin/delete_hospital/{{ $health_facility->id }}">
-                                              @method('DELETE')
-                                              @csrf
-                                              <i onclick="deleteHospital( {{$health_facility->id}} )" class="fa fa-trash m-r-5">Delete</i>
-                                          </form>
-                                      </div>
-                                  </div>
-                              </td>
+                                
                               </tr>
                             @endforeach
                             </tbody>
@@ -149,7 +136,6 @@
                                 <th>Phone no.</th>
                                 <th>Location</th>
                                 <th>Service Delivary</th>
-                                <th>Action</th>
                             </tr>
                             </tfoot>
                           </table>

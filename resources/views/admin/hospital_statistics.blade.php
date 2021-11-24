@@ -75,12 +75,11 @@
                                       <button type="button" id="browse" class="btn btn-primary">
                                           <i class="fa fa-upload" onclick=""></i>&nbsp; Import</button>
                               </form>
+                              <h3 class="text-center">HOSPITAL BINAFSI ZILIZO ANZISHWA KWA MUJIBU WA <br> NAMBA 4 YA MWAKA 1994</h3> 
                           </h3>
+                          
                           </div>
-                        
-                          <h3 class="text-center">HOSPITAL BINAFSI ZILIZO ANZISHWA KWA MUJIBU WA <br> NAMBA 4 YA MWAKA 1994</h3> 
-                      </div>
-
+                          
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -108,7 +107,6 @@
             <!-- /.card -->
       </div>
   </div>
-</div>
 </section>
 </div>
 @endsection
