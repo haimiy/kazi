@@ -24,7 +24,6 @@ class CreateLocationTable extends Migration
             $table->string('region');
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
 

@@ -1,7 +1,7 @@
 <div class="tab-pane fade" role="tabpanel" aria-labelledby="services-offered-tab" id="step7">
     <div class="card-body">
         <table class="table table-bordered table-sm">
-            <thead>
+            <thead>$typeOfWard->id
             <tr>
                 <th>#</th>
                 <th>Type of ward</th>
@@ -12,6 +12,7 @@
             @foreach($typeOfWards as $typeOfWard)
             <tr>
                 <input type="hidden" value="{{$typeOfWard->id}}" name="type_of_ward_id[]">
+                <input type="hidden" value="{{ $typeOfWard->is_specified }}" name="is_specified_type_of_ward_{{$typeOfWard->id}}">
                 <td>{{$loop->iteration}}</td>
                 <td>
                     {{$typeOfWard->name}}

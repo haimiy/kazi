@@ -43,10 +43,9 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('full_name');
             $table->string('qualification');
-            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
-        
+
         Schema::create('registrar', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');

@@ -32,7 +32,7 @@ class CreateBuildingPartsTable extends Migration
             $table->unsignedBigInteger('building_parts_id');
             $table->unsignedBigInteger('health_facility_id');
             $table->text('comments');
-            $table->enum('state', ['good', 'average', 'bad']);
+            $table->string('state');
             $table->timestamps();
         });
     }

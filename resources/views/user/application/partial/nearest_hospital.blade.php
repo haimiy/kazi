@@ -28,11 +28,11 @@
             <label class="col-sm-4 col-form-label">Type of Health Unit</label>
             <div class="col-sm-8">
                 <select class="form-control" name="nearest_hospital_type_of_health_unit" style="width: 100%;">
-                    <option value="#">--Select--</option>
-                <option value="Hospital">Hospital</option>
-                <option value="Healt Center">Healt Center</option>
-                <option value="Dispensary">Dispensary</option>
-                <option value="Clinic">Clinic</option>
+                    <option value="">--Select--</option>
+                    <option value="Hospital">Hospital</option>
+                    <option value="Healt Center">Healt Center</option>
+                    <option value="Dispensary">Dispensary</option>
+                    <option value="Clinic">Clinic</option>
             </select>
             </div>
         </div>

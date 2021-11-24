@@ -22,6 +22,7 @@
             @foreach($occupations as $occupation)
                 <tr>
                     <input type="hidden" name="staff_occupation_id[]" value="{{ $occupation->id }}"/>
+                    <input type="hidden" name="is_specified_staff_occupation_{{ $occupation->id }}" value="{{ $occupation->is_specified }}">
                     <td>{{ $loop->iteration }}</td>
                     <td>
                         {{ $occupation->name }}

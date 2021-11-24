@@ -4,7 +4,7 @@
             <label class="col-sm-4 col-form-label">Type of Health Unit</label>
             <div class="col-sm-8">
                 <select class="form-control select2" onchange="other(this);" name="type_of_health_unit_id" style="width: 100%;">
-                    <option selected="selected">--Select--</option>
+                    <option selected="selected" value="">--Select--</option>
                     @foreach ($type_of_health_units as $type_of_health_unit)
                     <option value="{{$type_of_health_unit->id}}">{{$type_of_health_unit->name}}</option>
                     @endforeach
@@ -20,7 +20,7 @@
             <label class="col-sm-4 col-form-label">Authority responsible for establishing/ running the facility</label>
             <div class="col-sm-8">
                 <select class="form-control select2" onchange="authority(this);" name="authority_responsible_id" style="width: 100%;">
-                    <option selected="selected">--Select--</option>
+                    <option selected="selected" value="">--Select--</option>
                     @foreach ($authorities as $authority)
                     <option value="{{$authority->id}}">{{$authority->name}}</option>
                     @endforeach

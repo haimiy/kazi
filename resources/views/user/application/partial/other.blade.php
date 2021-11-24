@@ -6,6 +6,7 @@
                 <ul>
                     @foreach($buildingParts as $buildingPart)
                         <li><label>{{$buildingPart->name}}</label>
+                            <input type="hidden" name="building-part-state-id[]" value="{{$buildingPart->id}}">
                             <div class="form-group">
                                 @foreach($buildingPart->state as $state)
                                     <div class="custom-control custom-radio">
@@ -36,6 +37,22 @@
                             </div>
                         </div>
 
+                    </li>
+                    <li><label>Type for Group</label>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" value="Patient" id="toilet-sanitation-type-for-group-Patient" name="toilet-sanitation-type-for-group">
+                                <label for="toilet-sanitation-type-for-group-Patient" class="custom-control-label">Patient</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" value="Staff" id="toilet-sanitation-type-for-group-female" name="toilet-sanitation-type-for-group">
+                                <label for="toilet-sanitation-type-for-group-female" class="custom-control-label">Staff</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" value="Both" id="toilet-sanitation-type-for-group-both" name="toilet-sanitation-type-for-group">
+                                <label for="toilet-sanitation-type-for-group-both" class="custom-control-label">Both</label>
+                            </div>
+                        </div>
                     </li>
                     <li><label>Type for Gender</label>
                         <div class="form-group">
@@ -82,7 +99,7 @@
                         <div class="form-group">
                             @foreach($waterSupplies as $waterSupply)
                                 <div class="custom-control custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" value="{{ $waterSupply->name }}" id="source-of-water-{{$waterSupply->id}}" name="source-of-water-opt">
+                                    <input class="custom-control-input" type="checkbox" value="{{ $waterSupply->name }}" id="source-of-water-{{$waterSupply->id}}" name="source-of-water-opt[]">
                                     <label for="source-of-water-{{$waterSupply->id}}" class="custom-control-label">{{ $waterSupply->name }}</label>
                                 </div>
                             @endforeach
