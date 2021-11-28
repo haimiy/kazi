@@ -244,13 +244,11 @@ class ApplicationController extends Controller
             'incinerator'=>$request['waste-disposal-incinerator'],
         ]);
 
-
-        $registration = Registration::create($request->all());
-
-        return response()->json([
-            'success'=>true,
-            'message'=>'Registration form submitted successful!',
-        ]);
+        $registration = Registration::create($request->all());   
+         return response()->json([
+            'success' => true,
+            'message' => 'Registration form submitted successful!',
+         ]);
     }
 
 }

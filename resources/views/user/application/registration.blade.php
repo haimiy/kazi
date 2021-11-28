@@ -30,9 +30,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    @if(Session::has('success_message'))
+                    @if(Session::has('message'))
                     <div class="alert alert-success">
-                        {{ Session::get('success_message') }}
+                        {{ Session::get('message') }}
                     </div>
                     @endif
                     <div class="card card-primary card-tabs">
@@ -122,10 +122,10 @@
                 document.getElementById('authority').style.display = "none";
             }
         }
-        //  // BS-Stepper Init
-        // document.addEventListener('DOMContentLoaded', function () {
-        //     window.stepper = new Stepper(document.querySelector('.bs-stepper'))
-        // });
+         // BS-Stepper Init
+        document.addEventListener('DOMContentLoaded', function () {
+            window.stepper = new Stepper(document.querySelector('.bs-stepper'))
+        });
 
         function showAdditionalRequirement(id) {
             let yesInput = $('input[name="service-offered-'+id+'"]:checked');
@@ -148,25 +148,87 @@
                 specifyDiv.hide()
         }
 
-         $("#application-form").submit(function (e) {
-             e.preventDefault();
+       // $("#application-form").validate({
+       //    rules: {
+       //      starting_operation_date: { required:true},
+       //      full_name: { required:true},
+       //      qualification: { required:true},
+       //      street: { required:true},
+       //      address: { required:true},
+       //      village: { required:true},
+       //      ward: { required:true},
+       //      po_box: { required:true},
+       //      region: { required:true},
+       //      nearest_hospital_name: { required:true},
+       //      nearest_hospital_distance: { required:true},
+       //      toilet-sanitation-type-of-toilet: { required:true},
+       //      toilet-sanitation-type-for-group: { required:true},
+       //      toilet-sanitation-type-for-gender: { required:true},
+       //      toilet-sanitation-state-of-toilet: { required:true},
+       //      toilet-sanitation-sewerage-system: { required:true},
+       //      is-water-adequate: { required:true},
+       //      water-for-drink: { required:true},
+       //      source-of-water-opt: { required:true},
+       //      waste-disposal-surroundings: { required:true},
+       //      waste-disposal-waste-basket-dust-bin: { required:true},
+       //      waste-disposal-dumping-site: { required:true},
+       //      waste-disposal-incinerator: { required:true},
+       //    },
+       //    message: {
 
-             $.ajax({
-                 url:$(this).attr('action'),
-                 method:$(this).attr('method'),
-                 data:new FormData(this),
-                 processData:false,
-                 dataType:'json',
-                 contentType:false,
-                 success: function (response) {
-                     console.log(response)
-                 },
-                 error:function () {
+       //    starting_operation_date: "please enter starting date",
+       //    full_name: "please enter name of doctor incharge",
+       //    qualification: "please enter qualification of doctor incharge",
+       //    street: "please enter name of street",
+       //    address: "please enter name of address",
+       //    village: "please enter name of village",
+       //    ward: "please enter name of ward",
+       //    po_box: "please enter po box",
+       //    region: "please enter region",
+       //    nearest_hospital_name: "please enter nearest hospital name",
+       //    nearest_hospital_distance: "please enter nearest hospital distance",
+       //    nearest_hospital_name: "please enter nearest hospital name",
+       //    toilet-sanitation-type-of-toilet: "please select type of toilet",
+       //    toilet-sanitation-type-for-group: "please select type for group",
+       //    toilet-sanitation-type-for-gender: "please select type for gender",
+       //    toilet-sanitation-state-of-toilet: "please select state of toilet",
+       //    toilet-sanitation-sewerage-system: "please select sewage system",
+       //    is-water-adequate: "please select",
+       //    water-for-drink: "please select",
+       //    source-of-water-opt: "please select",
+       //    waste-disposal-surroundings: "please select",
+       //    waste-disposal-waste-basket-dust-bin: "please select",
+       //    waste-disposal-dumping-site: "please select",
+       //    waste-disposal-incinerator: "please select",
+       //    }
 
-                 }
-             });
-         });
+       //  });
 
+        $("#application-form").submit(function (e) {
+           e.preventDefault();
+
+           $.ajax({
+               url:$(this).attr('action'),
+               method:$(this).attr('method'),
+               data:new FormData(this),
+               processData:false,
+               dataType:'json',
+               contentType:false,
+               success: function (response) {
+                if (response.success) {
+                  iziToast.success({
+                      title: 'Success',
+                      message: response.message,
+                      position: 'topRight'
+                    });
+                }
+               },
+               error:function () {
+
+               }
+           });
+        });
+            
         </script>
 
 

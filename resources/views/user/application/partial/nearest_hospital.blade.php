@@ -4,12 +4,12 @@
             <label class="col-sm-4 col-form-label">Nearest Hospital Name</label>
             <div class="col-sm-8">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="nearest_hospital_name" />
+                    <input type="text" class="form-control" name="nearest_hospital_name" required />
                 </div>
             </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label">Nearest Hospital Owner</label>
+            <label class="col-sm-4 col-form-label">Nearest Hospital Owner (if owner known)</label>
             <div class="col-sm-8">
                 <div class="form-group">
                     <input type="text" class="form-control" name="nearest_hospital_owner" />
@@ -20,7 +20,23 @@
             <label class="col-sm-4 col-form-label">Nearest Hospital Distance</label>
             <div class="col-sm-8">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="nearest_hospital_distance" />
+                    <input type="text" class="form-control" name="nearest_hospital_distance" required />
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Latitude</label>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="latitude" required />
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Longitude</label>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="Longitude" required />
                 </div>
             </div>
         </div>

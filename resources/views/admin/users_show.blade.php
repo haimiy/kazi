@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.inspector_app')
 @section('title', '')
 @section('css')
 <!-- DataTables -->

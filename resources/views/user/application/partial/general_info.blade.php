@@ -3,7 +3,7 @@
         <div class="form-group row">
             <label class="col-sm-4 col-form-label">Type of Health Unit</label>
             <div class="col-sm-8">
-                <select class="form-control select2" onchange="other(this);" name="type_of_health_unit_id" style="width: 100%;">
+                <select class="form-control select2" onchange="other(this);" name="type_of_health_unit_id" style="width: 100%;" required>
                     <option selected="selected" value="">--Select--</option>
                     @foreach ($type_of_health_units as $type_of_health_unit)
                     <option value="{{$type_of_health_unit->id}}">{{$type_of_health_unit->name}}</option>
@@ -92,7 +92,7 @@
             <label class="col-sm-4 col-form-label">Name of Doctor Incharge</label>
             <div class="col-sm-8">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="full_name" />
+                    <input type="text" class="form-control" name="full_name" required />
                 </div>
             </div>
         </div>
@@ -100,7 +100,7 @@
             <label class="col-sm-4 col-form-label">Qualification of doctor incharge</label>
             <div class="col-sm-8">
                 <div class="form-group">
-                    <input type="text" class="form-control" name="qualification" />
+                    <input type="text" class="form-control" name="qualification" required />
                 </div>
             </div>
         </div>

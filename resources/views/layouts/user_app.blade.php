@@ -26,6 +26,8 @@
         <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
         <!-- Daterange picker -->
         <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
+        <!-- 1ziToast -->
+        <link rel="stylesheet" href="{{ asset('assets/iziToast/dist/css/iziToast.min.css') }}">
         <!-- summernote -->
         <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
     </head>
@@ -190,6 +192,16 @@
         <script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="{{ asset('assets/dist/js/demo.js') }}"></script>
+
+        <!-- validation -->
+
+        <script src="{{ asset('assets/plugins/jquery-validation/jquery.validate.js') }}"></script>
+
+        <script src="{{ asset('assets/plugins/jquery-validation/additional-methods.js') }}"></script>
+        
+
+        <!-- 1ziToast -->
+        <script type="text/javascript" src="{{ asset('assets/iziToast/dist/js/iziToast.min.js') }}"></script>
 
        @yield('js')
     </body>

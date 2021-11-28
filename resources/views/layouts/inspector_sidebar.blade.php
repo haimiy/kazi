@@ -46,10 +46,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/inspector/comments" class="nav-link">
+            <a href="/inspector/application_list" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>
-                Comments by Inspector
+                List of All Application
               </p>
             </a>
           </li>

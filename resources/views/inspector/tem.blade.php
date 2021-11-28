@@ -1,5 +1,5 @@
-@extends('layouts.user_app')
-@section('title', 'All | Licenses')
+@extends('layouts.inspector_app')
+@section('title', 'inspector | comments')
 @section('css')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -50,7 +50,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">licenses</li>
+              <li class="breadcrumb-item active">owner</li>
             </ol>
           </div>
         </div>
@@ -72,10 +72,7 @@
                             {{ Session::get('delete_message') }}
                         </div>
                         @endif
-                          {{-- <h3 class="card-title">List of all Licenses</h3> --}}
-                          <div class="card-title">
-                              <a href="/user/license_create" class="btn btn-block btn-primary">Request License</a>
-                          </div>
+                          <h3 class="card-title">List of all Applications</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -83,32 +80,29 @@
                             <thead>
                             <tr>
                               <th>#</th>
-                              <th>Applicant Name</th>
-                              <th>License No</th>
-                              <th>Date of Issue</th>
-                              <th>Expire Date</th>
+                              <th>Owner Name</th>
+                              <th>Health Facility Name</th>
+                              <th>Status</th>
                               <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                             @foreach ($licenses as $license)
-                             <tr>
-                               <td>{{ $license->license_no}}</td>
-                               <td>{{ $license->license_type}}</td>
-                               <td>{{ $license->owner_id}}</td>
-                               <td>{{ $license->health_facility_id}}</td>
-                               <td>{{ $license->starting_date}}</td>
-                            </tr>
-                             @endforeach
+                           @foreach ($list_of_applications as $list_of_application)
+                           <tr>
+                            <td>{{ $loop->iteration}}</td>
+                             <td>{{ $list_of_application->first_name. ' '.$list_of_application->middle_name. ' '.$list_of_application->last_name }}</td>
+                             <td>{{ $list_of_application->facility_name }}</td>
+                             <td>{{ $list_of_application->status }}</td>
+                             <td></td>
+                           </tr>
+                           @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>#</th>
-                                <th>Applicant Name</th>
-                                <th>License No</th>
-                                <th>Date of Issue</th>
-                                <th>Expire Date</th>
-                                <th>Action</th>
+                              <th>#</th>
+                              <th>Owner Name</th>
+                              <th>Health Facility Name</th>
+                              <th>Action</th>
                             </tr>
                             </tfoot>
                           </table>
@@ -160,12 +154,5 @@
         var formId = 'delete-'+id
         document.getElementById(formId).submit()
     }
-    $(document).ready(function() {
-      iziToast.success({
-                        title: 'Success',
-                        message: 'message',
-                        position: 'bottomRight'
-                      });
-    });
   </script>
 @endsection
