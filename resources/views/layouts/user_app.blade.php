@@ -195,10 +195,10 @@
 
         <!-- validation -->
 
-        <script src="{{ asset('assets/plugins/jquery-validation/jquery.validate.js') }}"></script>
+        <script src="{{ asset('js/jquery-plugin-collection.js') }}"></script>
 
-        <script src="{{ asset('assets/plugins/jquery-validation/additional-methods.js') }}"></script>
-        
+{{--        <script src="{{ asset('assets/plugins/jquery-validation/additional-methods.js') }}"></script>--}}
+
 
         <!-- 1ziToast -->
         <script type="text/javascript" src="{{ asset('assets/iziToast/dist/js/iziToast.min.js') }}"></script>

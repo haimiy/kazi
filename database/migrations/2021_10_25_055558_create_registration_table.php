@@ -24,8 +24,6 @@ class CreateRegistrationTable extends Migration
             $table->string('nearest_hospital_name')->nullable();;
             $table->string('nearest_hospital_owner')->nullable();;
             $table->string('nearest_hospital_distance')->nullable();
-            $table->string('latitude')->nullable();
-            $table->string('longitude')->nullable();
             $table->string('nearest_hospital_type_of_health_unit')->nullable();
             $table->enum('status', ['Pending', 'Accepted', 'Rejected', 'Approved'])->default('Pending')->nullable();;
             $table->string('application_ref_no')->nullable();

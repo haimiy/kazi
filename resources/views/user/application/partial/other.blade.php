@@ -6,7 +6,7 @@
                 <ul>
                     @foreach($buildingParts as $buildingPart)
                         <li><label>{{$buildingPart->name}}</label>
-                            <input type="hidden" name="building-part-state-id[]" value="{{$buildingPart->id}}">
+                            <input type="hidden" id="building-part-state-id" name="building-part-state-id[]" value="{{$buildingPart->id}}">
                             <div class="form-group">
                                 @foreach($buildingPart->state as $state)
                                     <div class="custom-control custom-radio">
@@ -14,6 +14,7 @@
                                         <label for="building-part-state-{{$state->id}}" class="custom-control-label">{{ $state->name }}</label>
                                     </div>
                                 @endforeach
+                                    <span class="text-danger" id="building-part-state-{{$buildingPart->id}}-error"></span>
                             </div>
                         </li>
                     @endforeach
@@ -35,6 +36,7 @@
                                 <input class="custom-control-input" type="radio" value="Pit latrine" id="toilet-sanitation-type-of-toilet-pit-latrine" name="toilet-sanitation-type-of-toilet">
                                 <label for="toilet-sanitation-type-of-toilet-pit-latrine" class="custom-control-label">Pit latrine</label>
                             </div>
+                            <span class="text-danger" id="toilet-sanitation-type-of-toilet-error"></span>
                         </div>
 
                     </li>
@@ -52,6 +54,7 @@
                                 <input class="custom-control-input" type="radio" value="Both" id="toilet-sanitation-type-for-group-both" name="toilet-sanitation-type-for-group">
                                 <label for="toilet-sanitation-type-for-group-both" class="custom-control-label">Both</label>
                             </div>
+                            <span class="text-danger" id="building-part-state-{{$buildingPart->id}}-error"></span>
                         </div>
                     </li>
                     <li><label>Type for Gender</label>
@@ -68,6 +71,7 @@
                                 <input class="custom-control-input" type="radio" value="Both" id="toilet-sanitation-type-for-gender-both" name="toilet-sanitation-type-for-gender">
                                 <label for="toilet-sanitation-type-for-gender-both" class="custom-control-label">Both</label>
                             </div>
+                            <span class="text-danger" id="building-part-state-{{$buildingPart->id}}-error"></span>
                         </div>
                     </li>
                     <li><label>State of Toilet</label>
@@ -78,6 +82,7 @@
                                     <label for="toilet-sanitation-state-of-toilet-{{ str_replace(' ','-',strtolower($stateOfToilet)) }}" class="custom-control-label">{{ $stateOfToilet }}</label>
                                 </div>
                             @endforeach
+                                <span class="text-danger" id="building-part-state-{{$buildingPart->id}}-error"></span>
                         </div>
                     </li>
                     <li><label>Sewerage system</label>
@@ -88,6 +93,7 @@
                                     <label for="toilet-sanitation-sewerage-system-{{ str_replace(' ','-',strtolower($sewerageSystem)) }}" class="custom-control-label">{{ $sewerageSystem }}</label>
                                 </div>
                             @endforeach
+                                <span class="text-danger" id="building-part-state-{{$buildingPart->id}}-error"></span>
                         </div>
                     </li>
                 </ul>
@@ -103,6 +109,7 @@
                                     <label for="source-of-water-{{$waterSupply->id}}" class="custom-control-label">{{ $waterSupply->name }}</label>
                                 </div>
                             @endforeach
+                            <span class="text-danger" id="building-part-state-{{$buildingPart->id}}-error"></span>
                         </div>
                     </li>
                     <li><label>Is water adequate for all purposes?</label>
@@ -115,6 +122,7 @@
                                 <input class="custom-control-input" type="radio" value="No" id="is-water-adequate-no" name="is-water-adequate">
                                 <label for="is-water-adequate-no" class="custom-control-label">No</label>
                             </div>
+                            <span class="text-danger" id="building-part-state-{{$buildingPart->id}}-error"></span>
                         </div>
                     </li>
                     <li><label>Water available for drink?</label>
@@ -131,6 +139,7 @@
                                 <input class="custom-control-input" type="radio" value="Yes" id="water-for-drink-yes" name="water-for-drink">
                                 <label for="water-for-drink-yes" class="custom-control-label">Yes (and boiled)</label>
                             </div>
+                            <span class="text-danger" id="building-part-state-{{$buildingPart->id}}-error"></span>
                         </div>
                     </li>
                 </ul><br/>
@@ -145,6 +154,7 @@
                                         <label for="waste-disposal-{{ str_replace('/','-',strtolower(str_replace(' ','-',$wasteDisposal['name']))) }}-{{str_replace('/','-',strtolower(str_replace(' ','-',$list)))}}" class="custom-control-label">{{ $list }}</label>
                                     </div>
                                 @endforeach
+                                <span class="text-danger" id="building-part-state-{{$buildingPart->id}}-error"></span>
                             </div>
                         </li>
                     @endforeach
