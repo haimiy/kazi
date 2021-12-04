@@ -41,7 +41,7 @@ class InspectorController extends Controller
         LEFT JOIN no_of_beds_by_type_of_ward nb ON nb.health_facility_id = hf.id
         LEFT JOIN type_of_ward w ON w.id = nb.type_of_ward_id
         LEFT JOIN premises p ON p.health_facility_id = hf.id
-        LEFT JOIN premises_type pt ON pt.id = p.premise_type_id');
+        LEFT JOIN premises_type pt ON pt.id = p.premise_type_id where r.id='.$id);
 
         return view('inspector.detailed_list_of_application', [
             'detailed_list' => $detailed_list[0],
@@ -52,11 +52,11 @@ class InspectorController extends Controller
         return view('inspector.comments_create');
     }
 
-    
+
      public function storeComments(Request $Request)
     {
-       
+
     }
 
-   
+
 }

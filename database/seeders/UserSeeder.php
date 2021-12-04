@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
                 "role_id" => 3,
                 "password" => Hash::make("12345678"),
                 "phone_no" => "0772674902",
-                "address" => "Fuoni", 
+                "address" => "Fuoni",
             ],
             [
                 "first_name" => "khairat",
