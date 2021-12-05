@@ -98,7 +98,6 @@ Route::prefix('user')->middleware('user')->group(function(){
 Route::prefix('inspector')->middleware('inspector')->group(function(){
     Route::get('index', [InspectorController::class, 'index']);
     Route::get('application_list', [InspectorController::class, 'applicationList']);
-    Route::get('comments', [InspectorController::class, 'comments']);
     Route::post('store_comments', [InspectorController::class, 'storeComments']);
     Route::get('detailed_list_of_application/{id}', [InspectorController::class, 'detailedListOfApplication']);
     
@@ -106,7 +105,8 @@ Route::prefix('inspector')->middleware('inspector')->group(function(){
 
 Route::prefix('registrar')->middleware('registrar')->group(function(){
     Route::get('index', [RegistrarController::class, 'index']);
-    Route::get('decision', [RegistrarController::class, 'decision']);
+    Route::get('application_list', [RegistrarController::class, 'applicationList']);
+    Route::get('detailed_list_of_application/{id}', [RegistrarController::class, 'detailedListOfApplication']);
     Route::post('store_decisions', [RegistrarController::class, 'storeDecision']);
     
 });

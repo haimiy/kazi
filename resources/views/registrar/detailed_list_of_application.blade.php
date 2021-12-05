@@ -51,7 +51,7 @@
               <div class="card-header">
                 <h3 class="card-title">
                  <h3><button type="button" data-toggle="modal" data-target="#modal-default" class="btn btn-primary">
-                    <i class="fas fa-edit"></i>&nbsp; Add Comments</button></h3>
+                    <i class="fas fa-edit"></i>&nbsp; Add Decision</button></h3>
                     <!-- <h3 class="text-center">{{ $detailed_list->facility_name}}</h3>
                     <h4 class="text-center">{{ $detailed_list->first_name . ' '. $detailed_list->middle_name . ' ' . $detailed_list->last_name}}</h4> -->
                 </h3>
@@ -144,11 +144,11 @@
 </div>
     <div class="modal fade" id="modal-default">
         <div class="modal-dialog">
-        <form method="POST" action="/inspector/store_comments">
+        <form method="POST" action="/registrar/store_decisions">
          @csrf
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Comment by Inspector</h4>
+              <h4 class="modal-title">Registrar Decision</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -157,8 +157,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label>Health Facility Name</label>
-                    <input class="form-control" name="health_facility_id" value="{{ $detailed_list->facility_name}}" style="width: 100%;">  
+                    <label>Registration Id</label>
+                    <input class="form-control" name="registration_id" style="width: 100%;">  
                     </input>
                   </div>
                 </div>    
@@ -166,9 +166,11 @@
               <div class="row">
                   <div class="col-md-12">
                       <div class="form-group">
-                        <label>Inspection guidelines questions</label>
-                        <select class="form-control select2" name="inspector_guidelines_question_id" style="width: 100%;">
+                        <label>Review Status</label>
+                        <select class="form-control select2" name="review_status" style="width: 100%;">
                           <option selected="selected">--Select--</option>     
+                          <option value="approved">Approved</option>        
+                          <option value="rejected">Rejected</option>        
                         </select>
                       </div>
                   </div> 
@@ -176,8 +178,16 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <label>Inspection guidelines Name</label>
-                    <input type="text" class="form-control" name="name" :value="old('name')" />
+                    <label>Starting date of operation</label>
+                    <input type="date" class="form-control" name="starting_date_of_operation" :value="old('starting_date_of_operation')" />
+                </div>
+                </div>  
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label>Ending date of operation</label>
+                    <input type="date" class="form-control" name="ending_date_of_operation" :value="old('ending_date_of_operation')" />
                 </div>
                 </div>  
               </div>
@@ -185,10 +195,22 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <label>Comments</label>
-                    <textarea type="text" class="form-control" name="comments" :value="old('comments')"></textarea>
+                    <label>Registrar Id</label>
+                    <textarea type="text" class="form-control" name="registrar_id" :value="old('registrar_id')"></textarea>
                 </div>
                 </div>  
+              </div>
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Review Type</label>
+                        <select class="form-control select2" name="review_type" style="width: 100%;">
+                          <option selected="selected">--Select--</option>     
+                          <option value="fixed Review">Fixed Review</option>        
+                          <option value="Appeal Review">Appeal Review</option>        
+                        </select>
+                      </div>
+                  </div> 
               </div>
             </div>
             <div class="modal-footer justify-content-between">

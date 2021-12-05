@@ -80,7 +80,7 @@
                                     <span class="badge bg-danger">{{ $list_of_application->status }}</span>@endif
                               </td>
                               <td class="text-center">
-                                <a href="/inspector/detailed_list_of_application/{{ $list_of_application->id}}" class="action-icon"><i class="fa fa-eye m-r-5"></i>
+                                <a href="/registrar/detailed_list_of_application/{{ $list_of_application->id}}" class="action-icon"><i class="fa fa-eye m-r-5"></i>
                                 
                               </td>
                            </tr>
