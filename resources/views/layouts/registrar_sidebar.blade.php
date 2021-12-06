@@ -46,10 +46,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/registrar/decision" class="nav-link">
+            <a href="/registrar/application_list" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>
-                Registrar Decision
+                List of All Application
               </p>
             </a>
           </li>
