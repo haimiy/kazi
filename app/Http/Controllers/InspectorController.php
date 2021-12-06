@@ -43,15 +43,12 @@ class InspectorController extends Controller
         LEFT JOIN premises p ON p.health_facility_id = hf.id
         LEFT JOIN premises_type pt ON pt.id = p.premise_type_id where r.id='.$id);
 
-        return view('inspector.detailed_list_of_application', [
-            'detailed_list' => $detailed_list[0],
-        ]);
+        return view('inspector.view_registration');
     }
 
     public function comments(){
         return view('inspector.comments_create');
     }
-
 
      public function storeComments(Request $Request)
     {
