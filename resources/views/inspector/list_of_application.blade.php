@@ -4,7 +4,7 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}"> 
+<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 <style>
     a:hover, a:active, a:focus {
     text-decoration: none;
@@ -15,7 +15,7 @@
     color: #777;
     font-size: 18px;
     padding: 0 10px;
-    display: inline-block;   
+    display: inline-block;
 }
 
 </style>
@@ -81,7 +81,7 @@
                               </td>
                               <td class="text-center">
                                 <a href="/inspector/detailed_list_of_application/{{ $list_of_application->id}}" class="action-icon"><i class="fa fa-eye m-r-5"></i>
-                                
+
                               </td>
                            </tr>
                            @endforeach

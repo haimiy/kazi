@@ -17,9 +17,9 @@ class CreateOrganisationTable extends Migration
             $table->id();
             $table->string('org_name');
             $table->enum('type', ['Partnership', 'Corporation', 'Limited liability Company']);
-            $table->string('company_email');
+            $table->string('company_email')->nullable();
             $table->string('company_phone_no');
-            $table->string('company_address');
+            $table->string('company_address')->nullable();
             $table->unsignedBigInteger('owner_id')->nullable();
             $table->timestamps();
         });

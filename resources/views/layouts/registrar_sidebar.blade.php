@@ -12,7 +12,7 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 text-center">
-        
+
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->first_name. ' '.Auth::user()->middle_name. ' '.Auth::user()->last_name}}</a>
           {{-- <a href="#" class="d-block">{{ Auth::user()->phone_no }}</a> --}}
@@ -47,13 +47,29 @@
           </li>
           <li class="nav-item">
             <a href="/registrar/application_list" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
+              <i class="nav-icon fas fa-tasks"></i>
               <p>
                 List of All Application
               </p>
             </a>
           </li>
-          
+        <li class="nav-item">
+            <a href="/registrar/licences_list" class="nav-link">
+                <i class="nav-icon fas fa-tasks"></i>
+                <p>
+                    List of All Licenses
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/registrar/import_existing_data" class="nav-link">
+                <i class="nav-icon fas fa-tasks"></i>
+                <p>
+                    Import Existing Data
+                </p>
+            </a>
+        </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

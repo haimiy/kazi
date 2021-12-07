@@ -16,10 +16,11 @@ class CreateLicenseTable extends Migration
         Schema::create('license', function (Blueprint $table) {
             $table->id();
             $table->string('license_no')->nullable();
-            $table->string('license_type');
+            $table->string('license_type')->nullable();
             $table->unsignedBigInteger('owner_id');
             $table->unsignedBigInteger('health_facility_id');
             $table->date('starting_date');
+            $table->date('ending_date');
             $table->timestamps();
         });
 

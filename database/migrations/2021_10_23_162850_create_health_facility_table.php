@@ -20,6 +20,9 @@ class CreateHealthFacilityTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('doctor_incharge_id')->nullable();
             $table->unsignedBigInteger('location_id')->nullable();
+            $table->unsignedBigInteger('type_of_health_unit_id')->nullable();
+            $table->string('remark')->nullable();
+            $table->enum('status',['Opened','Closed','Canceled'])->default('Opened');
             $table->timestamps();
         });
 

@@ -11,7 +11,14 @@ use Illuminate\Support\Facades\Auth;
 class LicenseController extends Controller
 {
     public function license(){
-        $licenses = License::all();
+        $licenses = DB::select('select
+       l.id,l.license_no,l.starting_date,l.ending_date,
+       hf.facility_name
+from license l
+    left join health_facility hf on hf.id = l.health_facility_id
+    left join owner o on hf.id = o.health_facility_id
+    left join users u on u.id=o.person_incharge
+    where u.id = '.auth()->user()->id);
         return view('user.license' , [
             'licenses' => $licenses,
         ]);

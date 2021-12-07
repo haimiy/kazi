@@ -17,12 +17,12 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
-            $table->string('middle_name');
+            $table->string('middle_name')->nullable();
             $table->string('last_name');
             $table->string('email')->unique()->nullable();
             $table->unsignedBigInteger('role_id');
             $table->string('phone_no')->unique();
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->rememberToken();
@@ -32,12 +32,13 @@ class CreateUsersTable extends Migration
         Schema::create('owner', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('person_incharge')->nullable();
-            $table->unsignedBigInteger('health_facility_id')->nullable();
             $table->string('signature')->nullable();
+            $table->string('owner_names')->nullable();
             $table->string('designation');
             $table->string('ownership_type');
             $table->timestamps();
         });
+
 
         Schema::create('doctor_incharge', function (Blueprint $table) {
             $table->id();
@@ -75,6 +76,7 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
         Schema::dropIfExists('owner');
+        Schema::dropIfExists('owner_names');
         Schema::dropIfExists('doctor_incharge');
         Schema::dropIfExists('registrar');
         Schema::dropIfExists('inspectors');

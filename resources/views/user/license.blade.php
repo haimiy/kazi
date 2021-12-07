@@ -4,7 +4,7 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}"> 
+<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 <style>
     a:hover, a:active, a:focus {
     text-decoration: none;
@@ -73,9 +73,6 @@
                         </div>
                         @endif
                           {{-- <h3 class="card-title">List of all Licenses</h3> --}}
-                          <div class="card-title">
-                              <a href="/user/license_create" class="btn btn-block btn-primary">Request License</a>
-                          </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -83,7 +80,7 @@
                             <thead>
                             <tr>
                               <th>#</th>
-                              <th>Applicant Name</th>
+                              <th>Health Facility Name</th>
                               <th>License No</th>
                               <th>Date of Issue</th>
                               <th>Expire Date</th>
@@ -91,20 +88,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                             @foreach ($licenses as $license)
-                             <tr>
-                               <td>{{ $license->license_no}}</td>
-                               <td>{{ $license->license_type}}</td>
-                               <td>{{ $license->owner_id}}</td>
-                               <td>{{ $license->health_facility_id}}</td>
-                               <td>{{ $license->starting_date}}</td>
-                            </tr>
-                             @endforeach
+                                @foreach($licenses as $license)
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{ $license->facility_name }}</td>
+                                    <td>{{ $license->license_no }}</td>
+                                    <td>{{ $license->starting_date }}</td>
+                                    <td>{{ $license->ending_date }}</td>
+                                    <td></td>
+                                @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>#</th>
-                                <th>Applicant Name</th>
+                                <th>Health Facility Name</th>
                                 <th>License No</th>
                                 <th>Date of Issue</th>
                                 <th>Expire Date</th>
@@ -160,12 +156,12 @@
         var formId = 'delete-'+id
         document.getElementById(formId).submit()
     }
-    $(document).ready(function() {
-      iziToast.success({
-                        title: 'Success',
-                        message: 'message',
-                        position: 'bottomRight'
-                      });
-    });
+    // $(document).ready(function() {
+    //   iziToast.success({
+    //                     title: 'Success',
+    //                     message: 'message',
+    //                     position: 'bottomRight'
+    //                   });
+    // });
   </script>
 @endsection

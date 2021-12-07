@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 "email" => "swafaa.sule@gmail.com",
                 "role_id" => 2,
                 "password" => Hash::make("1234"),
-                "phone_no" => "admin",
+                "phone_no" => "0772674901",
                 "address" => "Fuoni",
             ],
             [
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
                 "email" => "khai@gmail.com",
                 "role_id" => 5,
                 "password" => Hash::make("1234"),
-                "phone_no" => "owner",
+                "phone_no" => "0772674900",
                 "address" => "Fuoni",
             ],
             [
@@ -43,7 +43,7 @@ class UserSeeder extends Seeder
                 "email" => "k@gmail.com",
                 "role_id" => 4,
                 "password" => Hash::make("1234"),
-                "phone_no" => "inspector",
+                "phone_no" => "0772674902",
                 "address" => "Fuoni",
             ],
             [
@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
                 "email" => "r@gmail.com",
                 "role_id" => 3,
                 "password" => Hash::make("1234"),
-                "phone_no" => "registrar",
+                "phone_no" => "0772674904",
                 "address" => "Fuoni",
             ]
 
@@ -61,7 +61,6 @@ class UserSeeder extends Seeder
 
         DB::table('owner')->insert([
             "person_incharge" => 2,
-            "health_facility_id" => 1,
             "designation" => 'Director wa Hospital',
             "ownership_type" => 'Solo',
         ]);

@@ -12,7 +12,7 @@
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 text-center">
-        
+
         <div class="info">
           <a href="#" class="d-block">{{ Auth::user()->first_name. ' '.Auth::user()->middle_name. ' '.Auth::user()->last_name}}</a>
           {{-- <a href="#" class="d-block">{{ Auth::user()->phone_no }}</a> --}}
@@ -53,7 +53,15 @@
               </p>
             </a>
           </li>
-          
+        <li class="nav-item">
+            <a href="/user/app_list" class="nav-link">
+                <i class="nav-icon fas fa-tasks"></i>
+                <p>
+                    Application List
+                </p>
+            </a>
+        </li>
+
           <li class="nav-item">
             <a href="/user/licenses" class="nav-link">
               <i class="nav-icon fas fa-address-card"></i>
@@ -71,7 +79,7 @@
               </p>
             </a>
           </li>
-          
+
           <li class="nav-item">
             <a href="/user/nearest" class="nav-link">
               <i class="nav-icon fas fa-user"></i>

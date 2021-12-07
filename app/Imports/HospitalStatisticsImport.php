@@ -5,7 +5,7 @@ namespace App\Imports;
 use App\Models\HistoryHealthFacility;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class hospitalStatisticsImport implements ToModel
+class HospitalStatisticsImport implements ToModel
 {
     /**
     * @param array $row

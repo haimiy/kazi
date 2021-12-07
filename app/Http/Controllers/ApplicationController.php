@@ -82,11 +82,18 @@ class ApplicationController extends Controller
         ]);
     }
 
+    public function showListOfApplication(){
+        $ownerModel = Owner::where('person_incharge',auth()->user()->id)->first();
+         $appList = DB::select('select hf.facility_name, hf.reg_no, r.starting_operation_date,r.status from registration r left join health_facility hf on hf.id = r.health_facility_id left join owner_health_facility ohf on hf.id = ohf.health_facility_id where ohf.owner_id = '.$ownerModel->id);
+         return view('user.application_list', [ 'appLists' => $appList]);
+    }
+
     public function storeApplicantRegistrationForm(Request $request)
     {
 
 //        dd($request['is_specified_type_of_services_22']);
 //        dd($request);
+        $ownerModel = Owner::where('person_incharge',auth()->user()->id)->first();
         $doctorInCharge = DoctorIncharge::create($request->all());
         $location = Location::create($request->all());
 
@@ -100,6 +107,10 @@ class ApplicationController extends Controller
         //Add additional field for Registration
         $request['health_facility_id'] = $healthFacility->id;
 
+        DB::table('owner_health_facility')->insert([
+            'owner_id'=>$ownerModel->id,
+            'health_facility_id'=>$healthFacility->id
+        ]);
         //Service offered
         foreach ($request->type_of_services_id as $type_of_services_id){
             $serviceOffered = $request['service-offered-'.$type_of_services_id];
@@ -107,7 +118,7 @@ class ApplicationController extends Controller
                 //Insert only checked as YES service
                 $is_specified = $request['is_specified_type_of_services_'.$type_of_services_id];
                 if ($is_specified == '0'){
-                    //for service that is dose not need user to specify service name
+                    //for service that is dose not need user to specify service namehealth_facility_id
                     $have_additional_requirement_question = $request['have_additional_requirement_question_'.$type_of_services_id];
                     if ($have_additional_requirement_question == '1'){
                         //for service that dose not need user to specify service name and have specific question to answer
@@ -244,7 +255,7 @@ class ApplicationController extends Controller
             'incinerator'=>$request['waste-disposal-incinerator'],
         ]);
 
-        $registration = Registration::create($request->all());   
+        $registration = Registration::create($request->all());
          return response()->json([
             'success' => true,
             'message' => 'Registration form submitted successful!',

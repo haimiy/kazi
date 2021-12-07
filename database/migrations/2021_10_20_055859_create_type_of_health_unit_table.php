@@ -18,6 +18,7 @@ class CreateTypeOfHealthUnitTable extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->boolean('status')->default(false);
+            $table->string('prefix');
             $table->timestamps();
         });
     }

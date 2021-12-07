@@ -4,7 +4,7 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}"> 
+<link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 <style>
     a:hover, a:active, a:focus {
     text-decoration: none;
@@ -75,11 +75,11 @@
                                       <button type="button" id="browse" class="btn btn-primary">
                                           <i class="fa fa-upload" onclick=""></i>&nbsp; Import</button>
                               </form>
-                              <h3 class="text-center">HOSPITAL BINAFSI ZILIZO ANZISHWA KWA MUJIBU WA <br> NAMBA 4 YA MWAKA 1994</h3> 
+                              <h3 class="text-center">HOSPITAL BINAFSI ZILIZO ANZISHWA KWA MUJIBU WA <br> NAMBA 4 YA MWAKA 1994</h3>
                           </h3>
-                          
+
                           </div>
-                          
+
                     <div class="card-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -87,7 +87,7 @@
                                     <th>#</th>
                                     <th>Starting year</th>
                                     <th>Health facility</th>
-                                    <th>Hospital no.</th>   
+                                    <th>Hospital no.</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,7 +96,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $hospital_statistics->starting_year }}</td>
                                         <td>{{ $hospital_statistics->health_facility }}</td>
-                                        <td>{{ $hospital_statistics->hospital_no }}</td> 
+                                        <td>{{ $hospital_statistics->hospital_no }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -158,7 +158,7 @@
         $('#myFile').change(function(e) {
             $("#importForm").submit();
         });
-        
-});
+
+      });
   </script>
 @endsection

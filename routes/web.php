@@ -86,9 +86,12 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 });
 Route::prefix('user')->middleware('user')->group(function(){
     Route::get('index', [OwnerController::class, 'index']);
-    
+
     Route::get('app_registration', [ApplicationController::class, 'showApplicantRegistrationForm']);
     Route::post('store_applicant_registration_form', [ApplicationController::class, 'storeApplicantRegistrationForm']);
+
+    Route::get('app_list', [ApplicationController::class, 'showListOfApplication']);
+
 
     Route::get('licenses', [LicenseController::class, 'license']);
     Route::get('license_create', [LicenseController::class, 'createLicense']);
@@ -100,15 +103,20 @@ Route::prefix('inspector')->middleware('inspector')->group(function(){
     Route::get('application_list', [InspectorController::class, 'applicationList']);
     Route::post('store_comments', [InspectorController::class, 'storeComments']);
     Route::get('detailed_list_of_application/{id}', [InspectorController::class, 'detailedListOfApplication']);
-    
+
 });
 
 Route::prefix('registrar')->middleware('registrar')->group(function(){
     Route::get('index', [RegistrarController::class, 'index']);
     Route::get('application_list', [RegistrarController::class, 'applicationList']);
+    Route::get('licences_list', [RegistrarController::class, 'LicencesList']);
     Route::get('detailed_list_of_application/{id}', [RegistrarController::class, 'detailedListOfApplication']);
     Route::post('store_decisions', [RegistrarController::class, 'storeDecision']);
-    
+    Route::get('import_existing_data', [RegistrarController::class, 'importExistingData']);
+    Route::post('store_import_existing_data', [RegistrarController::class, 'storeImportExistingData']);
+    Route::get('licenses_expire_reminder', [\App\Http\Controllers\SendMessageController::class, 'sendMessage']);
+
+
 });
 
 // Route::get('/dashboard', function () {

@@ -15,5 +15,6 @@ class License extends Model
         'owner_id',
         'health_facility_id',
         'starting_date',
+        'ending_date',
     ];
 }

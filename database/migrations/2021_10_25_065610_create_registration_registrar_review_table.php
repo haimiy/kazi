@@ -17,8 +17,8 @@ class CreateRegistrationRegistrarReviewTable extends Migration
             $table->id();
             $table->unsignedBigInteger('registration_id');
             $table->enum('review_status', ['approved', 'rejected']);
-            $table->dateTime('starting_date_of_operation');
-            $table->dateTime('ending_date_of_operation');
+//            $table->dateTime('starting_date_of_operation');
+//            $table->dateTime('ending_date_of_operation');
             $table->unsignedBigInteger('registrar_id');
             $table->enum('review_type', ['fixed Review', 'Appeal Review']);
             $table->timestamps();
