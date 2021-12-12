@@ -92,7 +92,8 @@ from registration r
            u.first_name,u.last_name,u.middle_name
         from license l
         left join health_facility hf on hf.id = l.health_facility_id
-        left join owner o on hf.id = o.health_facility_id
+        left join owner_health_facility ohf on hf.id = ohf.health_facility_id
+        left join owner o on ohf.owner_id = o.id
         left join users u on u.id=o.person_incharge');
         return view('registrar.licences' , [
             'licenses' => $licenses,
@@ -139,13 +140,13 @@ from registration r
                 $format = 'd/m/Y';
                 $userId = DataService::createUserAndReturnId($row);
                 $ownerID = DataService::createOwnerAndReturnId($row,$userId);
-                if ($row[5] != 'Solo'){
+                if ($row[5] == 'Company'){
                     DataService::createOrganization($row,$ownerID);
                 }
                 $healthFacilityId = DataService::createHealthFacility($row,$ownerID);
 
                 DataService::createLicence($row,$ownerID,$healthFacilityId);
-                dd($healthFacilityId);
+//                dd($healthFacilityId);
             }
             $i++;
         }

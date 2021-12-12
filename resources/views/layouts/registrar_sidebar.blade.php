@@ -63,9 +63,17 @@
         </li>
         <li class="nav-item">
             <a href="/registrar/import_existing_data" class="nav-link">
-                <i class="nav-icon fas fa-tasks"></i>
+                <i class="nav-icon fas fa-file-import"></i>
                 <p>
                     Import Existing Data
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/registrar/map" class="nav-link">
+                <i class="nav-icon fas fa-map"></i>
+                <p>
+                    Map
                 </p>
             </a>
         </li>

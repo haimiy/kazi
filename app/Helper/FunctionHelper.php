@@ -20,7 +20,7 @@ class FunctionHelper
             $client = new Client($account_sid, $auth_token);
             $client->messages->create($recipients,['from' => $twilio_number, 'body' => $message] );
         } catch (ConfigurationException | TwilioException $e) {
-
+            dd($e);
         }
 
     }

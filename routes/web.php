@@ -115,6 +115,8 @@ Route::prefix('registrar')->middleware('registrar')->group(function(){
     Route::get('import_existing_data', [RegistrarController::class, 'importExistingData']);
     Route::post('store_import_existing_data', [RegistrarController::class, 'storeImportExistingData']);
     Route::get('licenses_expire_reminder', [\App\Http\Controllers\SendMessageController::class, 'sendMessage']);
+    Route::get('map', [\App\Http\Controllers\MapController::class, 'showMap']);
+    Route::get('map/locations', [\App\Http\Controllers\MapController::class, 'getMapLocationsData']);
 
 
 });
