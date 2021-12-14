@@ -46,7 +46,7 @@
             <label class="col-sm-4 col-form-label">Registration number (if facility previously registered) </label>
             <div class="col-sm-8">
                 <div class="form-group">
-                    <input type="text" class="form-control" value="{{ $application->application_ref_no }}" disabled />
+                    <input type="text" class="form-control" value="{{ $application->reg_no }}" disabled />
                 </div>
             </div>
         </div>
@@ -55,7 +55,7 @@
             <label class="col-sm-4 col-form-label">Owner Name</label>
             <div class="col-sm-8">
                 <div class="form-group">
-                    <input type="text" class="form-control" disabled/>
+                    <input type="text" value="{{ $application->first_name.' '.$application->middle_name.' '.$application->last_name}}" class="form-control" disabled/>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
             <label class="col-sm-4 col-form-label">Person In Charge</label>
             <div class="col-sm-8">
                 <div class="form-group">
-                    <input type="text" id="person_incharge" name='person_incharge' disabled value="" class="form-control" />
+                    <input type="text" value="{{ $application->first_name.' '.$application->middle_name.' '.$application->last_name}}" id="person_incharge" name='person_incharge' disabled value="" class="form-control" />
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
             <label class="col-sm-4 col-form-label">Designation</label>
             <div class="col-sm-8">
                 <div class="form-group">
-                    <input type="text" id="person_incharge" name='person_incharge' disabled value="" class="form-control" />
+                    <input type="text" id="person_incharge" value="{{ $application->designation }}" name='person_incharge' disabled value="" class="form-control" />
                 </div>
             </div>
         </div>

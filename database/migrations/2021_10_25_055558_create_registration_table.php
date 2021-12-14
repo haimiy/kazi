@@ -15,8 +15,6 @@ class CreateRegistrationTable extends Migration
     {
         Schema::create('registration', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('type_of_health_unit_id');
-            $table->string('type_of_health_unit_specified')->nullable();
             $table->unsignedBigInteger('authority_responsible_id');
             $table->string('authority_responsible_specified')->nullable();
             $table->date('starting_operation_date');

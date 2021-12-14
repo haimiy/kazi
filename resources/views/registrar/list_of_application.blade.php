@@ -75,11 +75,12 @@
                             <td>{{ $loop->iteration}}</td>
                              <td>{{ $list_of_application->first_name. ' '.$list_of_application->middle_name. ' '.$list_of_application->last_name }}</td>
                              <td>{{ $list_of_application->facility_name }}</td>
-                             <td class="text-center">
-                                    @if ($list_of_application->status == "Pending")
-                                    <span class="badge bg-danger">{{ $list_of_application->status }}</span>@endif
+                             <td>
+                                    @if ($list_of_application->status == "Inspected")
+                                    <span class="badge bg-primary">{{ $list_of_application->status }}</span>
+                                    @endif
                               </td>
-                              <td class="text-center">
+                              <td>
                                 <a href="/registrar/detailed_list_of_application/{{ $list_of_application->id}}" class="action-icon"><i class="fa fa-eye m-r-5"></i>
 
                               </td>

@@ -77,6 +77,14 @@
                 </p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="/registrar/mailbox" class="nav-link">
+                <i class="nav-icon fas fa-envelope"></i>
+                <p>
+                    Mailbox
+                </p>
+            </a>
+        </li>
 
         </ul>
       </nav>

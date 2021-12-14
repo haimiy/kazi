@@ -113,10 +113,16 @@ Route::prefix('registrar')->middleware('registrar')->group(function(){
     Route::get('detailed_list_of_application/{id}', [RegistrarController::class, 'detailedListOfApplication']);
     Route::post('store_decisions', [RegistrarController::class, 'storeDecision']);
     Route::get('import_existing_data', [RegistrarController::class, 'importExistingData']);
+    Route::get('detailed_list_of_health_facility/{id}', [RegistrarController::class, 'detailedListOfHealthFacility']);
     Route::post('store_import_existing_data', [RegistrarController::class, 'storeImportExistingData']);
     Route::get('licenses_expire_reminder', [\App\Http\Controllers\SendMessageController::class, 'sendMessage']);
+    Route::get('mailbox', [\App\Http\Controllers\SendMessageController::class, 'mailbox']);
     Route::get('map', [\App\Http\Controllers\MapController::class, 'showMap']);
     Route::get('map/locations', [\App\Http\Controllers\MapController::class, 'getMapLocationsData']);
+
+    Route::get('by_general', [RegistrarController::class, 'byGeneral']);
+    Route::get('by_district', [RegistrarController::class, 'byDistrict']);
+    Route::get('by_level', [RegistrarController::class, 'byLevel']);
 
 
 });

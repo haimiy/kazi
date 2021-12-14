@@ -1,5 +1,5 @@
 @extends('layouts.registrar_app')
-@section('title', 'All | Health Facility')
+@section('title', 'All | by Level')
 @section('css')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -50,7 +50,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">health facility</li>
+                            <li class="breadcrumb-item active">by Level</li>
                         </ol>
                     </div>
                 </div>
@@ -73,16 +73,7 @@
                                     </div>
                                 @endif
                                 <h3 class="card-title">
-                                    <h5 class="text-center">LIST OF PRIVATE HOSPITAL IN 2021/22</h5>
-                                    <h3>
-                                        <form action="/registrar/store_import_existing_data" method="POST" enctype="multipart/form-data" id="importForm">
-                                            @csrf
-                                            <input type="file" id="myFile" name='file' style="display: none;">
-                                            <button type="button" id="browse" class="btn btn-primary">
-                                                <i class="fa fa-upload" onclick=""></i>&nbsp; Import</button>
-                                        </form>
-                                    </h3>
-
+                                    <h5 class="text-center">LIST OF PRIVATE HOSPITAL IN 2021/22 BY LEVEL</h5>
                                 </h3>
 
                             </div>

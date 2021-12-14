@@ -21,4 +21,9 @@ class SendMessageController extends Controller
         }
         return back();
     }
+
+    public function mailbox() 
+    {
+        return view('registrar.mailbox');
+    }
 }

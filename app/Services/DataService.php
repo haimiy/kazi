@@ -56,8 +56,8 @@ class DataService
             'village'=>$row[18],
             'ward'=>$row[19],
             'po_box'=>$row[20],
-            'region'=>$row[21],
-            'district_id'=>$row[22],
+            'region'=>$row[22],
+            'district_id'=>$row[21],
             'latitude'=>$row[23],
             'longitude'=>$row[24],
         ]);
@@ -67,7 +67,7 @@ class DataService
             'reg_no'=>$row[10],
             'doctor_incharge_id'=>$doctor_incharge->id,
             'location_id'=>$location->id,
-            'type_of_health_unit_id'=>$row[13],
+            'type_of_health_unit_specified'=>$row[13],
             'remark'=>$row[12],
             'status'=>$row[11],
         ]);
