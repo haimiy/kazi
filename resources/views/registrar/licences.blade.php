@@ -86,7 +86,6 @@
                                         <th>License No</th>
                                         <th>Date of Issue</th>
                                         <th>Expire Date</th>
-                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -98,7 +97,6 @@
                                             <td>{{ $license->license_no }}</td>
                                             <td>{{ $license->starting_date }}</td>
                                             <td>{{ $license->ending_date }}</td>
-                                            <td></td>
                                         </tr>
                                     @endforeach
 
@@ -110,7 +108,6 @@
                                         <th>License No</th>
                                         <th>Date of Issue</th>
                                         <th>Expire Date</th>
-                                        <th>Action</th>
                                     </tr>
                                     </tfoot>
                                 </table>

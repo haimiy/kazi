@@ -51,6 +51,8 @@
                     </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+                          <a href="#" data-toggle="modal" data-target="#modal-default" class="btn btn-primary" style="margin-bottom: 20px;">
+                                    <i class="fa fa-map-marker" onclick=""></i>&nbsp; Update Location</a>
                           <div class="row">
                             <div class="col-sm-4">
                               <dt>Health Facility Name:</dt>
@@ -80,7 +82,8 @@
                               <dt>Type of Health Unit:</dt>
                             </div>
                             <div class="col-sm-8">
-                              <dd>{{ $hospital->type_of_health_unit_id}}</dd>
+                              <dd>{{ $hospital->type_of_health_unit_specified}}</dd>
+                              <dd>{{ $hospital->typeOfHealthUnit}}</dd>
                             </div>
                           </div>
                           <div class="row">
@@ -89,17 +92,24 @@
                             </div>
                             <div class="col-sm-8">
                               @foreach($services as $service)
-                              <dd>{{ $service->name_of_services}}</dd>
                               <dd>
+                                @if($service->name_of_services != 'Other (Specify).')
+                                  {{ $service->name_of_services }}
+                                @endif
                                 @if($service->have_additional_requirement)
+                                <strong>has</strong>
                                   {{ $service->additional_requirement }}
                                 @endif
-                              </dd>
-                                <dd>
                                 @if($service->have_additional_requirement)
+                                <strong> = </strong>
                                   {{ $service->additional_requirement_answer }}
                                 @endif
-                                </dd>
+                              </dd>
+                              <dd>
+                                @if($service->name_of_services == 'Other (Specify).')
+                                  {{ $service->specified_services }}
+                                @endif
+                              </dd>
                               @endforeach
                             </div>
                           </div>
@@ -193,6 +203,47 @@
         </div>
     </section>
 </div>
+ <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Update Latitude and Longitude</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="form-horizontal" method="POST" action="/registrar/update_location">
+                @csrf
+                <div class="card-body">
+                  <div class="form-group row">
+                    <input type="text" class="form-control" name="health_facility_id" value="{{ $hospital->id}}" style="display: none;">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label">Latitude</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" name="latitude">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-3 col-form-label">Longitude</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" name="longitude">
+                    </div>
+                  </div>
+                  
+                </div>
+              
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
 @endsection
 
 @section('js')

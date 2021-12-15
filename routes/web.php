@@ -124,6 +124,9 @@ Route::prefix('registrar')->middleware('registrar')->group(function(){
     Route::get('by_district', [RegistrarController::class, 'byDistrict']);
     Route::get('by_level', [RegistrarController::class, 'byLevel']);
 
+    Route::post('update_location', [RegistrarController::class, 'updateLocation']);
+
+
 
 });
 

@@ -7,6 +7,7 @@ use App\Imports\HealthFacilityExistingDataImport;
 use App\Models\License;
 use App\Models\HealthFacility;
 use App\Models\Registration;
+use App\Models\Location;
 use App\Models\RegistrationRegistrarReview;
 use App\Services\DataService;
 use Excel;
@@ -18,7 +19,7 @@ class RegistrarController extends Controller
 {
     public function index()
     {
-        $health_facility_count = HealthFacility::count();
+        $health_facility_count = License::count();
         return view('registrar.index', [
             'health_facility_count' => $health_facility_count
         ]);
@@ -26,9 +27,9 @@ class RegistrarController extends Controller
 
     public function applicationList()
     {
-        $list_of_applications = DB::select("SELECT u.first_name, u.middle_name, u.last_name, hf.facility_name,r.id, r.status FROM registration r
+        $list_of_applications = DB::select("SELECT u.first_name, u.middle_name, u.last_name, hf.*,r.id, r.status FROM registration r
         LEFT JOIN health_facility hf ON r.health_facility_id = hf.id
-        LEFT JOIN users u ON u.id = hf.user_id where r.status = 'Inspected'");
+        LEFT JOIN users u ON u.id = hf.user_id where r.status = 'Inspected' OR r.status = 'Rejected'");
         return view('registrar.list_of_application', [
             'list_of_applications' => $list_of_applications,
         ]);
@@ -91,7 +92,7 @@ from registration r
     }
 
     public function LicencesList(){
-        $licenses = DB::select('select
+        $licenses = DB::select('SELECT
            l.id,l.license_no,l.starting_date,l.ending_date,
            hf.facility_name,
            u.first_name,u.last_name,u.middle_name
@@ -133,17 +134,21 @@ from registration r
     }
 
     public function importExistingData(){
-        $private_hospitals = DB::select('SELECT hf.id, hf.facility_name, hf.reg_no, hf.status, l.starting_date, u.first_name, u.middle_name, u.last_name FROM health_facility hf 
-            left join owner_health_facility ohf on hf.id = ohf.health_facility_id
-            left join license l on hf.id = l.health_facility_id
-            left join owner o on ohf.owner_id = o.id
-            left join users u on u.id=o.person_incharge');
+        $private_hospitals = DB::select('SELECT
+           l.id,l.license_no,l.starting_date,l.ending_date,
+           hf.*,
+           u.first_name,u.last_name,u.middle_name
+        from license l
+        left join health_facility hf on hf.id = l.health_facility_id
+        left join owner_health_facility ohf on hf.id = ohf.health_facility_id
+        left join owner o on ohf.owner_id = o.id
+        left join users u on u.id=o.person_incharge');
         return view('registrar.import', [
             'private_hospitals' => $private_hospitals
         ]);
     }
     public function detailedListOfHealthFacility($id){
-        $hospital = DB::select('SELECT hf.*,l.*,d.*,o.*,u.*,hfso.*,dr.*,lo.*,s.* FROM health_facility hf 
+        $hospital = DB::select('SELECT hf.*,l.*,d.*,o.*,u.*,hfso.*,dr.*,lo.*,s.*, tohu.name as typeOfHealthUnit FROM health_facility hf 
             left join owner_health_facility ohf on hf.id = ohf.health_facility_id
             left join license l on hf.id = l.health_facility_id
             left join owner o on ohf.owner_id = o.id
@@ -152,12 +157,13 @@ from registration r
             left join doctor_incharge dr on dr.id = hf.doctor_incharge_id
             left join staffing s on hf.id = s.health_facility_id
             left join location lo on lo.id = hf.location_id
+            left join type_of_health_unit tohu on tohu.id = hf.type_of_health_unit_id
             left join district d on d.id = lo.district_id where hf.id = '.$id);
 
         $services = DB::select('SELECT * FROM health_facility_services_offered hfso 
             left outer join type_of_services tos on tos.id = hfso.type_of_services_id 
             left join health_facility hf on hf.id = hfso.health_facility_id 
-            left join registration r on hf.id = r.health_facility_id where r.id='.$id);
+            left join registration r on hf.id = r.health_facility_id where hf.id='.$id);
         $inspector_id = DB::select('SELECT hfi.inspector_id,hf.facility_name,u.* FROM health_facility_inspection hfi
             LEFT JOIN health_facility hf on hf.id = hfi.health_facility_id
             LEFT JOIN users u on u.id = hfi.inspector_id where hfi.health_facility_id ='.$id);
@@ -167,9 +173,22 @@ from registration r
        ]);
     }
 
+    public function updateLocation(Request $request){
+    $health_facility_id = $request->health_facility_id;
+    $health_facility = HealthFacility::where('location_id',1)->first();
+    dd($health_facility);
+    $updateLatitudeAndLongitude = Location::where('id',$health_facility->location_id)->update([
+        'latitude' => $request->latitude,
+        'longitude' => $request->longitude,
+    ]);
+    dd($updateLatitudeAndLongitude);
+    }
+
     public function byGeneral(){
-        $private_hospitals = DB::select('SELECT hf.id, hf.facility_name, hf.reg_no, hf.status, l.starting_date, u.first_name, u.middle_name, u.last_name FROM health_facility hf 
+        $private_hospitals = DB::select('SELECT hf.id,district.name as district, hf.facility_name, hf.reg_no, hf.status, l.starting_date, u.first_name, u.middle_name, u.last_name FROM health_facility hf 
             left join owner_health_facility ohf on hf.id = ohf.health_facility_id
+            left join location on location.id = hf.location_id
+            left join district on district.id = location.district_id 
             left join license l on hf.id = l.health_facility_id
             left join owner o on ohf.owner_id = o.id
             left join users u on u.id=o.person_incharge');
@@ -178,21 +197,26 @@ from registration r
         ]);
     }
     public function byDistrict(){
-        $private_hospitals = DB::select('SELECT hf.id, hf.facility_name, hf.reg_no, hf.status, l.starting_date, u.first_name, u.middle_name, u.last_name FROM health_facility hf 
+        $private_hospitals = DB::select('SELECT GROUP_CONCAT(hf.facility_name) facility_name, district.name as district,hf.id,hf.reg_no, hf.status, l.starting_date, u.first_name, u.middle_name, u.last_name FROM health_facility hf 
             left join owner_health_facility ohf on hf.id = ohf.health_facility_id
+            left join location on location.id = hf.location_id
+            left join district on district.id = location.district_id 
             left join license l on hf.id = l.health_facility_id
             left join owner o on ohf.owner_id = o.id
-            left join users u on u.id=o.person_incharge');
+            left join users u on u.id=o.person_incharge GROUP BY district.id');
         return view('registrar.health_facility.by_district', [
             'private_hospitals' => $private_hospitals
         ]);
     }
     public function byLevel(){
-        $private_hospitals = DB::select('SELECT hf.id, hf.facility_name, hf.reg_no, hf.status, l.starting_date, u.first_name, u.middle_name, u.last_name FROM health_facility hf 
+        $private_hospitals = DB::select('SELECT GROUP_CONCAT(hf.facility_name) facility_name, district.name as district,hf.id,hf.reg_no,tohu.name as typeOfHealthUnit, hf.status, l.starting_date, u.first_name, u.middle_name, u.last_name FROM health_facility hf 
             left join owner_health_facility ohf on hf.id = ohf.health_facility_id
+            left join type_of_health_unit tohu on tohu.id = hf.type_of_health_unit_id
+            left join location on location.id = hf.location_id
+            left join district on district.id = location.district_id 
             left join license l on hf.id = l.health_facility_id
             left join owner o on ohf.owner_id = o.id
-            left join users u on u.id=o.person_incharge');
+            left join users u on u.id=o.person_incharge GROUP BY tohu.id');
         return view('registrar.health_facility.by_level', [
             'private_hospitals' => $private_hospitals
         ]);

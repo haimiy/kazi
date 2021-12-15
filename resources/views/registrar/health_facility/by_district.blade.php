@@ -83,44 +83,36 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>District Name</th>
                                         <th>Hospital Name</th>
-                                        <th>Owner</th>
-                                        <th>Registration no.</th>
-                                        <th>Year</th>
-                                        <th>Status</th>
-                                        <th>View Details</th>
+                                        
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($private_hospitals as $private_hospital)
+                                        @php
+                                            $facility_names = explode(",",$private_hospital->facility_name)
+                                        @endphp
                                     <tr>
                                       <td>{{ $loop->iteration}}</td>
-                                      <td>{{ $private_hospital->facility_name}}</td>
-                                      <td>{{ $private_hospital->first_name.' '.$private_hospital->middle_name.' '.$private_hospital->last_name}}</td>
-                                      <td>{{ $private_hospital->reg_no}}</td>
-                                      <td>{{ $private_hospital->starting_date}}</td>                   <td>
-                                         @if( $private_hospital->status == 'Opened')
-                                        <span class="badge bg-success">{{ $private_hospital->status }}</span>
-                                        @elseif( $private_hospital->status == 'Closed')  
-                                        <span class="badge bg-danger">{{ $private_hospital->status }}</span>
-                                        @else
-                                        <span class="badge bg-secondary">{{ $private_hospital->status }}</span>
-                                        @endif
-                                      </td>
-
-                                      <td><a href="/registrar/detailed_list_of_health_facility/{{ $private_hospital->id}}"><i class="fa fa-eye text-secondary m-r-5"></i></a></td>
+                                       <td>{{ $private_hospital->district}}</td>
+                                      <td>
+                                          <ol>
+                                              @foreach($facility_names as $facility_name)
+                                              <li>{{ $facility_name}}</li>
+                                              @endforeach
+                                          </ol>
+                                      </td>                  
+                                        
                                     </tr>
                                 @endforeach
                                     </tbody>
                                     <tfoot>
                                     <tr>
                                         <th>#</th>
+                                        <th>District Name</th>
                                         <th>Hospital Name</th>
-                                        <th>Owner</th>
-                                        <th>Registration no.</th>
-                                        <th>Year</th>
-                                        <th>Status</th>
-                                        <th>View Details</th>
+                                        
                                     </tr>
                                     </tfoot>
                                 </table>

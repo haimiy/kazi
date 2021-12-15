@@ -78,6 +78,10 @@
                              <td>
                                     @if ($list_of_application->status == "Inspected")
                                     <span class="badge bg-primary">{{ $list_of_application->status }}</span>
+                                    @elseif ($list_of_application->status == "Accepted")
+                                    <span class="badge bg-success">{{ $list_of_application->status }}</span>
+                                    @elseif ($list_of_application->status == "Rejected")
+                                    <span class="badge bg-danger">{{ $list_of_application->status }}</span>
                                     @endif
                               </td>
                               <td>

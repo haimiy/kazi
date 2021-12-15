@@ -67,7 +67,7 @@ class DataService
             'reg_no'=>$row[10],
             'doctor_incharge_id'=>$doctor_incharge->id,
             'location_id'=>$location->id,
-            'type_of_health_unit_specified'=>$row[13],
+            'type_of_health_unit_id'=>$row[13],
             'remark'=>$row[12],
             'status'=>$row[11],
         ]);
@@ -91,6 +91,7 @@ class DataService
         DB::table('staffing')->insert([
             'staff_occupation_id'=>31,
             'no_of_full_time'=>$row[32],
+            'no_of_part_time'=>$row[31],
             'health_facility_id'=>$health_facility->id,
             'is_specified'=>false,
         ]);
