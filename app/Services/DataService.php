@@ -23,7 +23,7 @@ class DataService
             'middle_name'=>$row[1],
             'last_name'=>$row[2],
             'role_id'=>5,
-            'phone_no'=>'+'.$row[3],
+            'phone_no'=>$row[3],
             'password'=>\Hash::make("hahahaha")
         ]);
     }

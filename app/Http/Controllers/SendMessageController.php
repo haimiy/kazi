@@ -16,13 +16,13 @@ class SendMessageController extends Controller
 
         foreach ($licenses as $license){
             $details = DataService::getLicencePersonInChargeContactAndHealthFacilityName($license->id)[0];
-            $message ="\nHello,\nWe'd like to remind you that the license for ".$details->facility_name." is set to expire on ".Carbon::parse($details->ending_date)->format("F jS Y").", and you should renew it as soon as possible!";
+            $message ="Hello,We'd like to remind you that the license for ".$details->facility_name." is set to expire on ".Carbon::parse($details->ending_date)->format("F jS Y").", and you should renew it as soon as possible!";
             FunctionHelper::sendMessage($message,$details->phone_no);
         }
         return back();
     }
 
-    public function mailbox() 
+    public function mailbox()
     {
         return view('registrar.mailbox');
     }
