@@ -11,7 +11,8 @@ use Twilio\Rest\Client;
 
 class FunctionHelper
 {
-    static public function sendMessage($message, $recipients){
+    static public function sendMessage($message, $recipients): bool
+    {
         $curl = curl_init();
 
         $username = env('NEXTSMS_USERNAME');
@@ -37,9 +38,13 @@ class FunctionHelper
         ));
 
         $response = curl_exec($curl);
-
-
+        $httpcode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
+
+        if (!($httpcode == 200 || $httpcode == 201)){
+            return false;
+        }
+        return true;
     }
     static public function sendMessageBk($message, $recipients)
     {
