@@ -1,5 +1,5 @@
 @extends('layouts.registrar_app')
-@section('title', 'Application list')
+@section('title', 'Map')
 @section('css')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -36,7 +36,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Application List</li>
+                            <li class="breadcrumb-item active">Location</li>
                         </ol>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                                         {{ Session::get('delete_message') }}
                                     </div>
                                 @endif
-                                <h3 class="card-title">List of all Applications</h3>
+                                <h3 class="card-title">Location of Health Facility</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">

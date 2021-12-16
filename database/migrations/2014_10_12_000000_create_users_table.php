@@ -16,12 +16,12 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
+            $table->string('first_name')->nullable();
             $table->string('middle_name')->nullable();
-            $table->string('last_name');
+            $table->string('last_name')->nullable();
             $table->string('email')->unique()->nullable();
             $table->unsignedBigInteger('role_id');
-            $table->string('phone_no')->unique();
+            $table->string('phone_no')->unique()->nullable();
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
@@ -34,16 +34,16 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('person_incharge')->nullable();
             $table->string('signature')->nullable();
             $table->string('owner_names')->nullable();
-            $table->string('designation');
-            $table->string('ownership_type');
+            $table->string('designation')->nullable();
+            $table->string('ownership_type')->nullable();
             $table->timestamps();
         });
 
 
         Schema::create('doctor_incharge', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name');
-            $table->string('qualification');
+            $table->string('full_name')->nullable();
+            $table->string('qualification')->nullable();
             $table->timestamps();
         });
 

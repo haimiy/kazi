@@ -37,19 +37,22 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <div class="form-group">
-                  <select class="select2" multiple="multiple" data-placeholder="To:" style="width: 100%;">
-                    <option>you</option>
-                    <option>they</option>
+                <form method="POST" action="/registrar/store_send_message_interface">
+                  @csrf
+                  <div class="form-group">
+                  <select class="select2" multiple="multiple" name="recepients[]" data-placeholder="To:" style="width: 100%;">
+                    @foreach($hospitals as $hospital)
+                    <option value="{{ $hospital->phone_no }}">{{ $hospital->facility_name.' ( '.$hospital->phone_no.' ) ' }}</option>
+                    @endforeach
                   </select>
                 </div>
                 <div class="form-group">
-                  <textarea class="form-control" placeholder="Subject:"></textarea>
+                  <textarea class="form-control" name="message" placeholder="Subject:"></textarea>
                 </div>
                
-              </div>
+                </div>
               <!-- /.card-body -->
-              <div class="card-footer">
+                <div class="card-footer">
                 <div class="float-right">
                   <button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i> Draft</button>
                   <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i> Send</button>
@@ -57,6 +60,8 @@
                 <button type="reset" class="btn btn-default"><i class="fas fa-times"></i> Discard</button>
               </div>
               <!-- /.card-footer -->
+                </form>
+                
             </div>
             <!-- /.card -->
           </div>

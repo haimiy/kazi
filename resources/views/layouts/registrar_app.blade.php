@@ -53,7 +53,7 @@
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
-                <li class="nav-item">
+               <!--  <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
                     <i class="fas fa-search"></i>
                     </a>
@@ -72,8 +72,19 @@
                         </div>
                     </form>
                     </div>
-                </li>
+                </li> -->
                 
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                      <!-- <a class="dropdown-item" tabindex="-1" href="#">My Profile</a> -->
+                      <a class="dropdown-item" tabindex="-1" href="/change_password">Change Password</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" tabindex="-1" href="/logout">Logout</a>
+                    </div>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">

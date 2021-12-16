@@ -17,7 +17,7 @@ class CreateRegistrationTable extends Migration
             $table->id();
             $table->unsignedBigInteger('authority_responsible_id');
             $table->string('authority_responsible_specified')->nullable();
-            $table->date('starting_operation_date');
+            $table->date('starting_operation_date')->nullable();
             $table->unsignedBigInteger('health_facility_id')->nullable();
             $table->string('nearest_hospital_name')->nullable();;
             $table->string('nearest_hospital_owner')->nullable();;

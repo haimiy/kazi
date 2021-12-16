@@ -38,6 +38,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           {{-- <li class="nav-header">DASHBOARD</li> --}}
+          @if(auth()->user()->role_id == 2)
           <li class="nav-item">
             <a href="/admin/index" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -155,6 +156,65 @@
               <p>No. of beds</p>
             </a>
           </li>
+          @endif
+          @if(auth()->user()->role_id == 3)
+          <li class="nav-item">
+            <a href="/user/index" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/registrar/application_list" class="nav-link">
+              <i class="nav-icon fa fa-tasks"></i>
+              <p>
+                Application
+              </p>
+            </a>
+          </li>
+        <li class="nav-item">
+            <a href="/registrar/licences_list" class="nav-link">
+                <i class="nav-icon fa fa-address-card"></i>
+                <p>
+                    Licenses
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/registrar/import_existing_data" class="nav-link">
+                <i class="nav-icon fa fa-university"></i>
+                <p>
+                    Health Facility
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/registrar/map" class="nav-link">
+                <i class="nav-icon fa fa-map-marker"></i>
+                <p>
+                    Map
+                </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="/registrar/send_message_interface" class="nav-link">
+                <i class="nav-icon fas fa-envelope"></i>
+                <p>
+                    Send Message
+                </p>
+            </a>
+        </li>
+         <li class="nav-item">
+            <a href="/hospital_statistics" class="nav-link">
+              <i class="nav-icon fa fa-history"></i>
+              <p>
+                Hospital Statistics
+              </p>
+            </a>
+          </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

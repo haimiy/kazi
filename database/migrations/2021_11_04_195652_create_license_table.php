@@ -19,8 +19,8 @@ class CreateLicenseTable extends Migration
             $table->string('license_type')->nullable();
             $table->unsignedBigInteger('owner_id');
             $table->unsignedBigInteger('health_facility_id');
-            $table->date('starting_date');
-            $table->date('ending_date');
+            $table->date('starting_date')->nullable();
+            $table->date('ending_date')->nullable();
             $table->timestamps();
         });
 

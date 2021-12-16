@@ -70,12 +70,7 @@
                       <div class="card-header">
                         <h3 class="card-title">
                             <h3 class="card-title">
-                              <form action="/admin/hospital_statistics/import" method="POST" enctype="multipart/form-data" id="importForm">
-                                  @csrf
-                                      <input type="file" id="myFile" name='file' style="display: none;">
-                                      <button type="button" id="browse" class="btn btn-primary">
-                                          <i class="fa fa-upload" onclick=""></i>&nbsp; Import</button>
-                              </form>
+                              
                               <h3 class="text-center">LIST OF PRIVATE HOSPITAL IN 2020/21,<br> IN GENERAL</h3>
                                 @if(Session::has('message'))
                             <div class="alert alert-success">

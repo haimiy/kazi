@@ -40,7 +40,6 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('by_level', [HistoryHealthFacility::class, 'byLevel']);
 
     Route::get('hospital_statistics', [HistoryHealthFacility::class, 'hospitalStatistics']);
-    Route::post('hospital_statistics/import', [HistoryHealthFacility::class, 'hospitalStatisticsImported']);
 
     Route::get('create_users', [AdminController::class, 'usersCreate']);
     Route::post('create_users_form', [AdminController::class, 'usersCreateForm']);
@@ -116,23 +115,25 @@ Route::prefix('registrar')->middleware('registrar')->group(function(){
     Route::get('detailed_list_of_health_facility/{id}', [RegistrarController::class, 'detailedListOfHealthFacility']);
     Route::post('store_import_existing_data', [RegistrarController::class, 'storeImportExistingData']);
     Route::get('licenses_expire_reminder', [\App\Http\Controllers\SendMessageController::class, 'sendMessage']);
-    Route::get('mailbox', [\App\Http\Controllers\SendMessageController::class, 'mailbox']);
+    Route::get('send_message_interface', [\App\Http\Controllers\SendMessageController::class, 'sendMessageInterface']);
+    Route::post('store_send_message_interface', [\App\Http\Controllers\SendMessageController::class, 'storeSendMessageInterface']);
     Route::get('map', [\App\Http\Controllers\MapController::class, 'showMap']);
     Route::get('map/locations', [\App\Http\Controllers\MapController::class, 'getMapLocationsData']);
+    Route::get('setting', [\App\Http\Controllers\ChangePasswordController::class, 'setting']);
+    Route::post('store_change_user_password', [\App\Http\Controllers\ChangePasswordController::class, 'storeChangeUserPassword']);
 
     Route::get('by_general', [RegistrarController::class, 'byGeneral']);
     Route::get('by_district', [RegistrarController::class, 'byDistrict']);
     Route::get('by_level', [RegistrarController::class, 'byLevel']);
 
-    Route::post('update_location', [RegistrarController::class, 'updateLocation']);
+    Route::get('hospital_statistics', [HistoryHealthFacility::class, 'showHospitalStatistics']);
+    Route::post('add_hospital_statistics', [HistoryHealthFacility::class, 'addHospitalStatistics']);
 
-
-
+    Route::post('update_location/{location_id}', [RegistrarController::class, 'updateLocation']);
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
+Route::get('change_password',[\App\Http\Controllers\ChangePasswordController::class, 'changePassword']);
+Route::post('store_change_password',[\App\Http\Controllers\ChangePasswordController::class, 'storeChangePassword']);
 Route::get('logout', [\App\Http\Controllers\Auth\AuthenticatedSessionController::class, 'destroy']);
 Route::get('selection', [OwnerController::class, 'selection']);
 Route::get('organisation', [OwnerController::class, 'organisation']);

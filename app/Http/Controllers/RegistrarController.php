@@ -148,7 +148,9 @@ from registration r
         ]);
     }
     public function detailedListOfHealthFacility($id){
-        $hospital = DB::select('SELECT hf.*,l.*,d.*,o.*,u.*,hfso.*,dr.*,lo.*,s.*, tohu.name as typeOfHealthUnit FROM health_facility hf 
+        $hospital = DB::select('SELECT hf.*,l.*,d.*,o.*,u.*,hfso.*,dr.*,
+            lo.id as location_id,lo.street,lo.ward,lo.village,lo.latitude,lo.longitude,lo.district_id,
+            s.*, tohu.name as typeOfHealthUnit FROM health_facility hf 
             left join owner_health_facility ohf on hf.id = ohf.health_facility_id
             left join license l on hf.id = l.health_facility_id
             left join owner o on ohf.owner_id = o.id
@@ -173,15 +175,12 @@ from registration r
        ]);
     }
 
-    public function updateLocation(Request $request){
-    $health_facility_id = $request->health_facility_id;
-    $health_facility = HealthFacility::where('location_id',1)->first();
-    dd($health_facility);
-    $updateLatitudeAndLongitude = Location::where('id',$health_facility->location_id)->update([
+    public function updateLocation(Request $request, $location_id){
+    $updateLatitudeAndLongitude = Location::where('id',$location_id)->update([
         'latitude' => $request->latitude,
         'longitude' => $request->longitude,
     ]);
-    dd($updateLatitudeAndLongitude);
+    return back();
     }
 
     public function byGeneral(){

@@ -123,6 +123,22 @@
                           </div>
                           <div class="row">
                             <div class="col-sm-4">
+                              <dt>Latitude:</dt>
+                            </div>
+                            <div class="col-sm-8">
+                              <dd>{{ $hospital->latitude}}</dd>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-4">
+                              <dt>Longitude:</dt>
+                            </div>
+                            <div class="col-sm-8">
+                              <dd>{{ $hospital->longitude}}</dd>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-4">
                               <dt>Telephone:</dt>
                             </div>
                             <div class="col-sm-8">
@@ -213,11 +229,10 @@
               </button>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="/registrar/update_location">
+              <form class="form-horizontal" method="POST" action="/registrar/update_location/{{ $hospital->location_id}}">
                 @csrf
                 <div class="card-body">
                   <div class="form-group row">
-                    <input type="text" class="form-control" name="health_facility_id" value="{{ $hospital->id}}" style="display: none;">
                     <label for="inputEmail3" class="col-sm-3 col-form-label">Latitude</label>
                     <div class="col-sm-9">
                       <input type="text" class="form-control" name="latitude">

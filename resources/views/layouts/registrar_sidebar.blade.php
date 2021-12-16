@@ -47,44 +47,60 @@
           </li>
           <li class="nav-item">
             <a href="/registrar/application_list" class="nav-link">
-              <i class="nav-icon fas fa-tasks"></i>
+              <i class="nav-icon fa fa-tasks"></i>
               <p>
-                List of All Application
+                Application
               </p>
             </a>
           </li>
         <li class="nav-item">
             <a href="/registrar/licences_list" class="nav-link">
-                <i class="nav-icon fas fa-tasks"></i>
+                <i class="nav-icon fa fa-address-card"></i>
                 <p>
-                    List of All Licenses
+                    Licenses
                 </p>
             </a>
         </li>
         <li class="nav-item">
             <a href="/registrar/import_existing_data" class="nav-link">
-                <i class="nav-icon fas fa-file-import"></i>
+                <i class="nav-icon fa fa-university"></i>
                 <p>
-                    Import Existing Data
+                    Health Facility
                 </p>
             </a>
         </li>
         <li class="nav-item">
             <a href="/registrar/map" class="nav-link">
-                <i class="nav-icon fas fa-map"></i>
+                <i class="nav-icon fa fa-map-marker"></i>
                 <p>
                     Map
                 </p>
             </a>
         </li>
         <li class="nav-item">
-            <a href="/registrar/mailbox" class="nav-link">
+            <a href="/registrar/send_message_interface" class="nav-link">
                 <i class="nav-icon fas fa-envelope"></i>
                 <p>
-                    Mailbox
+                    Send Message
                 </p>
             </a>
         </li>
+         <li class="nav-item">
+            <a href="/registrar/hospital_statistics" class="nav-link">
+              <i class="nav-icon fa fa-history"></i>
+              <p>
+                Hospital Statistics
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/registrar/setting" class="nav-link">
+              <i class="nav-icon fa fa-cog"></i>
+              <p>
+                Setting
+              </p>
+            </a>
+          </li>
 
         </ul>
       </nav>

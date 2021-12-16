@@ -15,7 +15,7 @@ class CreateHealthFacilityTable extends Migration
     {
         Schema::create('health_facility', function (Blueprint $table) {
             $table->id();
-            $table->string('facility_name');
+            $table->string('facility_name')->nullable();
             $table->string('reg_no')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('doctor_incharge_id')->nullable();

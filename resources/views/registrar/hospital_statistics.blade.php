@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('title', '')
+@extends('layouts.registrar_app')
+@section('title', 'History of Health Facility')
 @section('css')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -69,7 +69,12 @@
                     <div class="card">
                       <div class="card-header">
                           <h3 class="card-title">
+                            
                               <h3 class="text-center">HOSPITAL BINAFSI ZILIZO ANZISHWA KWA MUJIBU WA <br> NAMBA 4 YA MWAKA 1994</h3>
+                              <h3>
+                              <a href="#" data-toggle="modal" data-target="#modal-default" class="btn btn-primary" style="margin-bottom: 20px;">
+                                    <i class="fa fa-plus" onclick=""></i>&nbsp; Add Hospital</a>
+                            </h3>
                           </h3>
 
                           </div>
@@ -80,8 +85,12 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Starting year</th>
-                                    <th>Health facility</th>
-                                    <th>Hospital no.</th>
+                                    <th>Health facility
+                                      <p>Total: {{$health_facility_sum}}</p>
+                                    </th>
+                                    <th>Hospital no.
+                                      <p>Total: {{$hospital_no_sum}}</p>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -108,7 +117,6 @@
                             </tbody>
                         </table>
                     </div>
-
                 <!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -116,6 +124,51 @@
   </div>
 </section>
 </div>
+ <div class="modal fade" id="modal-default">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Update Latitude and Longitude</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="form-horizontal" method="POST" action="/registrar/add_hospital_statistics">
+                @csrf
+                <div class="card-body">
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-3 col-form-label">Starting Year</label>
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" name="starting_year">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Health Facility No.</label>
+                    <div class="col-sm-9">
+                      <input type="number" class="form-control" name="health_facility">
+                    </div>
+                  </div>
+                   <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Hospital No.</label>
+                    <div class="col-sm-9">
+                      <input type="number" class="form-control" name="hospital_no">
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+            </form>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
 @endsection
 
 @section('js')

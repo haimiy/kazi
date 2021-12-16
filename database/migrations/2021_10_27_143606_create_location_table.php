@@ -20,8 +20,8 @@ class CreateLocationTable extends Migration
             $table->string('village')->nullable();;
             $table->string('ward')->nullable();;
             $table->string('po_box')->nullable();;
-            $table->unsignedBigInteger('district_id');
-            $table->string('region');
+            $table->unsignedBigInteger('district_id')->nullable();
+            $table->string('region')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->timestamps();

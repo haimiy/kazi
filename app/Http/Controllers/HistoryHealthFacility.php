@@ -52,25 +52,22 @@ class HistoryHealthFacility extends Controller
             'hospital_statistics'=> $hospital_statistics,
         ]);
     }
-
-    public function hospitalStatisticsImported(Request $request) 
-    {
-        Excel::import(new HospitalStatisticsImport, $request->file('file')->store('temp'));
-        return back()->with('success', 'Data imported successfully');
-    }
-    public function byDistrict(){
-        $health_facility = ModelsHistoryHealthFacility::all();
-        return view('admin.by_district', [
-            'health_facility' => $health_facility
+     public function showHospitalStatistics(){
+        $hospital_statistics = HospitalStatistics::all();
+        $health_facility_sum = HospitalStatistics::sum('health_facility');
+        $hospital_no_sum = HospitalStatistics::sum('hospital_no');
+        return view('registrar.hospital_statistics',[
+            'hospital_statistics'=> $hospital_statistics,
+            'health_facility_sum'=> $health_facility_sum,
+            'hospital_no_sum'=> $hospital_no_sum,
         ]);
     }
 
-    public function byLevel(){
-        $health_facility = ModelsHistoryHealthFacility::all();
-        return view('admin.level', [
-            'health_facility' => $health_facility
-        ]);
+    public function addHospitalStatistics(Request $request){
+        HospitalStatistics::create($request->all());
+        return back();
     }
+
     public function deleteHospital($id){
         $hospital_id =ModelsHistoryHealthFacility::find($id);
         $hospital_id->delete();
