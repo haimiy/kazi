@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', '')
+@section('title', 'Edit Users')
 @section('css')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -16,12 +16,6 @@
     font-size: 18px;
     padding: 0 10px;
     display: inline-block;
-}
-.text-center {
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin: 0;
 }
 .dropdown-item {
     display: block;
@@ -41,6 +35,7 @@
     border-top-right-radius: calc(0.25rem - 1px
 );
 }
+
 </style>
 @endsection
 
@@ -56,7 +51,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Hospital List</li>
+              <li class="breadcrumb-item active">Edit Users</li>
             </ol>
           </div>
         </div>
@@ -67,74 +62,65 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                      <div class="card-header">
-                        <h3 class="card-title">
-                            <h3 class="card-title">
-                              
-                              <h3 class="text-center">LIST OF PRIVATE HOSPITAL IN 2020/21,<br> IN GENERAL</h3>
-                                @if(Session::has('message'))
+                        <div class="card-header">
+                        @if(Session::has('success'))
                             <div class="alert alert-success">
-                                {{ Session::get('message') }}
+                                {{ Session::get('success') }}
                             </div>
                         @endif
-                        @if(Session::has('delete_message'))
+                        @if(Session::has('fail'))
                         <div class="alert alert-danger">
-                            {{ Session::get('delete_message') }}
+                            {{ Session::get('fail') }}
                         </div>
                         @endif
-                            </h3>
-                      </div> 
-                        </h3>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                          <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                            <tr>
-                              <th>#</th>
-                              <th>facility Name</th>
-                              <th>Registration No</th>
-                              <th>District Name</th>
-                              <th>Type of Health Unit</th>
-                              <th>Year</th>
-                              <th>Owner</th>
-                              <th>Phone no.</th>
-                              <th>Location</th>
-                              <th>Service Delivary</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach ($health_facility as $health_facility)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $health_facility->facility_name }}</td>
-                                <td>{{ $health_facility->reg_no }}</td>
-                                <td>{{ $health_facility->district_name }}</td>
-                                <td>{{ $health_facility->type_of_health_unit }}</td>
-                                <td>{{ $health_facility->starting_operation_date }}</td>
-                                <td>{{ $health_facility->full_name }}</td>
-                                <td>{{ $health_facility->phone_no }}</td>
-                                <td>{{ $health_facility->location }}</td>
-                                <td>{{ $health_facility->service_name }}</td>
-                                
-                              </tr>
-                            @endforeach
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <th>#</th>
-                                <th>Facility Name</th>
-                                <th>Registration No</th>
-                                <th>District Name</th>
-                                <th>Type of Health Unit</th>
-                                <th>Year</th>
-                                <th>Owner</th>
-                                <th>Phone no.</th>
-                                <th>Location</th>
-                                <th>Service Delivary</th>
-                            </tr>
-                            </tfoot>
-                          </table>
+                          <h3 class="card-title">Update Users</h3>
                         </div>
+                        <!-- /.card-header -->
+                        <form class="form-horizontal" method="POST" action="/admin/update">
+                        @csrf
+                        <div class="card-body">
+                            <div class="form-group row">
+                              <input type="text" class="form-control" name="userId" value="{{ $user->id}}" style="display: none" />
+                              <label class="col-sm-3 col-form-label">First Name</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control" value="{{$user->first_name}}" name="first_name" placeholder="First Name" />
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Middle Name</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control" value="{{$user->middle_name}}" name="middle_name" placeholder="Middle Name" />
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Last Name</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control"value="{{$user->last_name}}" name="last_name" placeholder="Last Name" />
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Email</label>
+                              <div class="col-sm-9">
+                                <input type="email" class="form-control" name="email" value="{{$user->email}}" placeholder="Email" />
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Address</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control" name="address" value="{{$user->address}}" placeholder="Address" />
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-sm-3 col-form-label">Phone No:</label>
+                              <div class="col-sm-9">
+                                <input type="text" class="form-control" name="phone_no" value="{{$user->phone_no}}" placeholder="Phone Number" />
+                              </div>
+                            </div>
+                      </div>
+                      <div class="card-footer float-right">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                      </div>
+                          </form>
                         <!-- /.card-body -->
                       </div>
                       <!-- /.card -->
@@ -178,21 +164,9 @@
     });
   </script>
   <script>
-       function deleteHospital(id){
+       function deleteUser(id){
         var formId = 'delete-'+id
         document.getElementById(formId).submit()
     }
   </script>
-   <script>
-    $(document).ready(function(){
-      $('#browse').click(function(){
-      $('#myFile').click();
-      });
-
-      $('#myFile').change(function(e) {
-          $("#importForm").submit();
-      });
-      
-});
-</script>
 @endsection

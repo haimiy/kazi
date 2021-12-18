@@ -47,7 +47,7 @@
           </li>
           <li class="nav-item">
             <a href="/inspector/application_list" class="nav-link">
-              <i class="nav-icon fas fa-file"></i>
+              <i class="nav-icon fas fa-tasks"></i>
               <p>
                 List of All Application
               </p>

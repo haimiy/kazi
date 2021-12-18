@@ -8,6 +8,7 @@ use App\Services\DataService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class SendMessageController extends Controller
 {
@@ -35,7 +36,13 @@ class SendMessageController extends Controller
     public function storeSendMessageInterface(Request $request){
         foreach ($request->recepients as $recepient) {
             $message = $request->message;
-            FunctionHelper::sendMessage($message,$recepient);
+            if ( FunctionHelper::sendMessage($message,$recepient)) {
+                Session::flash('success', 'message Sent Successfull!');
+            }
+            else{
+                 Session::flash('fail', 'message Not Sent!');
+            }
+           
         }
         return back();
     }

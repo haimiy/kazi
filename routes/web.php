@@ -29,22 +29,20 @@ Route::get('/', function () {
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('index', [AdminController::class, 'index']);
 
-    Route::get('create_health_facility', [HistoryHealthFacility::class, 'HealthFacilityCreate']);
-    Route::post('create_health_facility_form', [HistoryHealthFacility::class, 'HealthFacilityCreateForm']);
-    Route::get('show_health_facility', [HistoryHealthFacility::class, 'showHealthFacility']);
-    Route::delete('delete_hospital/{id}', [HistoryHealthFacility::class, 'deleteHospital']);
-    Route::get('health_facility_detail/{id}', [HistoryHealthFacility::class, 'healthFacilityDetail']);
-
-
-    Route::get('by_district', [HistoryHealthFacility::class, 'byDistrict']);
-    Route::get('by_level', [HistoryHealthFacility::class, 'byLevel']);
-
     Route::get('hospital_statistics', [HistoryHealthFacility::class, 'hospitalStatistics']);
 
-    Route::get('create_users', [AdminController::class, 'usersCreate']);
-    Route::post('create_users_form', [AdminController::class, 'usersCreateForm']);
+    Route::get('create_inspector', [AdminController::class, 'inspectorCreate']);
+    Route::post('store_inspector', [AdminController::class, 'storeInspector']);
+
+    Route::get('create_registrar', [AdminController::class, 'registrarCreate']);
+    Route::post('store_registrar', [AdminController::class, 'storeRegistrar']);
+
     Route::get('show_users', [AdminController::class, 'showUsers']);
-    Route::delete('delete_user/{id}', [AdminController::class, 'deleteUser']);
+    Route::delete('delete_user/{id}', [AdminController::class, 'AjaxdeleteUser']);
+
+    Route::get('edit_user_in_admin_side/{id}', [AdminController::class, 'editUserInformation']);
+    Route::post('update', [AdminController::class, 'UpdateUserInformation']);
+    
 
     Route::get('type_of_health_unit', [ActivityController::class, 'typeOfHealthUnit']);
     Route::post('type_of_health_unit_form', [ActivityController::class, 'typeOfHealthUnitForm']);
@@ -93,13 +91,16 @@ Route::prefix('user')->middleware('user')->group(function(){
 
 
     Route::get('licenses', [LicenseController::class, 'license']);
-    Route::get('license_create', [LicenseController::class, 'createLicense']);
-    Route::post('license_create_form', [LicenseController::class, 'createLicenseForm']);
+    Route::get('renew_license/{id}', [LicenseController::class, 'licenseRenew']);
+    Route::post('update_renew_license', [LicenseController::class, 'updateRenewLicense']);
+
+
 
 });
 Route::prefix('inspector')->middleware('inspector')->group(function(){
     Route::get('index', [InspectorController::class, 'index']);
     Route::get('application_list', [InspectorController::class, 'applicationList']);
+    Route::get('application_list_inspected', [InspectorController::class, 'applicationListInspected']);
     Route::post('store_comments', [InspectorController::class, 'storeComments']);
     Route::get('detailed_list_of_application/{id}', [InspectorController::class, 'detailedListOfApplication']);
 
@@ -119,8 +120,9 @@ Route::prefix('registrar')->middleware('registrar')->group(function(){
     Route::post('store_send_message_interface', [\App\Http\Controllers\SendMessageController::class, 'storeSendMessageInterface']);
     Route::get('map', [\App\Http\Controllers\MapController::class, 'showMap']);
     Route::get('map/locations', [\App\Http\Controllers\MapController::class, 'getMapLocationsData']);
-    Route::get('setting', [\App\Http\Controllers\ChangePasswordController::class, 'setting']);
-    Route::post('store_change_user_password', [\App\Http\Controllers\ChangePasswordController::class, 'storeChangeUserPassword']);
+    Route::get('show_users', [RegistrarController::class, 'showUsers']);
+    Route::get('edit_user/{id}', [AdminController::class, 'editUser']);
+    Route::post('update_user', [AdminController::class, 'updateUser']);
 
     Route::get('by_general', [RegistrarController::class, 'byGeneral']);
     Route::get('by_district', [RegistrarController::class, 'byDistrict']);

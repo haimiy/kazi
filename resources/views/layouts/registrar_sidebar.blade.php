@@ -94,10 +94,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/registrar/setting" class="nav-link">
-              <i class="nav-icon fa fa-cog"></i>
+            <a href="/registrar/show_users" class="nav-link">
+              <i class="nav-icon fa fa-user"></i>
               <p>
-                Setting
+                Manage Users
               </p>
             </a>
           </li>

@@ -12,7 +12,19 @@ use Illuminate\Support\Facades\Auth;
 class ChangePasswordController extends Controller
 {
     public function changePassword(){
-    	return view('registrar.change_password');
+        if (auth()->user()->role_id == 4) {
+        return view('inspector.change_password');
+        }
+        elseif (auth()->user()->role_id == 3){
+          return view('registrar.change_password');  
+        }
+        elseif (auth()->user()->role_id == 2){
+          return view('admin.change_password');  
+        }
+        else{
+           return view('user.change_password');
+        }
+    	
     }
 
     public function storeChangePassword(Request $request){
@@ -43,9 +55,6 @@ class ChangePasswordController extends Controller
 
     }
 
-    public function setting(){
-        return view('registrar.setting');
-    }
     public function storeChangeUserPassword(Request $request){
         $user = DB::select("SELECT users.id, users.phone_no FROM users WHERE phone_no =".$request->phone_no);
 

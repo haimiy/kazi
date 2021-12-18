@@ -8,6 +8,7 @@ use App\Models\License;
 use App\Models\HealthFacility;
 use App\Models\Registration;
 use App\Models\Location;
+use App\Models\Role;
 use App\Models\RegistrationRegistrarReview;
 use App\Services\DataService;
 use Excel;
@@ -22,6 +23,17 @@ class RegistrarController extends Controller
         $health_facility_count = License::count();
         return view('registrar.index', [
             'health_facility_count' => $health_facility_count
+        ]);
+    }
+
+     public function showUsers(){
+        $roles = Role::all();
+        $users = DB::select('SELECT users.*,roles.role_name FROM users  INNER JOIN roles
+        ON  users.role_id = roles.id ORDER by users.first_name ');
+        return view('registrar.users_show', [
+            'users' => $users,
+            'roles' => $roles,
+
         ]);
     }
 

@@ -9,6 +9,7 @@ use App\Helper\FunctionHelper;
 use App\Models\DoctorIncharge;
 use App\Models\HealthFacility;
 use App\Models\License;
+use App\Models\LicenseHistory;
 use App\Models\Location;
 use App\Models\Organisation;
 use App\Models\OwnershipHealthFacility;
@@ -24,7 +25,7 @@ class DataService
             'last_name'=>$row[2],
             'role_id'=>5,
             'phone_no'=>$row[3],
-            'password'=>\Hash::make("hahahaha")
+            'password'=>\Hash::make("0000")
         ]);
     }
 
@@ -106,6 +107,12 @@ class DataService
             'health_facility_id'=>$health,
             'starting_date'=>FunctionHelper::changeExcelDate($row[27]),
             'ending_date'=>FunctionHelper::changeExcelDate($row[28]),
+        ]);
+        LicenseHistory::create([
+            'license_no'=>$row[25],
+            'owner_id'=>$ownerId,
+            'date_of_issue'=>FunctionHelper::changeExcelDate($row[27]),
+            'expiry_date'=>FunctionHelper::changeExcelDate($row[28]),
         ]);
     }
 

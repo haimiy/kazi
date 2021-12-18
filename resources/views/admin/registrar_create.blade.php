@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Users | Registration')
+@section('title', 'Registrar | Create')
 @section('css')
     
 @endsection
@@ -12,12 +12,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            {{-- <h3>User Registration Form</h3> --}}
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">User Registration Form</li>
+              <li class="breadcrumb-item active">Create Registrar</li>
             </ol>
           </div>
         </div>
@@ -44,10 +43,10 @@
                       </div>
                   @endif
                         <div class="card-header">
-                          <h3 class="card-title">User Registration Form</h3>
+                          <h3 class="card-title">Registarar Create</h3>
                         </div>
                          
-                        <form method="POST" action="/admin/create_users_form">
+                        <form method="POST" action="/admin/store_registrar">
                         @csrf
                             <div class="card-body">
                                 <div class="row">
@@ -79,21 +78,17 @@
                                     </div>
                                   </div>
                                   <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                          <label>Role Name</label>
-                                          <select class="form-control select2" name=role_id style="width: 100%;">
-                                            <option selected="selected">--Select--</option>
-                                            @foreach ($roles as $role)
-                                            <option value="{{$role->id}}">{{$role->role_name}}</option>
-                                            @endforeach
-                                          </select>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="col-sm-6">
                                       <div class="form-group">
                                         <label>Phone no.</label>
                                         <input type="text" class="form-control" name="phone_no" :value="old('phone_no')" placeholder="Phone No." />
+                                    </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                      <div class="form-group">
+                                        <label>Title</label>
+                                        <input type="text" class="form-control" name="title" :value="old('title')" placeholder="Title" />
                                     </div>
                                     </div>
                                   </div>

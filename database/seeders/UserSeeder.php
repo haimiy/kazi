@@ -17,23 +17,13 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                "first_name" => "safia",
-                "middle_name" => "sleiman",
-                "last_name" => "iddi",
-                "email" => "swafaa.sule@gmail.com",
-                "role_id" => 2,
-                "password" => Hash::make("1234"),
-                "phone_no" => "0772674901",
-                "address" => "Fuoni",
-            ],
-            [
                 "first_name" => "khairat",
                 "middle_name" => "Makame",
                 "last_name" => "Issa",
-                "email" => "khai@gmail.com",
-                "role_id" => 5,
-                "password" => Hash::make("1234"),
-                "phone_no" => "0772674900",
+                "email" => "khairat096@gmail.com",
+                "role_id" => 2,
+                "password" => Hash::make("root"),
+                "phone_no" => "root",
                 "address" => "Fuoni",
             ],
             [
@@ -59,10 +49,16 @@ class UserSeeder extends Seeder
 
         ]);
 
-        DB::table('owner')->insert([
-            "person_incharge" => 2,
-            "designation" => 'Director wa Hospital',
-            "ownership_type" => 'Solo',
+        DB::table('registrar')->insert([
+            "user_id" => 2,
+            "title" => 'phab director',
+            "signature" => 'DuaSleimanMussa',
+        ]);
+        DB::table('inspectors')->insert([
+            "user_id" => 3,
+            "title" => 'IT',
+            'inspector_type' => 'everything',
+            "signature" => 'SafiaSleimanIddi',
         ]);
     }
 }

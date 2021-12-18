@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('title', '')
+@extends('layouts.registrar_app')
+@section('title', 'Show Users')
 @section('css')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -29,18 +29,13 @@
     background-color: transparent;
     border: 0;
 }
-.text-center {
-    text-align: center;
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin: 0;
-}
 .dropdown-item:first-child {
     border-top-left-radius: calc(0.25rem - 1px
 );
     border-top-right-radius: calc(0.25rem - 1px
 );
 }
+
 </style>
 @endsection
 
@@ -56,7 +51,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Hospital List</li>
+              <li class="breadcrumb-item active">Show Users</li>
             </ol>
           </div>
         </div>
@@ -68,8 +63,17 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                        
-                            <h3 class="text-center">LIST OF PRIVATE HOSPITAL IN 2020/21,<br> ACCORDING TO THE LEVEL OF SERVICES DELIVERY</h3> 
+                        @if(Session::has('message'))
+                            <div class="alert alert-success">
+                                {{ Session::get('message') }}
+                            </div>
+                        @endif
+                        @if(Session::has('delete_message'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('delete_message') }}
+                        </div>
+                        @endif
+                          <h3 class="card-title">List of all Users</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -77,36 +81,48 @@
                             <thead>
                             <tr>
                               <th>#</th>
-                              <th>facility Name</th>
-                              <th>Type of Health Unit</th>
-                              <th>Owner</th>
+                              <th>Full Name</th>
                               <th>Phone no.</th>
-                              <th>Location</th>
-                              <th>Service Delivary</th>
+                              <th>Address</th>
+                              <th>Role Name</th>
+                              <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach ($health_facility as $health_facility)
+                            @foreach ($users as $user)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $health_facility->facility_name }}</td>
-                                <td>{{ $health_facility->type_of_health_unit }}</td>
-                                <td>{{ $health_facility->full_name }}</td>
-                                <td>{{ $health_facility->phone_no }}</td>
-                                <td>{{ $health_facility->location }}</td>
-                                <td>{{ $health_facility->service_name }}</td>
+                                <td>{{ $user->first_name . ' '. $user->middle_name . ' ' . $user->last_name}}</td>
+                                <td>{{ $user->phone_no }}</td>
+                                <td>{{ $user->address }}</td>
+                                <td class="text-center">
+                                    @if ($user->role_name == "Admin")
+                                    <span class="badge bg-danger">{{ $user->role_name }}</span>
+                                    @elseif($user->role_name == "Owner")
+                                    <span class="badge bg-warning">{{ $user->role_name }}</span>
+                                    @elseif($user->role_name == "Inspector")
+                                    <span class="badge bg-primary">{{ $user->role_name }}</span> 
+                                    @elseif($user->role_name == "Registrar")
+                                    <span class="badge bg-success">{{ $user->role_name }}</span> 
+                                    @elseif($user->role_name == "SuperAdmin")
+                                    <span class="badge bg-secondary">{{ $user->role_name }}</span> 
+                                    @endif
+                                    
+                              </td>
+                                <td class="text-center">
+                                    <a href="/registrar/edit_user/{{ $user->id}}" class="action-icon"><i class="fa fa-pencil-alt"></i></a>
+                                </td>
                               </tr>
                             @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
                                 <th>#</th>
-                                <th>facility Name</th>
-                                <th>Type of Health Unit</th>
-                                <th>Owner</th>
+                                <th>Full Name</th>
                                 <th>Phone no.</th>
-                                <th>Location</th>
-                                <th>Service Delivary</th>
+                                <th>Address</th>
+                                <th>Role Name</th>
+                                <th>Action</th>
                             </tr>
                             </tfoot>
                           </table>
@@ -159,16 +175,4 @@
         document.getElementById(formId).submit()
     }
   </script>
-   <script>
-    $(document).ready(function(){
-      $('#browse').click(function(){
-      $('#myFile').click();
-      });
-
-      $('#myFile').change(function(e) {
-          $("#importForm").submit();
-      });
-      
-});
-</script>
 @endsection

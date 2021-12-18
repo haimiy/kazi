@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token()}}">
         <title>@yield('title')</title>
 
         <!-- Google Font: Source Sans Pro -->
@@ -17,20 +18,17 @@
         <link rel="stylesheet" href="{{ asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
         <!-- JQVMap -->
         <link rel="stylesheet" href="{{ asset('assets/plugins/jqvmap/jqvmap.min.css') }}">
-        {{-- <!-- Theme style -->
-        <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}"> --}}
-         <!-- Select2 -->
-         <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
-         <link rel="stylesheet" href="{{ asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
-         <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+        <!-- Theme style -->
+        <!-- Select2 -->
+        <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
         <!-- overlayScrollbars -->
         <link rel="stylesheet" href="{{ asset('assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
         <!-- Daterange picker -->
         <link rel="stylesheet" href="{{ asset('assets/plugins/daterangepicker/daterangepicker.css') }}">
-
         <!-- 1ziToast -->
         <link rel="stylesheet" href="{{ asset('assets/iziToast/dist/css/iziToast.min.css') }}">
-
         <!-- summernote -->
         <link rel="stylesheet" href="{{ asset('assets/plugins/summernote/summernote-bs4.min.css') }}">
     </head>
@@ -56,7 +54,7 @@
                 <!-- Right navbar links -->
                 <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
-                <li class="nav-item">
+               <!--  <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
                     <i class="fas fa-search"></i>
                     </a>
@@ -75,7 +73,20 @@
                         </div>
                     </form>
                     </div>
+                </li> -->
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                    <i class="fas fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                      <!-- <a class="dropdown-item" tabindex="-1" href="#">My Profile</a> -->
+                      <a class="dropdown-item" tabindex="-1" href="/change_password">Change Password</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" tabindex="-1" href="/logout">Logout</a>
+                    </div>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                     <i class="fas fa-expand-arrows-alt"></i>

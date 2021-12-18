@@ -1,5 +1,5 @@
-@extends('layouts.user_app')
-@section('title', 'All | Licenses')
+@extends('layouts.inspector_app')
+@section('title', 'Application list')
 @section('css')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
@@ -8,7 +8,7 @@
 <style>
     a:hover, a:active, a:focus {
     text-decoration: none;
-    color: #009ce7;
+    color: #777;
     outline: none;
 }
 .action-icon {
@@ -17,24 +17,7 @@
     padding: 0 10px;
     display: inline-block;
 }
-.dropdown-item {
-    display: block;
-    width: 100%;
-    padding: 0.25rem 1.5rem;
-    clear: both;
-    font-weight: 400;
-    color: #212529;
-    text-align: inherit;
-    white-space: nowrap;
-    background-color: transparent;
-    border: 0;
-}
-.dropdown-item:first-child {
-    border-top-left-radius: calc(0.25rem - 1px
-);
-    border-top-right-radius: calc(0.25rem - 1px
-);
-}
+
 </style>
 @endsection
 
@@ -50,7 +33,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">licenses</li>
+              <li class="breadcrumb-item active">Application List</li>
             </ol>
           </div>
         </div>
@@ -72,7 +55,7 @@
                             {{ Session::get('delete_message') }}
                         </div>
                         @endif
-                          {{-- <h3 class="card-title">List of all Licenses</h3> --}}
+                          <h3 class="card-title">List of all Applications</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -80,39 +63,44 @@
                             <thead>
                             <tr>
                               <th>#</th>
+                              <th>Owner Name</th>
                               <th>Health Facility Name</th>
-                              <th>License No</th>
-                              <th>Date of Issue</th>
-                              <th>Expire Date</th>
-                              <th>Action</th>
-                            </tr>
+                              <th>Status</th>
+<!--                               <th>View Details</th>
+ -->                            </tr>
                             </thead>
                             <tbody>
-                                @foreach($licenses as $license)
-                                    <td>{{$loop->iteration}}</td>
-                                    <td>{{ $license->facility_name }}</td>
-                                    <td>{{ $license->license_no }}</td>
-                                    <td>{{ $license->starting_date }}</td>
-                                    <td>{{ $license->ending_date }}</td>
-                                    <td>
-                                      @if($license->starting_date >= date('Y-m-d', strtotime($license->ending_date.' + 2 days')) )
-                                      <a href="/user/renew_license/{{$license->id}}" type="button" class="btn btn-sm btn-primary">Renew</a>
-                                      @elseif($license->starting_date >= date('Y-m-d',strtotime($license->starting_date.'+ 1 month')) )
-                                       <a href="#" class="text-danger">Closed</a>
-                                      @else
-                                      @endif
-                                    </td>
-                                @endforeach
+                           @foreach ($list_of_applications as $list_of_application)
+                           <tr>
+                            <td>{{ $loop->iteration}}</td>
+                             <td>{{ $list_of_application->first_name. ' '.$list_of_application->middle_name. ' '.$list_of_application->last_name }}</td>
+                             <td>{{ $list_of_application->facility_name }}</td>
+                             <td>
+                                    @if ($list_of_application->status == "Pending")
+                                    <span class="badge bg-secondary">{{ $list_of_application->status }}</span>
+                                    @elseif ($list_of_application->status == "Accepted")
+                                    <span class="badge bg-success">{{ $list_of_application->status }}</span>
+                                    @elseif ($list_of_application->status == "Rejected")
+                                    <span class="badge bg-danger">{{ $list_of_application->status }}</span>
+                                    @elseif ($list_of_application->status == "Inspected")
+                                    <span class="badge bg-primary">{{ $list_of_application->status }}</span>
+                                    @endif
+                              </td>
+                              <!-- <td>
+                                <a href="/inspector/detailed_list_of_application/{{ $list_of_application->id}}" class="action-icon"><i class="fa fa-eye m-r-5"></i>
+
+                              </td> -->
+                           </tr>
+                           @endforeach
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>#</th>
-                                <th>Health Facility Name</th>
-                                <th>License No</th>
-                                <th>Date of Issue</th>
-                                <th>Expire Date</th>
-                                <th>Action</th>
-                            </tr>
+                              <th>#</th>
+                              <th>Owner Name</th>
+                              <th>Health Facility Name</th>
+                              <th>Status</th>
+<!--                               <th>View Details</th>
+ -->                            </tr>
                             </tfoot>
                           </table>
                         </div>
@@ -163,12 +151,5 @@
         var formId = 'delete-'+id
         document.getElementById(formId).submit()
     }
-    // $(document).ready(function() {
-    //   iziToast.success({
-    //                     title: 'Success',
-    //                     message: 'message',
-    //                     position: 'bottomRight'
-    //                   });
-    // });
   </script>
 @endsection

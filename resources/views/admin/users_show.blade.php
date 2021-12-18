@@ -1,4 +1,4 @@
-@extends('layouts.inspector_app')
+@extends('layouts.app')
 @section('title', '')
 @section('css')
 <!-- DataTables -->
@@ -50,7 +50,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">DataTables</li>
+              <li class="breadcrumb-item active">List of all Users</li>
             </ol>
           </div>
         </div>
@@ -62,14 +62,14 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                        @if(Session::has('message'))
+                        @if(Session::has('success'))
                             <div class="alert alert-success">
-                                {{ Session::get('message') }}
+                                {{ Session::get('success') }}
                             </div>
                         @endif
-                        @if(Session::has('delete_message'))
+                        @if(Session::has('fail'))
                         <div class="alert alert-danger">
-                            {{ Session::get('delete_message') }}
+                            {{ Session::get('fail') }}
                         </div>
                         @endif
                           <h3 class="card-title">List of all Users</h3>
@@ -114,12 +114,10 @@
                                     <div class="dropdown dropdown-action">
                                         <a href="#" class="action-icon" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#"><i class="fa fa-pencil-alt m-r-5"></i> Edit</a>
-                                            <form id="delete-{{$user->id}}" method="POST" style="display: inline" class="dropdown-item" action="/admin/delete_user/{{ $user->id }}">
-                                                @method('DELETE')
-                                                @csrf
-                                                <i onclick="deleteUser( {{$user->id}} )" class="fa fa-trash m-r-5">Delete</i>
-                                            </form>
+                                            <a class="dropdown-item" href="/admin/edit_user_in_admin_side/{{$user->id}}"  
+                                            ><i class="fa fa-pencil-alt m-r-5"></i> Edit</a>
+
+                                            <a class="dropdown-item" onclick="deleteUser({{ $user->id }})" href="#"><i class="fa fa-trash-alt m-r-5"></i> Delete</a>
                                         </div>
                                     </div>
                                 </td>
@@ -182,9 +180,33 @@
     });
   </script>
   <script>
-       function deleteUser(id){
-        var formId = 'delete-'+id
-        document.getElementById(formId).submit()
-    }
+     $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+     function deleteUser(id) {
+            $.ajax({
+                url: '/admin/delete_user/'+id,
+                method: 'delete',
+                success: function(response) {
+                  console.log(response);
+                    if (response.status) {
+                        iziToast.success({
+                               title: 'Deleted',
+                               message: response.message,
+                               position: 'topRight'
+                           });
+                    } else {
+                       iziToast.error({
+                               title: 'Error',
+                               message: response.message,
+                               position: 'topRight'
+                           });
+                    }
+                },
+            });
+        }
   </script>
 @endsection

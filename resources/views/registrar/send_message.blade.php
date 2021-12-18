@@ -34,6 +34,16 @@
             <div class="card card-primary card-outline">
               <div class="card-header">
                 <h3 class="card-title">Compose New Message</h3>
+                              @if(Session::has('success'))
+                                    <div class="alert alert-success">
+                                        {{ Session::get('success') }}
+                                    </div>
+                                @endif
+                                @if(Session::has('fail'))
+                                    <div class="alert alert-danger">
+                                        {{ Session::get('fail') }}
+                                    </div>
+                                @endif
               </div>
               <!-- /.card-header -->
               <div class="card-body">

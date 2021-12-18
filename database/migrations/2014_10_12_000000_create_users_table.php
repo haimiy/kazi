@@ -49,20 +49,18 @@ class CreateUsersTable extends Migration
 
         Schema::create('registrar', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('title');
-            $table->unsignedBigInteger('location');
-            $table->string('signature');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('title')->nullable();
+            $table->string('signature')->nullable();
             $table->timestamps();
         });
 
         Schema::create('inspectors', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->string('title');
-            $table->string('inspector_type');
-            $table->unsignedBigInteger('location');
-            $table->string('signature');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('title')->nullable();
+            $table->string('inspector_type')->nullable();
+            $table->string('signature')->nullable();
             $table->timestamps();
         });
     }

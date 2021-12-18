@@ -17,24 +17,16 @@
                 <label class="col-sm-4 col-form-label">Inspection guidelines questions</label>
                 <div class="col-sm-8">
                     <div class="form-group">
-                        <select class="form-control select2" name="inspector_guidelines_question_id" style="width: 100%;">
-                            <option selected="selected">--Select--</option>
-                        </select>
-                        <span class="text-danger" id="inspector_guidelines_question_id"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Inspection guidelines Name </label>
-                <div class="col-sm-8">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="name" :value="old('name')" />
+                            @foreach($inspection_guidelines_questions as $question)
+                            <p><br>{{ $question->name}}</p>
+                            <input type="text" class="form-control" placeholder="Answer" name="inspector_guidelines_question_answer">
+                            @endforeach
                     </div>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-4 col-form-label">Conditions</label>
+                <label class="col-sm-4 col-form-label">Recommendation</label>
                 <div class="col-sm-8">
                     <div class="form-group">
                         <textarea type="text" class="form-control" name="comments" :value="old('comments')"></textarea>

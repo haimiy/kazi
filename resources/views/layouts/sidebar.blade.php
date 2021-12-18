@@ -38,7 +38,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           {{-- <li class="nav-header">DASHBOARD</li> --}}
-          @if(auth()->user()->role_id == 2)
+        
           <li class="nav-item">
             <a href="/admin/index" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -47,20 +47,19 @@
               </p>
             </a>
           </li>
+          <li class="nav-header">MANAGE USERS</li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-eye"></i>
+            <a href="/admin/create_inspector" class="nav-link">
+              <i class="nav-icon fas fa-user-plus"></i>
               <p>
-                Manage Users
-                <i class="fas fa-angle-left right"></i>
+                Add Inspector
               </p>
             </a>
-            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/admin/create_users" class="nav-link">
+                <a href="/admin/create_registrar" class="nav-link">
                   <i class="nav-icon fas fa-user-plus"></i>
                   <p>
-                    Add Users
+                    Add Registrar
                   </p>
                 </a>
               </li>
@@ -72,54 +71,9 @@
                   </p>
                 </a>
               </li>
-            </ul>
-          </li>
-         
-          <li class="nav-header">Show Private Hospital</li>
-          <li class="nav-item">
-            <a href="/admin/show_health_facility" class="nav-link">
-              <i class="nav-icon fas fa-eye"></i>
-              <p>
-                By General List
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/admin/by_level" class="nav-link">
-              <i class="nav-icon fas fa-eye"></i>
-              <p>
-                By Level
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/admin/by_district" class="nav-link">
-              <i class="nav-icon fas fa-eye"></i>
-              <p>
-                By district
-              </p>
-            </a>
-          </li>
-          <li class="nav-header">Add Hospital</li>
-          <li class="nav-item">
-            <a href="/admin/create_health_facility" class="nav-link">
-              <i class="nav-icon fas fa-plus"></i>
-              <p>
-                Add Hospital
-              </p>
-            </a>
-          </li>
-         
-          <li class="nav-item">
-            <a href="/admin/hospital_statistics" class="nav-link">
-              <i class="nav-icon fas fa-eye"></i>
-              <p>
-                Hospital Statistics
-              </p>
-            </a>
           </li>
 
-          <li class="nav-header">Activities</li>
+          <!-- <li class="nav-header">Activities</li>
           <li class="nav-item">
             <a href="/admin/type_of_health_unit" class="nav-link">
               <i class="nav-icon fas fa-ellipsis-h"></i>
@@ -155,66 +109,7 @@
               <i class="nav-icon fas fa-file"></i>
               <p>No. of beds</p>
             </a>
-          </li>
-          @endif
-          @if(auth()->user()->role_id == 3)
-          <li class="nav-item">
-            <a href="/user/index" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="/registrar/application_list" class="nav-link">
-              <i class="nav-icon fa fa-tasks"></i>
-              <p>
-                Application
-              </p>
-            </a>
-          </li>
-        <li class="nav-item">
-            <a href="/registrar/licences_list" class="nav-link">
-                <i class="nav-icon fa fa-address-card"></i>
-                <p>
-                    Licenses
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="/registrar/import_existing_data" class="nav-link">
-                <i class="nav-icon fa fa-university"></i>
-                <p>
-                    Health Facility
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="/registrar/map" class="nav-link">
-                <i class="nav-icon fa fa-map-marker"></i>
-                <p>
-                    Map
-                </p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="/registrar/send_message_interface" class="nav-link">
-                <i class="nav-icon fas fa-envelope"></i>
-                <p>
-                    Send Message
-                </p>
-            </a>
-        </li>
-         <li class="nav-item">
-            <a href="/hospital_statistics" class="nav-link">
-              <i class="nav-icon fa fa-history"></i>
-              <p>
-                Hospital Statistics
-              </p>
-            </a>
-          </li>
-          @endif
+          </li> -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

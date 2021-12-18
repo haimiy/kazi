@@ -25,6 +25,7 @@ class CreateHealthFacilityInspectionTable extends Migration
             $table->unsignedBigInteger('health_facility_inspection_id');
             $table->text('comments');
             $table->unsignedBigInteger('inspector_guidelines_question_id');
+            $table->string('inspector_guidelines_question_answer');
             $table->timestamps();
         });
 

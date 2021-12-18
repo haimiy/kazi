@@ -26,10 +26,10 @@ class CreateLicenseTable extends Migration
 
         Schema::create('license_histories', function (Blueprint $table) {
             $table->id();
-            $table->string('license_no');
-            $table->date('date_of_issue');
-            $table->date('expiry_date');
-            $table->bigInteger('owner_id');
+            $table->string('license_no')->nullable();;
+            $table->date('date_of_issue')->nullable();;
+            $table->date('expiry_date')->nullable();;
+            $table->bigInteger('owner_id')->nullable();;
             $table->timestamps();
         });
         Schema::create('license_statuses', function (Blueprint $table) {

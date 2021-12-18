@@ -10,7 +10,12 @@ class InspectorController extends Controller
 {
     public function index()
     {
-        return view('inspector.index');
+        $count_pending_license = Registration::where('status','Pending')->count();
+        $count_inspected_license = Registration::where('status','Inspected')->count();
+        return view('inspector.index', [
+            'count_pending_license'=> $count_pending_license,
+            'count_inspected_license'=> $count_inspected_license,
+        ]);
     }
     public function applicationList()
     {
@@ -21,8 +26,18 @@ class InspectorController extends Controller
             'list_of_applications' => $list_of_applications,
         ]);
     }
+     public function applicationListInspected()
+    {
+        $list_of_applications = DB::select("SELECT u.first_name, u.middle_name, u.last_name, hf.facility_name,r.id, r.status FROM registration r
+        LEFT JOIN health_facility hf ON r.health_facility_id = hf.id
+        LEFT JOIN users u ON u.id = hf.user_id where r.status = 'Inspected'");
+        return view('inspector.list_of_application_inspected', [
+            'list_of_applications' => $list_of_applications,
+        ]);
+    }
 
      public function detailedListOfApplication($id){
+        $inspection_guidelines_questions = DB::select('SELECT * from inspection_guidelines');
         $application = DB::select('SELECT r.id,r.starting_operation_date,r.nearest_hospital_name,r.nearest_hospital_distance,r.nearest_hospital_owner,r.nearest_hospital_type_of_health_unit,r.status,r.application_ref_no,r.created_at,r.updated_at,hf.type_of_health_unit_specified,r.authority_responsible_specified,
                tohu.name as type_of_health_unit,
                ar.name as authority_responsible,
@@ -68,12 +83,16 @@ from registration r
             'buildingParts'=>$buildingParts,
             'sanitation'=>$sanitation[0],
             'waterSupply'=>$waterSupplies[0],
-            'wasteDisposal'=>$wasteDisposal[0]
+            'wasteDisposal'=>$wasteDisposal[0],
+            'inspection_guidelines_questions'=> $inspection_guidelines_questions,
         ]);
     }
 
     public function comments(){
-        return view('inspector.comments_create');
+        $inspection_guidelines_questions = DB::select('SELECT * from inspection_guidelines');
+        return view('inspector.comments_create', [
+            'inspection_guidelines_questions'=> $inspection_guidelines_questions,
+        ]);
     }
 
      public function storeComments(Request $request)
@@ -88,7 +107,8 @@ from registration r
         DB::table('health_facility_inspection_comments')->insertGetId([
             'health_facility_inspection_id'=>$health_facility_inspection_id,
             'comments'=>$request->comments,
-            'inspector_guidelines_question_id'=>1
+            'inspector_guidelines_question_id'=>1,
+            'inspector_guidelines_question_answer'=>1
         ]);
         $registration = Registration::find($request->registration_id);
         $registration->status = 'Inspected';

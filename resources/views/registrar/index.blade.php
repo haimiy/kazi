@@ -53,7 +53,7 @@
                 <p>By General</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fa fa-retweet"></i>
               </div>
               <a href="/registrar/by_general" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -68,7 +68,7 @@
                 <p>By District</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fa fa-map"></i>
               </div>
               <a href="/registrar/by_district" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -83,7 +83,7 @@
                 <p>By Level</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fa fa-university"></i>
               </div>
               <a href="/registrar/by_level" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
